@@ -13,7 +13,7 @@ from pathlib import Path
 
 
 SKILL_ROOT = Path(__file__).resolve().parents[1]
-WIKI_ROOT = SKILL_ROOT / "docs-site" / "src" / "content" / "docs" / "wiki"
+WIKI_ROOT = SKILL_ROOT / "wiki"
 ALLOWED_ROOTS = {"技术", "管理", "产品", "运营", "测试", "其他"}
 FRONTMATTER_RE = re.compile(r"\A---\n(.*?)\n---\n", re.DOTALL)
 

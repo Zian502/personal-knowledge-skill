@@ -14,10 +14,10 @@ Resolve all paths relative to this `SKILL.md`:
 - Writer: `scripts/kb.py`
 - Taxonomy rules: `references/taxonomy.md`
 - Article contract: `references/article-format.md`
-- Wiki root: `docs-site/src/content/docs/wiki`
+- Wiki root: `wiki`
 - Site root: `docs-site`
 
-Never write conversation knowledge outside the Wiki root unless the user explicitly requests another location.
+Write all distilled knowledge under `wiki/`. `docs-site/src/content/docs/wiki` is a symbolic link to that directory; never write articles through the site path.
 
 ## Interpret commands
 
@@ -43,7 +43,7 @@ Treat “查看知识库” as a request to list articles or start the documenta
 
    ```bash
    python3 scripts/kb.py list
-   rg -n -i "<key terms>" docs-site/src/content/docs/wiki
+   rg -n -i "<key terms>" wiki
    ```
 
 5. Read `references/article-format.md`. Draft a self-contained Markdown body in a temporary file. Improve or merge an existing article when the new knowledge materially overlaps; create a new article otherwise.
@@ -76,7 +76,7 @@ python3 scripts/kb.py list --category "技术/前端"
 Use `rg` for full-text lookup:
 
 ```bash
-rg -n -i "<query>" docs-site/src/content/docs/wiki
+rg -n -i "<query>" wiki
 ```
 
 For a visual site, run:
@@ -84,10 +84,11 @@ For a visual site, run:
 ```bash
 cd docs-site
 npm install
-npm run dev
+npm run build
+npm run preview -- --host 127.0.0.1
 ```
 
-Return the local URL printed by Astro. Do not leave a development server running unless the user asked to keep it running.
+The preview server renders the current `wiki/` source through the site link. Return the local URL printed by Astro. Do not leave a server running unless the user asked to keep it running.
 
 ## Validate the site
 

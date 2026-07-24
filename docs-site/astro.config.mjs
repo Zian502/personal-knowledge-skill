@@ -1,7 +1,15 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import { fileURLToPath } from "node:url";
+
+const skillRoot = fileURLToPath(new URL("..", import.meta.url));
 
 export default defineConfig({
+  vite: {
+    server: {
+      fs: { allow: [skillRoot] },
+    },
+  },
   integrations: [
     starlight({
       title: "个人知识库",
