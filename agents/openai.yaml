@@ -1,0 +1,4 @@
+interface:
+  display_name: "个人知识库 Skill（PKS）"
+  short_description: "将当前会话沉淀为分类 Wiki 并通过文档站点浏览"
+  default_prompt: "Use $personal-knowledge-skill to summarize this conversation and save it into my local knowledge wiki."
