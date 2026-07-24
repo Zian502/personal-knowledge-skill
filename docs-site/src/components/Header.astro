@@ -1,0 +1,23 @@
+---
+import Search from 'virtual:starlight/components/Search';
+import ThemeSelect from 'virtual:starlight/components/ThemeSelect';
+---
+
+<div class="pks-header">
+  <a class="pks-brand" href="/" aria-label="个人知识库首页">
+    <span class="pks-brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+    <span>个人知识库</span>
+    <small>PKS</small>
+  </a>
+
+  <nav class="pks-nav" aria-label="主导航">
+    <a href="/">概览</a>
+    <a href="/wiki/">Wiki</a>
+    <a href="/wiki/">知识分类</a>
+  </nav>
+
+  <div class="pks-header-tools">
+    <Search />
+    <ThemeSelect />
+  </div>
+</div>

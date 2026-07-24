@@ -1,0 +1,28 @@
+---
+const domains = [
+  ['01', '技术', '前端、后端、架构、DevOps、AI 与数据'],
+  ['02', '管理', '项目、团队、流程与研发效能'],
+  ['03', '产品', '需求、设计、研究与产品数据'],
+  ['04', '运营', '内容、用户、活动与增长'],
+  ['05', '测试', '自动化、性能与质量保障'],
+];
+---
+
+<section class="pks-section" aria-labelledby="domain-title">
+  <div class="pks-section-heading">
+    <p class="pks-eyebrow"><span></span> KNOWLEDGE MAP</p>
+    <h2 id="domain-title">用分类，让知识自然生长。</h2>
+    <p>从五个核心领域开始。文章会继续向下细分，但始终保留清晰、稳定的归属。</p>
+  </div>
+  <div class="pks-domain-grid">
+    {domains.map(([index, name, description], position) => (
+      <a class:list={["pks-domain-card", { "pks-domain-featured": position === 0 }]} href="/wiki/">
+        <span class="pks-domain-index">{index}</span>
+        <div class="pks-domain-glyph" aria-hidden="true"><i></i><i></i><i></i></div>
+        <h3>{name}</h3>
+        <p>{description}</p>
+        <span class="pks-domain-link">进入分类 <b>↗</b></span>
+      </a>
+    ))}
+  </div>
+</section>

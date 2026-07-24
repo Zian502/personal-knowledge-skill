@@ -22,7 +22,11 @@ export default defineConfig({
         },
       },
       social: [],
-      customCss: ["./src/styles/custom.css"],
+      customCss: ["@fontsource-variable/geist", "./src/styles/custom.css"],
+      components: {
+        Header: "./src/components/Header.astro",
+        PageTitle: "./src/components/PageTitle.astro",
+      },
       sidebar: [
         { label: "首页", link: "/" },
         {

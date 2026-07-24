@@ -1,0 +1,6 @@
+---
+const entry = Astro.locals.starlightRoute.entry;
+const isSplash = entry.data.template === 'splash';
+---
+
+{!isSplash && <h1>{entry.data.title}</h1>}
