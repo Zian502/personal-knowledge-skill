@@ -35,11 +35,12 @@ Do not use secondary articles as the source of an API contract. State the source
 ## Required body sections
 
 1. `API 定位`
-2. `常用参数与返回`
-3. `会话提炼场景`
-4. `常见应用场景`
-5. `边界与注意事项`
-6. `官方文档`
+2. `依赖库`（仅在 API 依赖第三方库或运行时包时）
+3. `常用参数与返回`
+4. `会话提炼场景`
+5. `常见应用场景`
+6. `边界与注意事项`
+7. `官方文档`
 
 Technical frontmatter must include `api` in addition to the standard fields.
 
@@ -50,6 +51,10 @@ Write `常用参数与返回` as a Markdown table with these columns:
 | `module.method()` | `option: Type` | `Promise<Result>` | Verified purpose, default, or constraint. |
 
 Keep each row to one API call, option, event, or return contract. Put inputs and outputs in their own columns and use `—` when a column does not apply. Do not place scenarios or inferred architecture guidance in this table.
+
+## Third-party dependencies
+
+When the API requires a third-party library or runtime package, add `依赖库` directly after `API 定位`. State the package name, why the API needs it, and how to install and import or minimally use it. Use a compact table or code block. Do not add the section for Node.js standard-library APIs or other APIs with no third-party dependency.
 
 ## Conversation scenario code example
 

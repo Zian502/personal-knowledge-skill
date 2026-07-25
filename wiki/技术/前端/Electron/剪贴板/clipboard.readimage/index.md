@@ -11,6 +11,12 @@ updated: "2026-07-25"
 
 `clipboard.readImage([type])` 从系统剪贴板读取图像内容，返回 `NativeImage`。适合主进程代读剪贴板截图/图片后传给渲染进程。
 
+## 依赖库
+
+| 库 | 为何使用 | 如何使用 |
+| --- | --- | --- |
+| `electron` | 提供主进程的 `clipboard` 与 `NativeImage`，用于读取系统剪贴板图像。 | `npm install --save-dev electron`；`import { clipboard } from "electron"`。 |
+
 ## 常用参数与返回
 
 | API | 参数 | 返回 | 说明 |

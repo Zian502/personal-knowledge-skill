@@ -12,6 +12,12 @@ updated: "2026-07-25"
 
 `dialog.showOpenDialog([window, ]options)` 是 Electron 主进程的异步原生文件/目录选择 API。传入窗口可让对话框成为该窗口的模态对话框。
 
+## 依赖库
+
+| 库 | 为何使用 | 如何使用 |
+| --- | --- | --- |
+| `electron` | 提供主进程原生文件对话框 `dialog`，可附着到 `BrowserWindow`。 | `npm install --save-dev electron`；`import { dialog } from "electron"`。 |
+
 ## 常用参数与返回
 
 | API | 参数 | 返回 | 说明 |

@@ -11,6 +11,12 @@ updated: "2026-07-25"
 
 `Fiber.await(fiber)` 挂起当前 fiber，直到目标 fiber 结束，并返回描述结果的 `Exit`（成功、失败、中断等），而不会把失败自动传播到当前 Effect。
 
+## 依赖库
+
+| 库 | 为何使用 | 如何使用 |
+| --- | --- | --- |
+| `effect` | 提供 `Fiber.await()`、`Exit` 与结构化并发控制。 | `npm install effect`；`import { Fiber } from "effect"`。 |
+
 ## 常用参数与返回
 
 | API | 参数 | 返回 | 说明 |

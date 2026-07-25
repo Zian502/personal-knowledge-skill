@@ -39,6 +39,10 @@ For articles under `技术`, use one primary API and this structure instead of a
 
 Name the module, API, runtime/process boundary, and the exact responsibility.
 
+## 依赖库
+
+Only when a third-party library or runtime package is required: state its name, why the API needs it, and a minimal install/import or usage example. Omit this section for built-in APIs with no third-party dependency.
+
 ## 常用参数与返回
 
 Use a four-column Markdown table: `API｜参数｜返回｜说明`. List only parameters, return values, events, or lifecycle rules verified in current official documentation. Keep parameters and returns separate; use `—` when either is not applicable.

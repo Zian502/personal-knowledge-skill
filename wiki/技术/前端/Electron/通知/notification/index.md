@@ -11,6 +11,12 @@ updated: "2026-07-25"
 
 `new Notification([options])` 创建操作系统桌面通知对象。实例化不会自动展示，必须调用 `notification.show()`。
 
+## 依赖库
+
+| 库 | 为何使用 | 如何使用 |
+| --- | --- | --- |
+| `electron` | 提供主进程的 `Notification`，用于调用操作系统的桌面通知能力。 | `npm install --save-dev electron`；`import { Notification } from "electron"`。 |
+
 ## 常用参数与返回
 
 | API | 参数 | 返回 | 说明 |

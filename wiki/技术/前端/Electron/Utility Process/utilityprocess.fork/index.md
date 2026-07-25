@@ -12,6 +12,12 @@ updated: "2026-07-25"
 
 `utilityProcess.fork(modulePath[, args][, options])` 从 Electron 主进程创建一个具有 Node.js 和 MessagePort 能力的 Utility Process。它是 Electron 为主进程派生子进程提供的 API。
 
+## 依赖库
+
+| 库 | 为何使用 | 如何使用 |
+| --- | --- | --- |
+| `electron` | 提供 `utilityProcess`，用于从主进程启动隔离的 Node.js Sidecar。 | `npm install --save-dev electron`；`import { utilityProcess } from "electron"`。 |
+
 ## 常用参数与返回
 
 | API | 参数 | 返回 | 说明 |

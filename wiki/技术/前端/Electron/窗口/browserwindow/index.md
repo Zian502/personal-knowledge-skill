@@ -12,12 +12,19 @@ updated: "2026-07-25"
 
 `new BrowserWindow([options])` 在 Electron 主进程创建和控制原生浏览器窗口。`BrowserWindow` 是 `EventEmitter`，可监听 `ready-to-show` 等窗口事件。
 
+## 依赖库
+
+| 库 | 为何使用 | 如何使用 |
+| --- | --- | --- |
+| `electron` | 提供主进程的 `BrowserWindow`，用于创建、安全配置并管理桌面窗口。 | `npm install --save-dev electron`；`import { BrowserWindow } from "electron"`。 |
+
 ## 常用参数与返回
 
 | API | 参数 | 返回 | 说明 |
 | --- | --- | --- | --- |
 | `new BrowserWindow()` | `show: false` | `BrowserWindow` 实例 | 先创建隐藏窗口，待内容可显示时再调用 `show()`。 |
 | `webPreferences.preload` | 绝对脚本路径 | — | 即使关闭 Node integration 仍可访问 Node API，应只暴露最小能力。 |
+| `webPreferences.contextIsolation` | 默认 `true` | — | 将 preload 与网站代码置于不同 JavaScript context；应通过 `contextBridge` 显式共享 API。 |
 | `webPreferences.nodeIntegration` | 默认 `false` | — | 控制渲染进程 Node integration。 |
 | `webPreferences.sandbox` | Electron 20 起默认 `true` | — | 设置 `nodeIntegration: true` 会自动关闭该沙箱。 |
 | `ready-to-show` | — | 窗口事件 | 窗口准备显示时触发；可配合 `backgroundColor` 改善体验。 |
@@ -27,7 +34,15 @@ updated: "2026-07-25"
 多窗口恢复可由应用层 Registry 保存窗口 ID，而每个 ID 对应的几何状态由窗口状态库保存。每次恢复时用 `BrowserWindow` 创建隐藏窗口、接入受限 preload API，再在 `ready-to-show` 显示。Registry 的保留/清理策略并非 `BrowserWindow` API 的自动行为。
 
 ```ts
-const window = new BrowserWindow({ show: false, webPreferences: { preload } })
+const window = new BrowserWindow({
+  show: false,
+  webPreferences: {
+    preload,
+    contextIsolation: true,
+    nodeIntegration: false,
+    sandbox: true,
+  },
+})
 window.once("ready-to-show", () => window.show())
 window.on("closed", () => windowRegistry.delete(window.id))
 ```
@@ -41,6 +56,7 @@ window.on("closed", () => windowRegistry.delete(window.id))
 ## 边界与注意事项
 
 - 不要为了方便开启 `nodeIntegration`；它会改变渲染进程的安全边界。
+- `contextIsolation: true` 只隔离全局对象；preload 仍应以 `contextBridge` 暴露最小 API，并由 Main process 校验每个 IPC 调用。
 - Linux Wayland 对创建后的移动、聚焦和调整大小存在限制。
 - 对复杂应用，官方指出 `ready-to-show` 可能让首屏显得较慢；应结合背景色和体验目标决定策略。
 

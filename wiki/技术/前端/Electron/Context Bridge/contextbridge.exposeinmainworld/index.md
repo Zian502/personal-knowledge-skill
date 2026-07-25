@@ -11,6 +11,12 @@ updated: "2026-07-25"
 
 `contextBridge.exposeInMainWorld(apiKey, api)` 由 preload 脚本调用，将一个受限 API 注入 Renderer 的主世界 `window[apiKey]`。当 `contextIsolation` 开启时，preload 与页面脚本处在不同 JavaScript context；该 API 是两者之间的显式桥梁。
 
+## 依赖库
+
+| 库 | 为何使用 | 如何使用 |
+| --- | --- | --- |
+| `electron` | 提供 preload 中的 `contextBridge`，用于在 context isolation 下安全暴露 Renderer API。 | `npm install --save-dev electron`；`import { contextBridge } from "electron"`。 |
+
 ## 常用参数与返回
 
 | API | 参数 | 返回 | 说明 |

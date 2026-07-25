@@ -12,6 +12,12 @@ updated: "2026-07-25"
 
 `Effect.fork()` 将目标 Effect 作为轻量 Fiber 在后台启动，并返回该 Fiber 的句柄；后续可等待、取消或观测其退出状态。
 
+## 依赖库
+
+| 库 | 为何使用 | 如何使用 |
+| --- | --- | --- |
+| `effect` | 提供 `Effect.fork()` 与可取消、可等待的 Fiber 并发模型。 | `npm install effect`；`import { Effect } from "effect"`。 |
+
 ## 常用参数与返回
 
 | API | 参数 | 返回 | 说明 |
