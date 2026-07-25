@@ -1,11 +1,13 @@
 ---
 title: "utilityProcess.fork()：隔离桌面端 Sidecar"
 description: "从 Electron 主进程启动具备 Node.js 环境的 Utility Process，并通过生命周期与消息通道管理本地服务。"
-category: "技术/前端/Electron"
+category: "技术/前端/Electron/Utility Process"
+api: "utilityProcess.fork"
 tags: ["Electron", "utilityProcess", "Sidecar", "进程隔离"]
 created: "2026-07-25"
 updated: "2026-07-25"
 ---
+
 ## API 定位
 
 `utilityProcess.fork(modulePath[, args][, options])` 从 Electron 主进程创建一个具有 Node.js 和 MessagePort 能力的 Utility Process。它是 Electron 为主进程派生子进程提供的 API。

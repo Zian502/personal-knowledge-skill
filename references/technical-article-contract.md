@@ -6,6 +6,24 @@
 - The title begins with the API name or makes it unmistakable.
 - Split orchestration patterns into the API pages they use; retain an overview only as a short link hub.
 
+## Directory and navigation model
+
+Technical categories end at the framework/module directory. Each atomic API is a
+direct child directory of that module and contains exactly one `index.md` article.
+The API directory becomes one clickable menu item in the documentation site.
+
+```text
+wiki/技术/后端/Node.js/文件系统/
+├── fspromises.open/
+│   └── index.md       # frontmatter: api: "fsPromises.open"
+└── filehandle.read/
+    └── index.md       # frontmatter: api: "FileHandle.read"
+```
+
+- Use the official API spelling in frontmatter `api`, for example `fsPromises.open`.
+- The parent category identifies the module, for example `技术/后端/Node.js/文件系统`.
+- Do not put a technical article directly under its module directory or combine two APIs in one article.
+
 ## Evidence order
 
 1. Current first-party API reference.
@@ -22,6 +40,8 @@ Do not use secondary articles as the source of an API contract. State the source
 4. `常见应用场景`
 5. `边界与注意事项`
 6. `官方文档`
+
+Technical frontmatter must include `api` in addition to the standard fields.
 
 Write `常用参数与返回` as a Markdown table with these columns:
 

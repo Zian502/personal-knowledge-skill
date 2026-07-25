@@ -1,6 +1,6 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -13,10 +13,17 @@ function titleFromMarkdown(path) {
   return match ? match[1] : path.replace(/\.md$/, "");
 }
 
+function apiFromMarkdown(path) {
+  const source = readFileSync(path, "utf8").slice(0, 2048);
+  const match = source.match(/^api:\s*["']?(.+?)["']?\s*$/m);
+  return match ? match[1] : titleFromMarkdown(path);
+}
+
 function wikiRoute(parts) {
-  const route = parts
+  const sourceParts = parts
     .map((part) => part.replace(/\.md$/, "").toLowerCase().replace(/[^\w\u4e00-\u9fff-]/g, ""))
-    .join("/");
+    .filter((part, index, all) => !(index === all.length - 1 && part === "index"));
+  const route = sourceParts.join("/");
   return `/wiki/${route}/`;
 }
 
@@ -29,10 +36,20 @@ function wikiNavigation(directory = wikiRoot, parts = []) {
   const articles = entries.filter((entry) => entry.isFile() && entry.name.endsWith(".md"));
 
   return [
-    ...directories.map((entry) => ({
-      label: entry.name,
-      items: wikiNavigation(join(directory, entry.name), [...parts, entry.name]),
-    })),
+    ...directories.map((entry) => {
+      const childDirectory = join(directory, entry.name);
+      const articlePath = join(childDirectory, "index.md");
+      if (existsSync(articlePath)) {
+        return {
+          label: apiFromMarkdown(articlePath),
+          link: wikiRoute([...parts, entry.name, "index.md"]),
+        };
+      }
+      return {
+        label: entry.name,
+        items: wikiNavigation(childDirectory, [...parts, entry.name]),
+      };
+    }),
     ...articles.map((entry) => ({
       label: titleFromMarkdown(join(directory, entry.name)),
       link: wikiRoute([...parts, entry.name]),

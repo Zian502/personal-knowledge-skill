@@ -1,11 +1,13 @@
 ---
 title: "new BrowserWindow()：创建并显示主窗口"
 description: "使用 BrowserWindow 构造选项、webPreferences 与 ready-to-show 事件建立安全且避免闪烁的窗口生命周期。"
-category: "技术/前端/Electron"
+category: "技术/前端/Electron/窗口"
+api: "BrowserWindow"
 tags: ["Electron", "BrowserWindow", "窗口", "安全"]
 created: "2026-07-25"
 updated: "2026-07-25"
 ---
+
 ## API 定位
 
 `new BrowserWindow([options])` 在 Electron 主进程创建和控制原生浏览器窗口。`BrowserWindow` 是 `EventEmitter`，可监听 `ready-to-show` 等窗口事件。

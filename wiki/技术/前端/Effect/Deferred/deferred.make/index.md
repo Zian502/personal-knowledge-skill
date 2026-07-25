@@ -1,23 +1,22 @@
 ---
-title: "Deferred.make() / await() / succeed()：一次性就绪信号"
-description: "用 Effect Deferred 表示只能完成一次的异步结果，并让等待方以不阻塞线程的方式等待。"
-category: "技术/前端/Effect"
+title: "Deferred.make()：创建一次性就绪信号"
+description: "用 Effect Deferred 创建只能完成一次的异步结果，以便等待方共享同一个就绪信号。"
+category: "技术/前端/Effect/Deferred"
+api: "Deferred.make"
 tags: ["Effect", "Deferred", "并发", "同步"]
 created: "2026-07-25"
 updated: "2026-07-25"
 ---
+
 ## API 定位
 
-`Deferred` 是 Effect 的一次性同步原语。`Deferred.make()` 创建空值，随后仅能由 `succeed`、`fail`、`done` 等方式完成一次；`Deferred.await()` 读取结果。
+`Deferred.make()` 创建一个空的 Effect Deferred。Deferred 是一次性同步原语，后续可由 `succeed`、`fail`、`done` 等方式完成一次。
 
 ## 常用参数与返回
 
 | API | 参数 / 返回 | 说明 |
 | --- | --- | --- |
 | `Deferred.make<Success, Error>()` | → `Effect<Deferred<Success, Error>>` | 创建一次性 Deferred 的 Effect。 |
-| `Deferred.await()` | `deferred` → `Effect<Success, Error>` | 等待成功值或错误；等待 Fiber 语义性暂停，不阻塞线程。 |
-| `Deferred.succeed()` | `deferred`、`value` → `Effect<boolean>` | 以成功值完成；重复完成不会替换既有结果。 |
-| `Deferred.fail()` | `deferred`、`error` → `Effect<boolean>` | 以预期错误完成。 |
 
 ## 会话提炼场景
 
@@ -37,7 +36,7 @@ Electron Sidecar 启动后可用 `Deferred.succeed(serverReady, credentials)` �
 
 ## 关联 API
 
-- [Fiber.fork 与 Fiber.await](/wiki/技术/前端/effect/fiber-fork-await/)
+- [Effect.fork()](/wiki/技术/前端/effect/fiber/effectfork/)
 
 ## 官方文档
 

@@ -69,12 +69,24 @@ Do not claim that raw conversation text was preserved. The default output is a d
 
 For every article whose first-level category is `技术`, read `references/technical-article-contract.md` before drafting.
 
-1. Define one primary unit: a framework/module API, class, method, option, or lifecycle event. Use the API name in the title. Do not combine unrelated APIs into a solution overview.
+Technical knowledge uses a fixed **framework/module/API article** layout. The final category level is the module; each API has its own direct child directory and an `index.md` article, for example `技术/后端/Node.js/文件系统/fspromises.open/index.md` (the directory uses a lowercase-safe API slug, while `api` keeps the official spelling). This API directory is one clickable item in the documentation sidebar. Do not place technical pages directly under a module or combine multiple APIs in one page.
+
+1. Define one primary unit: a framework/module API, class, method, option, or lifecycle event. Use the API name in the title and record its official spelling in frontmatter `api`. Do not combine unrelated APIs into a solution overview.
 2. Reconstruct the user-relevant technical point from the current conversation, then identify the primary API behind it. Split into separate pages when the conversation depends on several APIs.
 3. Search the latest official documentation before writing. Prefer the framework or runtime's first-party docs; record the direct URL and the verification date. Never infer parameter defaults, return values, lifecycle guarantees, or security behavior from memory.
 4. Explain only the common parameters, return values, lifecycle/events, and failure or security boundaries relevant to the API. Render `常用参数与返回` as a Markdown table with API、参数/返回、说明 columns. Mark implementation guidance as an inference when it goes beyond the official contract.
 5. Include two scenario sections: `会话提炼场景` (grounded in the current conversation) and `常见应用场景` (established industry use). Keep them clearly separate from the API contract.
 6. Put links to companion API pages under `关联 API`; use a separate overview page only when it links to atomic pages rather than duplicating their API details.
+
+When adding a technical page, supply `--api` so the writer creates the required API directory automatically:
+
+```bash
+python3 scripts/kb.py add \
+  --title "fsPromises.open()：创建受控文件句柄" \
+  --category "技术/后端/Node.js/文件系统" \
+  --api "fsPromises.open" \
+  --summary "..." --tags "Node.js,文件系统" --source-file /tmp/article.md
+```
 
 Run `python3 scripts/kb.py check` and `python3 scripts/kb.py index --check` after recording. If the current conversation lacks a trustworthy official source, ask the user or leave the article unsaved rather than inventing an API contract.
 

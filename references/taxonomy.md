@@ -13,10 +13,11 @@ Choose one primary category path per article. Use 2–4 levels and `/` as the se
 
 ## Recommended paths
 
-- `技术/前端/Electron`
-- `技术/前端/Node.js`
-- `技术/前端/React`
-- `技术/前端/Vue`
+- `技术/前端/Electron/IPC`
+- `技术/前端/Electron/窗口`
+- `技术/前端/React/状态管理`
+- `技术/前端/Vue/组合式 API`
+- `技术/后端/Node.js/文件系统`
 - `技术/后端/Java`
 - `技术/后端/Python`
 - `技术/架构`

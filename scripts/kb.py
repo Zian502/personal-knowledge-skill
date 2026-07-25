@@ -48,6 +48,14 @@ def slugify(value: str) -> str:
     return value
 
 
+def api_directory(value: str) -> str:
+    """Create a stable, filesystem-safe directory for an API name."""
+    value = unicodedata.normalize("NFKC", value).strip().lower()
+    if not re.fullmatch(r"[A-Za-z0-9_$.-]+", value) or value in {".", ".."}:
+        fail("API 名称只能包含字母、数字、_、$、. 或 -")
+    return value
+
+
 def parse_tags(raw: str) -> list[str]:
     seen: set[str] = set()
     tags: list[str] = []
@@ -70,9 +78,16 @@ def cmd_add(args: argparse.Namespace) -> None:
     if body.startswith("---"):
         fail("正文文件不要包含 frontmatter；元数据由 kb.py 生成")
 
-    filename = f"{slugify(args.slug or args.title)}.md"
     target_dir = WIKI_ROOT.joinpath(*category)
-    target = target_dir / filename
+    api = args.api.strip() if args.api else ""
+    if category[0] == "技术":
+        if not api:
+            fail("技术文章必须指定 --api，并按“模块/API/index.md”存放")
+        if args.slug:
+            fail("技术文章的 API 目录由 --api 自动生成，请不要使用 --slug")
+        target = target_dir / api_directory(api) / "index.md"
+    else:
+        target = target_dir / f"{slugify(args.slug or args.title)}.md"
     if target.exists():
         fail(f"文章已存在，拒绝覆盖：{target}")
 
@@ -83,6 +98,7 @@ def cmd_add(args: argparse.Namespace) -> None:
         f"title: {quote_yaml(args.title.strip())}",
         f"description: {quote_yaml(args.summary.strip())}",
         f"category: {quote_yaml('/'.join(category))}",
+        *([f"api: {quote_yaml(api)}"] if api else []),
         f"tags: {json.dumps(tags, ensure_ascii=False)}",
         f"created: {quote_yaml(today)}",
         f"updated: {quote_yaml(today)}",
@@ -111,7 +127,7 @@ def article_meta(path: Path) -> dict[str, str]:
 def markdown_files() -> list[Path]:
     if not WIKI_ROOT.exists():
         return []
-    return sorted(path for path in WIKI_ROOT.rglob("*.md") if path.name != "index.md")
+    return sorted(path for path in WIKI_ROOT.rglob("*.md") if path != WIKI_ROOT / "index.md")
 
 
 def article_rows() -> list[dict[str, str | Path]]:
@@ -132,9 +148,12 @@ def article_rows() -> list[dict[str, str | Path]]:
 
 def site_path(relative: Path) -> str:
     """Map a Wiki source path to Starlight's directory-style route."""
+    source_parts = list(relative.with_suffix("").parts)
+    if source_parts and source_parts[-1] == "index":
+        source_parts.pop()
     route_parts = [
         re.sub(r"[^\w\u4e00-\u9fff-]+", "", part.lower())
-        for part in relative.with_suffix("").parts
+        for part in source_parts
     ]
     return "/wiki/" + "/".join(route_parts) + "/"
 
@@ -263,7 +282,17 @@ def cmd_check(_: argparse.Namespace) -> None:
             errors.append(f"{relative}: 分类无效：{category}")
             continue
         expected_parent = Path(*parts)
-        if relative.parent != expected_parent:
+        if parts[0] == "技术":
+            api = meta.get("api", "")
+            if not api:
+                errors.append(f"{relative}: 技术文章缺少 frontmatter 字段 api")
+                continue
+            expected_path = expected_parent / api_directory(api) / "index.md"
+            if relative != expected_path:
+                errors.append(
+                    f"{relative}: 技术文章应位于 {expected_path}（模块/API/index.md）"
+                )
+        elif relative.parent != expected_parent:
             errors.append(
                 f"{relative}: 目录与 category 不一致，应位于 {expected_parent}"
             )
@@ -283,6 +312,7 @@ def build_parser() -> argparse.ArgumentParser:
     add.add_argument("--summary", required=True)
     add.add_argument("--tags", default="")
     add.add_argument("--slug")
+    add.add_argument("--api", help="技术文章的唯一 API 名称；生成 API/index.md 目录")
     add.add_argument("--source-file", required=True)
     add.set_defaults(func=cmd_add)
 

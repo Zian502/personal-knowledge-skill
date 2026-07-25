@@ -61,6 +61,9 @@ Separate official constraints from implementation inferences.
 ```
 
 Use `关联 API` for companion APIs. Split the article if it needs more than one primary API to explain its contract.
+Its frontmatter must include the exact primary API as `api`, and its path must be
+`技术/<领域>/<框架>/<模块>/<api-slug>/index.md` (within the 2–4 category levels,
+the final category is the module).
 
 ## Quality bar
 

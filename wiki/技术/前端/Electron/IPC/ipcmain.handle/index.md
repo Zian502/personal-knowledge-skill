@@ -1,11 +1,13 @@
 ---
 title: "ipcMain.handle()：实现请求—响应式 IPC"
 description: "为 ipcRenderer.invoke() 注册异步处理器，并以 channel、调用来源和返回值建立受控主进程能力。"
-category: "技术/前端/Electron"
+category: "技术/前端/Electron/IPC"
+api: "ipcMain.handle"
 tags: ["Electron", "ipcMain", "IPC", "安全", "主进程"]
 created: "2026-07-25"
 updated: "2026-07-25"
 ---
+
 ## API 定位
 
 `ipcMain.handle(channel, listener)` 在主进程注册一个可由 `ipcRenderer.invoke(channel, ...args)` 调用的请求—响应处理器。处理器的普通返回值或 Promise 最终值会回复给调用方。
@@ -37,8 +39,8 @@ updated: "2026-07-25"
 
 ## 关联 API
 
-- [dialog.showOpenDialog()](/wiki/技术/前端/electron/dialog-show-open-dialog/)
-- [fsPromises.open() 与 FileHandle.read()](/wiki/技术/后端/node.js/fspromises-filehandle-read/)
+- [dialog.showOpenDialog()](/wiki/技术/前端/electron/对话框/dialogshowopendialog/)
+- [fsPromises.open()](/wiki/技术/后端/node.js/文件系统/fspromisesopen/)
 
 ## 官方文档
 

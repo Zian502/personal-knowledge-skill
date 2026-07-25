@@ -1,11 +1,13 @@
 ---
 title: "dialog.showOpenDialog()：选择本地文件"
 description: "在 Electron 主进程调用原生打开对话框，并以取消状态和文件路径列表处理结果。"
-category: "技术/前端/Electron"
+category: "技术/前端/Electron/对话框"
+api: "dialog.showOpenDialog"
 tags: ["Electron", "dialog", "文件选择", "主进程"]
 created: "2026-07-25"
 updated: "2026-07-25"
 ---
+
 ## API 定位
 
 `dialog.showOpenDialog([window, ]options)` 是 Electron 主进程的异步原生文件/目录选择 API。传入窗口可让对话框成为该窗口的模态对话框。
@@ -37,8 +39,8 @@ updated: "2026-07-25"
 
 ## 关联 API
 
-- [ipcMain.handle()](/wiki/技术/前端/electron/ipcmain-handle/)
-- [fsPromises.open() 与 FileHandle.read()](/wiki/技术/后端/node.js/fspromises-filehandle-read/)
+- [ipcMain.handle()](/wiki/技术/前端/electron/ipc/ipcmainhandle/)
+- [fsPromises.open()](/wiki/技术/后端/node.js/文件系统/fspromisesopen/)
 
 ## 官方文档
 

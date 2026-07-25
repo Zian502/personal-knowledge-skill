@@ -1,23 +1,22 @@
 ---
-title: "Effect.fork 与 Fiber.await：观察后台任务"
-description: "将 Effect 作为 Fiber 在后台执行，并在需要时等待其退出结果而不把启动流程写成一条阻塞链。"
-category: "技术/前端/Effect"
+title: "Effect.fork()：启动后台 Fiber"
+description: "将 Effect 作为 Fiber 在后台启动，并保留后续等待、取消和观测的能力。"
+category: "技术/前端/Effect/Fiber"
+api: "Effect.fork"
 tags: ["Effect", "Fiber", "并发", "后台任务"]
 created: "2026-07-25"
 updated: "2026-07-25"
 ---
+
 ## API 定位
 
-Fiber 是 Effect 的轻量并发执行单元。`Effect.fork`（或具备作用域语义的 `Effect.forkChild`）启动后台 Effect，`Fiber.await` 等待该 Fiber 的退出结果。
+`Effect.fork()` 将目标 Effect 作为轻量 Fiber 在后台启动，并返回该 Fiber 的句柄；后续可等待、取消或观测其退出状态。
 
 ## 常用参数与返回
 
 | API | 参数 / 返回 | 说明 |
 | --- | --- | --- |
 | `Effect.fork()` | `effect` → `Effect<Fiber>` | 在后台启动目标 Effect，并产生 Fiber 句柄。 |
-| `Effect.forkChild()` | `effect` → `Effect<Fiber>` | 在父作用域下启动子 Fiber，适合随父任务管理生命周期的后台工作。 |
-| `Fiber.await()` | `fiber` → `Effect<Exit>` | 等待 Fiber 完成；需要结果值时按 Exit 的成功/失败分支处理。 |
-| `Fiber.interrupt()` | `fiber` → `Effect` | 请求中断后台工作，用于取消或关闭流程。 |
 
 ## 会话提炼场景
 
@@ -37,7 +36,7 @@ Fiber 是 Effect 的轻量并发执行单元。`Effect.fork`（或具备作用�
 
 ## 关联 API
 
-- [Deferred.make() / await() / succeed()](/wiki/技术/前端/effect/deferred/)
+- [Deferred.make()](/wiki/技术/前端/effect/deferred/deferredmake/)
 
 ## 官方文档
 
