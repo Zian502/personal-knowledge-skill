@@ -5,6 +5,9 @@ import { fileURLToPath } from "node:url";
 
 const skillRoot = fileURLToPath(new URL("..", import.meta.url));
 const wikiIndex = fileURLToPath(new URL("../wiki/index.md", import.meta.url));
+const site = process.env.GITHUB_ACTIONS === "true"
+  ? "https://zian502.github.io"
+  : undefined;
 
 function wikiNavigationFromIndex() {
   const root = [];
@@ -45,6 +48,7 @@ function refreshSidebarWhenIndexChanges() {
 }
 
 export default defineConfig({
+  site,
   vite: {
     plugins: [refreshSidebarWhenIndexChanges()],
     server: {

@@ -2,6 +2,8 @@
 
 将当前 LLM 会话中的可复用内容提炼为本地 Markdown Wiki，并通过 Astro + Starlight 文档站点浏览、检索与长期维护。
 
+在线文档：<https://zian502.github.io/personal-knowledge-skill/>
+
 ## 核心能力
 
 - 以当前会话的完整用户与助手消息为知识源，由当前 Agent 分析、总结并形成可独立阅读的 Wiki。
@@ -117,6 +119,8 @@ npm run build
 ```
 
 线上站点会根据构建时的 `wiki/index.md` 生成相同的左侧菜单，因此应在构建前通过 `python3 scripts/kb.py index --check`。
+
+推送到 `main` 后，GitHub Actions 会构建并部署 GitHub Pages。首次启用时，请在仓库 **Settings → Pages** 将发布来源设为 **GitHub Actions**。
 
 ## 全局安装
 
