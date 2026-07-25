@@ -81,7 +81,7 @@ and `category: 技术/<领域>/<框架>`, and set its title to exactly `三方�
 
 | 库名 | 为何使用 | 如何使用 |
 | --- | --- | --- |
-| `package-name` | Why this conversation needs it. | Install/import or minimum usage. |
+| [`package-name`](https://github.com/owner/package-name) | Why this conversation needs it. | Install/import or minimum usage. |
 ```
 
 When an associated library has reusable API knowledge, place it under `技术/<领域>/<框架>/三方库/<库名>/<模块>/<api-slug>/index.md`; its category ends at `<模块>`. For example, Effect APIs used by Electron belong under `技术/前端/Electron/三方库/Effect/Deferred/...`, not a parallel `技术/前端/Effect` category. When no associated external package is evidenced, include one row stating `暂未识别关联三方库`; do not turn the parent framework/runtime package into a list entry.
