@@ -1,0 +1,12 @@
+# 个人知识库
+
+> 一个从 LLM 会话中提炼的本地 Markdown Wiki，按领域归档可复用的技术、管理、产品、运营与测试知识。
+
+优先阅读与问题最匹配的分类；每篇文章均可脱离原会话独立理解。
+
+## 技术/前端/Electron
+
+- [Electron 附件选择：Token 授权与字节预算](./技术/前端/Electron/electron-attachment-token-budget.md): 主进程对话框选文件后签发 token，渲染进程仅能读取本次授权路径，并受总附件字节上限约束。
+- [用 Effect Deferred 协调 Electron 主进程启动](./技术/前端/Electron/electron-main-effect-deferred.md): 用 Effect 编排启动流，用 Deferred 作为 sidecar 凭证就绪闸门，用 Fiber 等待后台 loading 任务。
+- [Electron 多窗口：Registry 与 window-state](./技术/前端/Electron/electron-window-registry-vs-state.md): Window Registry 持久化窗口 ID 列表，electron-window-state 持久化单窗几何，二者用同一 id 协作且关闭策略不同。
+- [OpenCode Desktop Sidecar 架构](./技术/前端/Electron/opencode-desktop-sidecar.md): 用 Utility Process 跑与 CLI 同一套 OpenCode Server，实现桌面壳与后端隔离、本机鉴权与自定义协议 CORS。

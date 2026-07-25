@@ -91,6 +91,7 @@ def cmd_add(args: argparse.Namespace) -> None:
     ]
     target_dir.mkdir(parents=True, exist_ok=True)
     target.write_text("\n".join(frontmatter) + body + "\n", encoding="utf-8")
+    cmd_index(argparse.Namespace(check=False))
     print(target)
 
 
@@ -111,6 +112,111 @@ def markdown_files() -> list[Path]:
     if not WIKI_ROOT.exists():
         return []
     return sorted(path for path in WIKI_ROOT.rglob("*.md") if path.name != "index.md")
+
+
+def article_rows() -> list[dict[str, str | Path]]:
+    rows: list[dict[str, str | Path]] = []
+    for path in markdown_files():
+        meta = article_meta(path)
+        rows.append(
+            {
+                "path": path,
+                "relative": path.relative_to(WIKI_ROOT),
+                "title": meta.get("title", path.stem),
+                "description": meta.get("description", ""),
+                "category": meta.get("category", "未分类"),
+            }
+        )
+    return rows
+
+
+def site_path(relative: Path) -> str:
+    """Map a Wiki source path to Starlight's directory-style route."""
+    route_parts = [part.lower() for part in relative.with_suffix("").parts]
+    return "/wiki/" + "/".join(route_parts) + "/"
+
+
+def wiki_index_content(rows: list[dict[str, str | Path]]) -> str:
+    groups: dict[str, list[dict[str, str | Path]]] = {}
+    for row in rows:
+        groups.setdefault(str(row["category"]), []).append(row)
+
+    lines = [
+        "---",
+        "title: Wiki",
+        "description: 按领域分类的个人知识文章。",
+        "sidebar:",
+        "  order: 0",
+        "---",
+        "",
+        "这里收录从 LLM 会话中提炼出的可复用知识。每篇文章都包含独立的背景、结论、步骤与边界；可从下方索引或顶部搜索进入。",
+        "",
+        "## 知识索引",
+        "",
+    ]
+    if not rows:
+        lines.append("暂未归档文章。使用 `/pks 录入当前会话` 创建第一篇知识条目。")
+    else:
+        for category, entries in sorted(groups.items()):
+            lines.extend([f"### {category}", ""])
+            for row in entries:
+                lines.append(
+                    f"- [{row['title']}]({site_path(row['relative'])}): {row['description']}"
+                )
+            lines.append("")
+    lines.extend(
+        [
+            "## 一级分类",
+            "",
+            "- 技术",
+            "- 管理",
+            "- 产品",
+            "- 运营",
+            "- 测试",
+            "- 其他",
+            "",
+        ]
+    )
+    return "\n".join(lines)
+
+
+def llms_index_content(rows: list[dict[str, str | Path]]) -> str:
+    """Return an llms.txt-compatible, concise inventory of the Wiki."""
+    groups: dict[str, list[dict[str, str | Path]]] = {}
+    for row in rows:
+        groups.setdefault(str(row["category"]), []).append(row)
+
+    lines = [
+        "# 个人知识库",
+        "",
+        "> 一个从 LLM 会话中提炼的本地 Markdown Wiki，按领域归档可复用的技术、管理、产品、运营与测试知识。",
+        "",
+        "优先阅读与问题最匹配的分类；每篇文章均可脱离原会话独立理解。",
+        "",
+    ]
+    for category, entries in sorted(groups.items()):
+        lines.extend([f"## {category}", ""])
+        for row in entries:
+            lines.append(f"- [{row['title']}](./{row['relative']}): {row['description']}")
+        lines.append("")
+    return "\n".join(lines)
+
+
+def cmd_index(args: argparse.Namespace) -> None:
+    rows = article_rows()
+    targets = {
+        WIKI_ROOT / "index.md": wiki_index_content(rows),
+        WIKI_ROOT / "llms.txt": llms_index_content(rows),
+    }
+    outdated = [path for path, content in targets.items() if not path.exists() or path.read_text(encoding="utf-8") != content]
+    if args.check:
+        if outdated:
+            fail("Wiki 索引已过期，请运行 `python3 scripts/kb.py index`")
+        print(f"索引已同步：{len(rows)} 篇文章")
+        return
+    for path, content in targets.items():
+        path.write_text(content, encoding="utf-8")
+    print(f"已更新 Wiki 索引：{len(rows)} 篇文章")
 
 
 def cmd_list(args: argparse.Namespace) -> None:
@@ -184,6 +290,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     check = subparsers.add_parser("check", help="校验 Wiki 元数据和目录")
     check.set_defaults(func=cmd_check)
+
+    index = subparsers.add_parser("index", help="生成面向人类和 LLM 的 Wiki 索引")
+    index.add_argument("--check", action="store_true", help="仅检查索引是否与文章同步")
+    index.set_defaults(func=cmd_index)
     return parser
 
 

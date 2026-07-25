@@ -59,6 +59,7 @@ Treat “查看知识库” as a request to list articles or start the documenta
    ```
 
    Pass `--slug` only when a stable English slug is valuable. The command refuses to overwrite an existing file.
+   It also refreshes `wiki/index.md` and the LLM-readable `wiki/llms.txt` inventory.
 7. For a merge, edit only the matching Wiki article. Preserve useful existing content and frontmatter, update `updated`, and integrate rather than append duplicate sections.
 8. Run `python3 scripts/kb.py check`. Report the saved or updated article paths and their classification.
 
@@ -71,6 +72,7 @@ Use the script for a compact inventory:
 ```bash
 python3 scripts/kb.py list
 python3 scripts/kb.py list --category "技术/前端"
+python3 scripts/kb.py index --check
 ```
 
 Use `rg` for full-text lookup:
