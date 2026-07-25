@@ -6,6 +6,9 @@ const domains = [
   ['04', '运营', '内容、用户、活动与增长'],
   ['05', '测试', '自动化、性能与质量保障'],
 ];
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
 ---
 
 <section class="pks-section" aria-labelledby="domain-title">
@@ -16,7 +19,7 @@ const domains = [
   </div>
   <div class="pks-domain-grid">
     {domains.map(([index, name, description], position) => (
-      <a class:list={["pks-domain-card", { "pks-domain-featured": position === 0 }]} href="/wiki/">
+      <a class:list={["pks-domain-card", { "pks-domain-featured": position === 0 }]} href={`${base}wiki/`}>
         <span class="pks-domain-index">{index}</span>
         <div class="pks-domain-glyph" aria-hidden="true"><i></i><i></i><i></i></div>
         <h3>{name}</h3>

@@ -1,3 +1,9 @@
+---
+const base = import.meta.env.BASE_URL.endsWith('/')
+  ? import.meta.env.BASE_URL
+  : `${import.meta.env.BASE_URL}/`;
+---
+
 <section class="pks-hero" aria-labelledby="pks-hero-title">
   <div class="pks-hero-grid" aria-hidden="true"></div>
   <div class="pks-orbit pks-orbit-one" aria-hidden="true"></div>
@@ -8,7 +14,7 @@
     <h1 id="pks-hero-title">让每段对话<br />沉淀为<span>可复用的知识。</span></h1>
     <p class="pks-hero-lede">个人本地 Wiki 会把 LLM 对话中的结论、方法与边界，整理成之后找得到、看得懂、用得上的知识资产。</p>
     <div class="pks-hero-actions">
-      <a class="pks-button pks-button-primary" href="/wiki/">浏览 Wiki <span aria-hidden="true">→</span></a>
+      <a class="pks-button pks-button-primary" href={`${base}wiki/`}>浏览 Wiki <span aria-hidden="true">→</span></a>
       <code>/pks 录入当前会话</code>
     </div>
   </div>
