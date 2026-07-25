@@ -9,6 +9,10 @@ sidebar:
 
 ## 知识索引
 
+### 技术/前端/Effect
+
+- [Effect：第三方依赖库](/wiki/技术/前端/effect/第三方依赖库/): 基于当前会话缓存整理 Effect API 页面使用的第三方依赖。
+
 ### 技术/前端/Effect/Deferred
 
 - [Deferred.await()：等待一次性结果](/wiki/技术/前端/effect/deferred/deferredawait/): 挂起直到 Deferred 完成，多个等待方可共享同一就绪信号。
@@ -19,6 +23,10 @@ sidebar:
 
 - [Effect.fork()：启动后台 Fiber](/wiki/技术/前端/effect/fiber/effectfork/): 将 Effect 作为 Fiber 在后台启动，并保留后续等待、取消和观测的能力。
 - [Fiber.await()：等待 Fiber 并取得 Exit](/wiki/技术/前端/effect/fiber/fiberawait/): 挂起直到目标 Fiber 结束，返回 Exit 而不自动传播失败。
+
+### 技术/前端/Electron
+
+- [Electron：第三方依赖库](/wiki/技术/前端/electron/第三方依赖库/): 基于当前会话缓存整理 Electron 主进程与 preload API 使用的第三方依赖。
 
 ### 技术/前端/Electron/Context Bridge
 
@@ -51,6 +59,10 @@ sidebar:
 ### 技术/前端/Electron/通知
 
 - [Notification：创建并展示系统通知](/wiki/技术/前端/electron/通知/notification/): 主进程创建 OS 通知对象，调用 show() 后展示；适合经 IPC 转发的桌面提示。
+
+### 技术/后端/Node.js
+
+- [Node.js：第三方依赖库](/wiki/技术/后端/nodejs/第三方依赖库/): 基于当前会话缓存整理 Node.js API 页面涉及的第三方依赖状态。
 
 ### 技术/后端/Node.js/TLS
 

@@ -80,7 +80,14 @@ def cmd_add(args: argparse.Namespace) -> None:
 
     target_dir = WIKI_ROOT.joinpath(*category)
     api = args.api.strip() if args.api else ""
-    if category[0] == "技术":
+    is_dependency_list = args.dependency_list
+    if is_dependency_list:
+        if category[0] != "技术" or len(category) != 3:
+            fail("依赖库清单必须位于技术三级目录，例如：技术/前端/Electron")
+        if api or args.slug:
+            fail("依赖库清单不接受 --api 或 --slug")
+        target = target_dir / "第三方依赖库" / "index.md"
+    elif category[0] == "技术":
         if not api:
             fail("技术文章必须指定 --api，并按“模块/API/index.md”存放")
         if args.slug:
@@ -98,6 +105,7 @@ def cmd_add(args: argparse.Namespace) -> None:
         f"title: {quote_yaml(args.title.strip())}",
         f"description: {quote_yaml(args.summary.strip())}",
         f"category: {quote_yaml('/'.join(category))}",
+        *([f"kind: {quote_yaml('dependency-list')}"] if is_dependency_list else []),
         *([f"api: {quote_yaml(api)}"] if api else []),
         f"tags: {json.dumps(tags, ensure_ascii=False)}",
         f"created: {quote_yaml(today)}",
@@ -272,7 +280,16 @@ def cmd_check(_: argparse.Namespace) -> None:
             errors.append(f"{relative}: 分类无效：{category}")
             continue
         expected_parent = Path(*parts)
-        if parts[0] == "技术":
+        if meta.get("kind") == "dependency-list":
+            if parts[0] != "技术" or len(parts) != 3:
+                errors.append(f"{relative}: 依赖库清单必须使用技术三级 category")
+                continue
+            expected_path = expected_parent / "第三方依赖库" / "index.md"
+            if relative != expected_path:
+                errors.append(
+                    f"{relative}: 依赖库清单应位于 {expected_path}"
+                )
+        elif parts[0] == "技术":
             api = meta.get("api", "")
             if not api:
                 errors.append(f"{relative}: 技术文章缺少 frontmatter 字段 api")
@@ -303,6 +320,7 @@ def build_parser() -> argparse.ArgumentParser:
     add.add_argument("--tags", default="")
     add.add_argument("--slug")
     add.add_argument("--api", help="技术文章的唯一 API 名称；生成 API/index.md 目录")
+    add.add_argument("--dependency-list", action="store_true", help="创建技术三级目录下的第三方依赖库清单")
     add.add_argument("--source-file", required=True)
     add.set_defaults(func=cmd_add)
 

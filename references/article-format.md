@@ -70,6 +70,22 @@ Its frontmatter must include the exact primary API as `api`, and its path must b
 `技术/<领域>/<框架>/<模块>/<api-slug>/index.md` (within the 2–4 category levels,
 the final category is the module).
 
+## Dependency-list structure
+
+For a third-level technology framework/runtime, use the non-API path
+`技术/<领域>/<框架>/第三方依赖库/index.md` with frontmatter `kind: dependency-list`
+and `category: 技术/<领域>/<框架>`. Base its content on the latest local session cache:
+
+```markdown
+## 依赖库列表
+
+| 库名 | 为何使用 | 如何使用 |
+| --- | --- | --- |
+| `package-name` | Why this conversation needs it. | Install/import or minimum usage. |
+```
+
+When no external package is evidenced, include one row stating `无第三方依赖` and the built-in runtime/module used instead.
+
 ## Quality bar
 
 - Make the article understandable without the original conversation.
