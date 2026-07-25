@@ -132,7 +132,10 @@ def article_rows() -> list[dict[str, str | Path]]:
 
 def site_path(relative: Path) -> str:
     """Map a Wiki source path to Starlight's directory-style route."""
-    route_parts = [part.lower() for part in relative.with_suffix("").parts]
+    route_parts = [
+        re.sub(r"[^\w\u4e00-\u9fff-]+", "", part.lower())
+        for part in relative.with_suffix("").parts
+    ]
     return "/wiki/" + "/".join(route_parts) + "/"
 
 

@@ -14,7 +14,9 @@ function titleFromMarkdown(path) {
 }
 
 function wikiRoute(parts) {
-  const route = parts.map((part) => part.replace(/\.md$/, "").toLowerCase()).join("/");
+  const route = parts
+    .map((part) => part.replace(/\.md$/, "").toLowerCase().replace(/[^\w\u4e00-\u9fff-]/g, ""))
+    .join("/");
   return `/wiki/${route}/`;
 }
 

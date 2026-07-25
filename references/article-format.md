@@ -30,6 +30,38 @@ Link only sources actually used or mentioned.
 
 Adapt headings to the topic. Do not create empty sections.
 
+## Technical article structure
+
+For articles under `技术`, use one primary API and this structure instead of a broad solution narrative:
+
+```markdown
+## API 定位
+
+Name the module, API, runtime/process boundary, and the exact responsibility.
+
+## 常用参数与返回
+
+List only parameters, return values, events, or lifecycle rules verified in current official documentation.
+
+## 会话提炼场景
+
+Apply the API to the user-relevant situation distilled from this conversation.
+
+## 常见应用场景
+
+List established uses that are distinct from the conversation-specific case.
+
+## 边界与注意事项
+
+Separate official constraints from implementation inferences.
+
+## 官方文档
+
+- [API reference](https://example.com): verified YYYY-MM-DD.
+```
+
+Use `关联 API` for companion APIs. Split the article if it needs more than one primary API to explain its contract.
+
 ## Quality bar
 
 - Make the article understandable without the original conversation.
@@ -40,3 +72,4 @@ Adapt headings to the topic. Do not create empty sections.
 - Avoid phrases such as “as discussed above” or “the user said”.
 - Use concise Chinese by default; preserve necessary English technical terms.
 - Add external links only when known and relevant. Do not invent citations.
+- For `技术` articles, use the latest first-party API reference and state the verification date.

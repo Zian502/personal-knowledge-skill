@@ -9,12 +9,21 @@ sidebar:
 
 ## 知识索引
 
+### 技术/前端/Effect
+
+- [Deferred.make() / await() / succeed()：一次性就绪信号](/wiki/技术/前端/effect/deferred/): 用 Effect Deferred 表示只能完成一次的异步结果，并让等待方以不阻塞线程的方式等待。
+- [Effect.fork 与 Fiber.await：观察后台任务](/wiki/技术/前端/effect/fiber-fork-await/): 将 Effect 作为 Fiber 在后台执行，并在需要时等待其退出结果而不把启动流程写成一条阻塞链。
+
 ### 技术/前端/Electron
 
-- [Electron 附件选择：Token 授权与字节预算](/wiki/技术/前端/electron/electron-attachment-token-budget/): 主进程对话框选文件后签发 token，渲染进程仅能读取本次授权路径，并受总附件字节上限约束。
-- [用 Effect Deferred 协调 Electron 主进程启动](/wiki/技术/前端/electron/electron-main-effect-deferred/): 用 Effect 编排启动流，用 Deferred 作为 sidecar 凭证就绪闸门，用 Fiber 等待后台 loading 任务。
-- [Electron 多窗口：Registry 与 window-state](/wiki/技术/前端/electron/electron-window-registry-vs-state/): Window Registry 持久化窗口 ID 列表，electron-window-state 持久化单窗几何，二者用同一 id 协作且关闭策略不同。
-- [OpenCode Desktop Sidecar 架构](/wiki/技术/前端/electron/opencode-desktop-sidecar/): 用 Utility Process 跑与 CLI 同一套 OpenCode Server，实现桌面壳与后端隔离、本机鉴权与自定义协议 CORS。
+- [new BrowserWindow()：创建并显示主窗口](/wiki/技术/前端/electron/browser-window/): 使用 BrowserWindow 构造选项、webPreferences 与 ready-to-show 事件建立安全且避免闪烁的窗口生命周期。
+- [dialog.showOpenDialog()：选择本地文件](/wiki/技术/前端/electron/dialog-show-open-dialog/): 在 Electron 主进程调用原生打开对话框，并以取消状态和文件路径列表处理结果。
+- [ipcMain.handle()：实现请求—响应式 IPC](/wiki/技术/前端/electron/ipcmain-handle/): 为 ipcRenderer.invoke() 注册异步处理器，并以 channel、调用来源和返回值建立受控主进程能力。
+- [utilityProcess.fork()：隔离桌面端 Sidecar](/wiki/技术/前端/electron/utility-process-fork/): 从 Electron 主进程启动具备 Node.js 环境的 Utility Process，并通过生命周期与消息通道管理本地服务。
+
+### 技术/后端/Node.js
+
+- [fsPromises.open() 与 FileHandle.read()：受控读取文件](/wiki/技术/后端/nodejs/fspromises-filehandle-read/): 用 Node.js 的异步文件句柄 API 在明确的大小上限与关闭边界内读取授权文件。
 
 ## 一级分类
 
