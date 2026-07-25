@@ -25,6 +25,14 @@ updated: "2026-07-25"
 
 附件读取接口可以通过 `ipcMain.handle('attachments:read', listener)` 暴露。处理器用 `event.sender.id` 将 token 绑定到请求窗口，再验证允许路径和剩余额度；这套授权表是应用层逻辑，`ipcMain.handle()` 只提供调用边界。
 
+```ts
+ipcMain.handle("attachments:read", async (event, token: string) => {
+  const grant = grants.get(token)
+  if (!grant || grant.webContentsId !== event.sender.id) throw new Error("未授权")
+  return readGrantedFile(grant.path, grant.remainingBytes)
+})
+```
+
 ## 常见应用场景
 
 - 从渲染进程请求原生文件选择、文件读写或系统信息。
@@ -40,7 +48,10 @@ updated: "2026-07-25"
 ## 关联 API
 
 - [dialog.showOpenDialog()](/wiki/技术/前端/electron/对话框/dialogshowopendialog/)
-- [fsPromises.open()](/wiki/技术/后端/node.js/文件系统/fspromisesopen/)
+- [fsPromises.open()](/wiki/技术/后端/nodejs/文件系统/fspromisesopen/)
+- [shell.openExternal()](/wiki/技术/前端/electron/shell/shellopenexternal/)
+- [clipboard.readImage()](/wiki/技术/前端/electron/剪贴板/clipboardreadimage/)
+- [Notification](/wiki/技术/前端/electron/通知/notification/)
 
 ## 官方文档
 

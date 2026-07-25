@@ -25,6 +25,15 @@ updated: "2026-07-25"
 
 附件流程应在主进程打开对话框、检查所选文件总大小，并只把临时授权标识交给渲染进程。`filePaths` 是 API 返回的数据，但将路径绑定到调用窗口、签发一次性 token、限制总字节数都是应用层安全策略。
 
+```ts
+ipcMain.handle("attachments:choose", async (event) => {
+  const result = await dialog.showOpenDialog(BrowserWindow.fromWebContents(event.sender)!, {
+    properties: ["openFile", "multiSelections"],
+  })
+  return result.canceled ? [] : createAttachmentGrants(event.sender.id, result.filePaths)
+})
+```
+
 ## 常见应用场景
 
 - “导入文件”或“添加附件”按钮。

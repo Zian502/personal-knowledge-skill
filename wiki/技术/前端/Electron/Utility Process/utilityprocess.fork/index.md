@@ -25,6 +25,12 @@ updated: "2026-07-25"
 
 本地 OpenCode 服务可作为 Sidecar 由该 API 启动：主进程预分配端口和短期凭证，`fork()` 后通过消息发送启动配置，收到就绪信号后再向 UI 提供连接信息。端口、Basic Auth、健康检查和 CORS 白名单属于服务设计，而不是 `utilityProcess` 的默认安全配置。
 
+```ts
+const child = utilityProcess.fork(sidecarPath, [], { stdio: "pipe" })
+child.once("message", (message) => publishSidecarCredentials(message))
+child.once("exit", (code) => logger.info({ code }, "sidecar exited"))
+```
+
 ## 常见应用场景
 
 - 将易崩溃、CPU 密集或不受信任的逻辑从主进程隔离出去。
@@ -36,6 +42,13 @@ updated: "2026-07-25"
 - 官方要求在 `app` 发出 `ready` 后再调用 `fork()`。
 - `pid` 在成功 `spawn` 前和退出事件后都是 `undefined`；不要把它当成启动成功的唯一信号。
 - 为子进程单独设置代理、系统 CA 或环境变量；主进程的运行时设置不会自动成为服务自身的应用配置。
+
+## 关联 API
+
+- [url.fileURLToPath()](/wiki/技术/后端/nodejs/url/urlfileurltopath/)
+- [tls.setDefaultCACertificates()](/wiki/技术/后端/nodejs/tls/tlssetdefaultcacertificates/)
+- [tls.getCACertificates()](/wiki/技术/后端/nodejs/tls/tlsgetcacertificates/)
+- [Deferred.succeed()](/wiki/技术/前端/effect/deferred/deferredsucceed/)
 
 ## 官方文档
 

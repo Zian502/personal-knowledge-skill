@@ -51,4 +51,13 @@ Write `常用参数与返回` as a Markdown table with these columns:
 
 Keep each row to one API call, option, event, or return contract. Do not place scenarios or inferred architecture guidance in this table.
 
+## Conversation scenario code example
+
+Every technical article's `会话提炼场景` must contain a focused Markdown code block.
+
+- Make the example executable or directly adaptable, with the exact primary API visible.
+- Show the smallest useful flow from the conversation; avoid unrelated framework setup.
+- Include cleanup, rejection handling, or an explicit boundary when the API requires it.
+- Keep application authorization, limits, and architecture decisions outside the API contract and label inferences clearly.
+
 Use `关联 API` only for related atomic pages. Clearly label architecture advice as an inference rather than an API guarantee.

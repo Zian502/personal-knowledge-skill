@@ -22,6 +22,16 @@ updated: "2026-07-25"
 
 桌面端附件选择后，主进程只对本次授权的路径调用 `fsPromises.open(path, 'r')`。随后由应用层通过 FileHandle 检查大小、读取允许长度，并在 `finally` 中关闭。路径授权与额度扣减是应用层策略，不是该 API 自带能力。
 
+```ts
+const handle = await fsPromises.open(grant.path, "r")
+try {
+  const { size } = await handle.stat()
+  return await readWithinLimit(handle, Math.min(size, grant.remainingBytes))
+} finally {
+  await handle.close()
+}
+```
+
 ## 常见应用场景
 
 - 上传前读取并校验本地附件。
@@ -36,6 +46,7 @@ updated: "2026-07-25"
 
 ## 关联 API
 
+- [FileHandle.read()](/wiki/技术/后端/nodejs/文件系统/filehandleread/)
 - [dialog.showOpenDialog()](/wiki/技术/前端/electron/对话框/dialogshowopendialog/)
 - [ipcMain.handle()](/wiki/技术/前端/electron/ipc/ipcmainhandle/)
 

@@ -22,6 +22,13 @@ updated: "2026-07-25"
 
 主进程可以 fork Sidecar 的 spawn 与健康检查任务，同时通过 Deferred 先发布“可连接”的凭证；在窗口展示或退出阶段，再 `Fiber.await` 或中断该后台任务。何时把“已 spawn”视为“可用”仍需要应用层健康检查定义。
 
+```ts
+const healthFiber = yield* Effect.fork(
+  waitForSidecarHealth(url).pipe(Effect.timeout("10 seconds")),
+)
+// 退出时由应用生命周期中断该 Fiber。
+```
+
 ## 常见应用场景
 
 - 并行预热缓存、加载配置或启动本地服务。
@@ -36,8 +43,10 @@ updated: "2026-07-25"
 
 ## 关联 API
 
+- [Fiber.await()](/wiki/技术/前端/effect/fiber/fiberawait/)
 - [Deferred.make()](/wiki/技术/前端/effect/deferred/deferredmake/)
+- [Deferred.succeed()](/wiki/技术/前端/effect/deferred/deferredsucceed/)
 
 ## 官方文档
 
-- [Effect Fibers](https://www.effect.website/docs/v3/concurrency/fibers)：已于 2026-07-25 查阅。
+- [Effect Fiber API](https://effect-ts.github.io/effect/effect/Fiber.ts.html)：已于 2026-07-25 查阅。

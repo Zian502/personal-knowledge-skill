@@ -22,6 +22,12 @@ updated: "2026-07-25"
 
 Electron Sidecar 启动后可用 `Deferred.succeed(serverReady, credentials)` 发布连接凭证；多个 `awaitInitialization` 调用都等待同一个 `serverReady`。这比散落的 Promise resolver 更适合表达“只发布一次”的启动闸门。
 
+```ts
+const serverReady = yield* Deferred.make<SidecarCredentials>()
+
+yield* Deferred.succeed(serverReady, { url: localUrl, token })
+```
+
 ## 常见应用场景
 
 - 等待服务端口、连接、配置或一次性初始化完成。
@@ -36,8 +42,11 @@ Electron Sidecar 启动后可用 `Deferred.succeed(serverReady, credentials)` �
 
 ## 关联 API
 
+- [Deferred.await()](/wiki/技术/前端/effect/deferred/deferredawait/)
+- [Deferred.succeed()](/wiki/技术/前端/effect/deferred/deferredsucceed/)
 - [Effect.fork()](/wiki/技术/前端/effect/fiber/effectfork/)
+- [Fiber.await()](/wiki/技术/前端/effect/fiber/fiberawait/)
 
 ## 官方文档
 
-- [Effect Deferred](https://effect.website/docs/concurrency/deferred/)：已于 2026-07-25 查阅。
+- [Effect Deferred API](https://effect-ts.github.io/effect/effect/Deferred.ts.html)：已于 2026-07-25 查阅。

@@ -26,6 +26,12 @@ updated: "2026-07-25"
 
 多窗口恢复可由应用层 Registry 保存窗口 ID，而每个 ID 对应的几何状态由窗口状态库保存。每次恢复时用 `BrowserWindow` 创建隐藏窗口、接入受限 preload API，再在 `ready-to-show` 显示。Registry 的保留/清理策略并非 `BrowserWindow` API 的自动行为。
 
+```ts
+const window = new BrowserWindow({ show: false, webPreferences: { preload } })
+window.once("ready-to-show", () => window.show())
+window.on("closed", () => windowRegistry.delete(window.id))
+```
+
 ## 常见应用场景
 
 - 主窗口、编辑器窗口或预览窗口的创建与恢复。

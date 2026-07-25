@@ -46,6 +46,7 @@ List only parameters, return values, events, or lifecycle rules verified in curr
 ## 会话提炼场景
 
 Apply the API to the user-relevant situation distilled from this conversation.
+Include one focused, executable or directly adaptable Markdown code block using the primary API. Keep policy decisions distinct from the API contract.
 
 ## 常见应用场景
 
