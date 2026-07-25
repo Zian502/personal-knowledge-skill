@@ -41,7 +41,7 @@ Name the module, API, runtime/process boundary, and the exact responsibility.
 
 ## 常用参数与返回
 
-List only parameters, return values, events, or lifecycle rules verified in current official documentation.
+Use a four-column Markdown table: `API｜参数｜返回｜说明`. List only parameters, return values, events, or lifecycle rules verified in current official documentation. Keep parameters and returns separate; use `—` when either is not applicable.
 
 ## 会话提炼场景
 

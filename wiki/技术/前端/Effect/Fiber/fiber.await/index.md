@@ -13,10 +13,10 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-| API | 参数 / 返回 | 说明 |
-| --- | --- | --- |
-| `Fiber.await()` | `self: Fiber<A, E>` | 要等待的 fiber。 |
-| `Fiber.await()` | → `Effect<Exit<A, E>>` | 始终成功得到 `Exit`；需自行解读成败。 |
+| API | 参数 | 返回 | 说明 |
+| --- | --- | --- | --- |
+| `Fiber.await()` | `self: Fiber<A, E>` | — | 要等待的 fiber。 |
+| `Fiber.await()` | — | `Effect<Exit<A, E>>` | 始终成功得到 `Exit`；需自行解读成败。 |
 
 ## 会话提炼场景
 

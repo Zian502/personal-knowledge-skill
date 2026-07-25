@@ -13,11 +13,10 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-| API | 参数 / 返回 | 说明 |
-| --- | --- | --- |
-| `filehandle.read(buffer, offset, length, position)` | 四参数形式 | 向 `buffer` 的 `offset` 起写入最多 `length` 字节；`position` 为文件偏移。 |
-| `filehandle.read([options])` / `read(buffer[, options])` | `offset` 默认 `0`；`length` 默认 `buffer.byteLength - offset`；`position` 默认 `null` | `position` 为 `null`/`-1` 时从当前文件位置读并推进；非负整数时不改当前文件位置。 |
-| `filehandle.read()` | → `{ bytesRead, buffer }` | `bytesRead` 为实际字节数；`buffer` 即传入缓冲区引用。 |
+| API | 参数 | 返回 | 说明 |
+| --- | --- | --- | --- |
+| `filehandle.read(buffer, offset, length, position)` | 四参数形式 | `{ bytesRead, buffer }` | 向 `buffer` 的 `offset` 起写入最多 `length` 字节；`position` 为文件偏移。 |
+| `filehandle.read([options])` / `read(buffer[, options])` | `offset` 默认 `0`；`length` 默认 `buffer.byteLength - offset`；`position` 默认 `null` | `{ bytesRead, buffer }` | `position` 为 `null`/`-1` 时从当前文件位置读并推进；非负整数时不改当前文件位置。 |
 
 ## 会话提炼场景
 

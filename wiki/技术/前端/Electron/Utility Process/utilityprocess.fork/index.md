@@ -14,12 +14,12 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-| API | 参数 / 返回 | 说明 |
-| --- | --- | --- |
-| `utilityProcess.fork()` | `modulePath: string` | 子进程入口脚本路径。 |
-| `fork()` | `args?: string[]` | 子进程通过 `process.argv` 获取的可选字符串参数。 |
-| `fork()` | `options?: { env, cwd, stdio, session, serviceName }` | 常用进程与网络选项；只有 `stdio: 'pipe'` 才能读取 stdout/stderr。 |
-| `fork()` | → `UtilityProcess` | 监听 `spawn` 确认创建、`exit` 处理退出；可用 `postMessage()` 通信及 `kill()` 终止。 |
+| API | 参数 | 返回 | 说明 |
+| --- | --- | --- | --- |
+| `utilityProcess.fork()` | `modulePath: string` | — | 子进程入口脚本路径。 |
+| `fork()` | `args?: string[]` | — | 子进程通过 `process.argv` 获取的可选字符串参数。 |
+| `fork()` | `options?: { env, cwd, stdio, session, serviceName }` | — | 常用进程与网络选项；只有 `stdio: 'pipe'` 才能读取 stdout/stderr。 |
+| `fork()` | — | `UtilityProcess` | 监听 `spawn` 确认创建、`exit` 处理退出；可用 `postMessage()` 通信及 `kill()` 终止。 |
 
 ## 会话提炼场景
 

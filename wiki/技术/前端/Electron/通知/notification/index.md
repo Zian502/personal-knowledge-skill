@@ -13,13 +13,13 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-| API | 参数 / 返回 | 说明 |
-| --- | --- | --- |
-| `new Notification()` | `title?` / `body?` | 通知标题与正文。 |
-| `new Notification()` | `subtitle?` (macOS) | 标题下的副标题。 |
-| `new Notification()` | `silent?` | 是否抑制系统提示音。 |
-| `notification.show()` | 实例方法 | 立即向用户展示；再次 `show` 会关掉旧的并以相同属性新建。 |
-| `Notification.isSupported()` | 静态方法 | 当前系统是否支持桌面通知。 |
+| API | 参数 | 返回 | 说明 |
+| --- | --- | --- | --- |
+| `new Notification()` | `title?` / `body?` | `Notification` 实例 | 通知标题与正文。 |
+| `new Notification()` | `subtitle?` (macOS) | — | 标题下的副标题。 |
+| `new Notification()` | `silent?` | — | 是否抑制系统提示音。 |
+| `notification.show()` | — | 实例方法 | 立即向用户展示；再次 `show` 会关掉旧的并以相同属性新建。 |
+| `Notification.isSupported()` | — | `boolean` | 当前系统是否支持桌面通知。 |
 
 ## 会话提炼场景
 

@@ -14,9 +14,9 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-| API | 参数 / 返回 | 说明 |
-| --- | --- | --- |
-| `Deferred.make<Success, Error>()` | → `Effect<Deferred<Success, Error>>` | 创建一次性 Deferred 的 Effect。 |
+| API | 参数 | 返回 | 说明 |
+| --- | --- | --- | --- |
+| `Deferred.make<Success, Error>()` | — | `Effect<Deferred<Success, Error>>` | 创建一次性 Deferred 的 Effect。 |
 
 ## 会话提炼场景
 

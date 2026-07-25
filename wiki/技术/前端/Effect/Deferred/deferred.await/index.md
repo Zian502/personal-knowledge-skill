@@ -13,10 +13,10 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-| API | 参数 / 返回 | 说明 |
-| --- | --- | --- |
-| `Deferred.await()` | `self: Deferred<A, E>` | 要等待的 Deferred。 |
-| `Deferred.await()` | → `Effect<A, E>` | 成功时得到 `A`；若 Deferred 以错误完成则失败为 `E`。 |
+| API | 参数 | 返回 | 说明 |
+| --- | --- | --- | --- |
+| `Deferred.await()` | `self: Deferred<A, E>` | — | 要等待的 Deferred。 |
+| `Deferred.await()` | — | `Effect<A, E>` | 成功时得到 `A`；若 Deferred 以错误完成则失败为 `E`。 |
 
 ## 会话提炼场景
 

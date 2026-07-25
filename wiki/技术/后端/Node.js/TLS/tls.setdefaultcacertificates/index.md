@@ -13,10 +13,10 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-| API | 参数 / 返回 | 说明 |
-| --- | --- | --- |
-| `tls.setDefaultCACertificates()` | `certs: string[] \| ArrayBufferView[]` | PEM 格式 CA 数组；设置前会去重。 |
-| `tls.setDefaultCACertificates()` | 副作用范围 | 仅影响当前 Node.js 线程；不会改写已缓存 HTTPS Agent 会话。 |
+| API | 参数 | 返回 | 说明 |
+| --- | --- | --- | --- |
+| `tls.setDefaultCACertificates()` | `certs: string[] \| ArrayBufferView[]` | `void` | PEM 格式 CA 数组；设置前会去重。 |
+| `tls.setDefaultCACertificates()` | — | 副作用范围 | 仅影响当前 Node.js 线程；不会改写已缓存 HTTPS Agent 会话。 |
 
 ## 会话提炼场景
 

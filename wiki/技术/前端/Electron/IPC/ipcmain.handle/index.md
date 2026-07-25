@@ -14,12 +14,12 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-| API | 参数 / 返回 | 说明 |
-| --- | --- | --- |
-| `ipcMain.handle()` | `channel: string` | 注册可调用通道；用 `attachments:read` 一类业务命名空间提高可读性。 |
-| `listener()` | `event`、`...args` → 值或 `Promise` | `event.sender` 表示发起调用的 `WebContents`；返回值会回复调用方。 |
-| `ipcRenderer.invoke()` | `channel`、`...args` → `Promise` | 渲染进程以请求—响应方式调用处理器。 |
-| `ipcMain.removeHandler()` | `channel` | 在退出、重载或测试清理时移除处理器。 |
+| API | 参数 | 返回 | 说明 |
+| --- | --- | --- | --- |
+| `ipcMain.handle()` | `channel: string` | — | 注册可调用通道；用 `attachments:read` 一类业务命名空间提高可读性。 |
+| `listener()` | `event`、`...args` | 值或 `Promise` | `event.sender` 表示发起调用的 `WebContents`；返回值会回复调用方。 |
+| `ipcRenderer.invoke()` | `channel`、`...args` | `Promise` | 渲染进程以请求—响应方式调用处理器。 |
+| `ipcMain.removeHandler()` | `channel` | — | 在退出、重载或测试清理时移除处理器。 |
 
 ## 会话提炼场景
 

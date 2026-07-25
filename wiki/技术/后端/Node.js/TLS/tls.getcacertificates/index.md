@@ -13,13 +13,12 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-| API | 参数 / 返回 | 说明 |
-| --- | --- | --- |
-| `tls.getCACertificates()` | `type?: "default" \| "system" \| "bundled" \| "extra"` | 默认 `"default"`。 |
-| `type: "default"` | → PEM 数组 | 当前 TLS 客户端默认会使用的 CA（可能含 bundled / system / `NODE_EXTRA_CA_CERTS`，取决于启动选项）。 |
-| `type: "system"` | → PEM 数组 | 操作系统信任库中的证书。 |
-| `type: "bundled"` / `"extra"` | → PEM 数组 | Mozilla 捆绑包，或 `NODE_EXTRA_CA_CERTS` 额外文件；未设置 extra 时为空数组。 |
-| `tls.getCACertificates()` | → `string[]` | 可能含重复项（同一证书来自多源）。 |
+| API | 参数 | 返回 | 说明 |
+| --- | --- | --- | --- |
+| `tls.getCACertificates()` | `type?: "default" \| "system" \| "bundled" \| "extra"` | `string[]` | 默认 `"default"`。 |
+| `type: "default"` | — | PEM 数组 | 当前 TLS 客户端默认会使用的 CA（可能含 bundled / system / `NODE_EXTRA_CA_CERTS`，取决于启动选项）。 |
+| `type: "system"` | — | PEM 数组 | 操作系统信任库中的证书。 |
+| `type: "bundled"` / `"extra"` | — | PEM 数组 | Mozilla 捆绑包，或 `NODE_EXTRA_CA_CERTS` 额外文件；未设置 extra 时为空数组。 |
 
 ## 会话提炼场景
 

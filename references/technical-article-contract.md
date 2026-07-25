@@ -45,11 +45,11 @@ Technical frontmatter must include `api` in addition to the standard fields.
 
 Write `常用参数与返回` as a Markdown table with these columns:
 
-| API | 参数 / 返回 | 说明 |
-| --- | --- | --- |
-| `module.method()` | `option: Type` | Verified purpose, default, or constraint. |
+| API | 参数 | 返回 | 说明 |
+| --- | --- | --- | --- |
+| `module.method()` | `option: Type` | `Promise<Result>` | Verified purpose, default, or constraint. |
 
-Keep each row to one API call, option, event, or return contract. Do not place scenarios or inferred architecture guidance in this table.
+Keep each row to one API call, option, event, or return contract. Put inputs and outputs in their own columns and use `—` when a column does not apply. Do not place scenarios or inferred architecture guidance in this table.
 
 ## Conversation scenario code example
 
