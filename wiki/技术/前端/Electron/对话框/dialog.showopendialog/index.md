@@ -49,7 +49,7 @@ ipcMain.handle("attachments:choose", async (event) => {
 ## 关联 API
 
 - [ipcMain.handle()](/wiki/技术/前端/electron/ipc/ipcmainhandle/)
-- [fsPromises.open()](/wiki/技术/后端/node.js/文件系统/fspromisesopen/)
+- [fsPromises.open()](/wiki/技术/后端/nodejs/文件系统/fspromisesopen/)
 
 ## 官方文档
 
