@@ -37,4 +37,13 @@ Choose one primary category path per article. Use 2–4 levels and `/` as the se
 - `测试/性能测试`
 - `测试/质量保障`
 
-Prefer an existing category spelling over creating a synonym. Add a new lower-level category only when at least one article clearly needs it. Classify by the article's core reusable lesson, not by incidental technologies mentioned in examples.
+## Extending the taxonomy
+
+Prefer an existing category spelling over creating a synonym. If no existing
+second-level directory accurately represents an article's reusable domain, create
+a concise second-level category under the correct first-level category and add a
+representative path to the recommended list above. Use a new second-level category
+only for a durable domain, not a one-off topic; add lower levels for frameworks,
+modules, or narrower subjects as needed.
+
+Classify by the article's core reusable lesson, not by incidental technologies mentioned in examples.
