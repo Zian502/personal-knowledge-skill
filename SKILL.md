@@ -14,7 +14,7 @@ Resolve all paths relative to this `SKILL.md`:
 - Writer: `scripts/kb.py`
 - Taxonomy rules: `references/taxonomy.md`
 - Article contract: `references/article-format.md`
-- Session cache: `resource/sessions/` (local-only; never commit or publish)
+- Session cache: `resources/sessions/` (local-only; never commit or publish)
 - Wiki root: `wiki`
 - Site root: `docs-site`
 
@@ -45,11 +45,11 @@ When recording, use the **entire active conversation** as the source, not only t
 
    ```bash
    python3 scripts/conversation_source.py --agent codex \
-     --cache-dir resource/sessions --session-id "<current-thread-id>"
+     --cache-dir resources/sessions --session-id "<current-thread-id>"
    # or
    python3 scripts/conversation_source.py --agent cursor \
      --input /tmp/cursor-current-session.json \
-     --cache-dir resource/sessions --session-id "<current-thread-id>"
+     --cache-dir resources/sessions --session-id "<current-thread-id>"
    ```
 
 4. Read the cached source completely and treat it as the sole conversation evidence for this archival run. The current Agent performs the analysis and writes the Wiki; the script only acquires and normalizes source data.
@@ -105,7 +105,7 @@ For every article whose first-level category is `技术`, read `references/techn
 
 Technical knowledge uses a fixed **framework/module/API article** layout. The final category level is the module; each API has its own direct child directory and an `index.md` article, for example `技术/后端/Node.js/文件系统/fspromises.open/index.md` (the directory uses a lowercase-safe API slug, while `api` keeps the official spelling). This API directory is one clickable item in the documentation sidebar. Do not place technical pages directly under a module or combine multiple APIs in one page.
 
-Each technology third-level framework/runtime directory also has a reserved `第三方依赖库/index.md` dependency-list page. Its frontmatter uses `kind: "dependency-list"` and a three-level `category`, for example `技术/前端/Electron`; it is the only non-API exception to the module/API layout. Derive it from the latest `resource/sessions/` cache: list every evidenced third-party package with its name, why it is used, and how to install/import or minimally use it. If the cache identifies no third-party package (such as a Node.js built-in API), state that explicitly in the table rather than inventing a dependency.
+Each technology third-level framework/runtime directory also has a reserved `第三方依赖库/index.md` dependency-list page. Its frontmatter uses `kind: "dependency-list"` and a three-level `category`, for example `技术/前端/Electron`; it is the only non-API exception to the module/API layout. Derive it from the latest `resources/sessions/` cache: list every evidenced third-party package with its name, why it is used, and how to install/import or minimally use it. If the cache identifies no third-party package (such as a Node.js built-in API), state that explicitly in the table rather than inventing a dependency.
 
 1. Define one primary unit: a framework/module API, class, method, option, or lifecycle event. Use the API name in the title and record its official spelling in frontmatter `api`. Do not combine unrelated APIs into a solution overview.
 2. Reconstruct the user-relevant technical point from the current conversation, then identify the primary API behind it. Split into separate pages when the conversation depends on several APIs.

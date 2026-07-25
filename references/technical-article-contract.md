@@ -24,7 +24,7 @@ wiki/技术/后端/Node.js/文件系统/
 - The parent category identifies the module, for example `技术/后端/Node.js/文件系统`.
 - Do not put a technical article directly under its module directory or combine two APIs in one article.
 - Each framework/runtime third-level directory has one reserved non-API exception: `第三方依赖库/index.md`. Its frontmatter sets `kind: "dependency-list"` and `category` to the third-level framework/runtime path.
-- Build this page from the latest `resource/sessions/` cache. Its `依赖库列表` table must have `库名｜为何使用｜如何使用` columns. State `无第三方依赖` with the built-in alternative when the cache contains no external package evidence.
+- Build this page from the latest `resources/sessions/` cache. Its `依赖库列表` table must have `库名｜为何使用｜如何使用` columns. State `无第三方依赖` with the built-in alternative when the cache contains no external package evidence.
 
 ## Evidence order
 
