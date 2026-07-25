@@ -54,7 +54,7 @@ child.once("exit", (code) => logger.info({ code }, "sidecar exited"))
 - [url.fileURLToPath()](/wiki/技术/后端/nodejs/url/urlfileurltopath/)
 - [tls.setDefaultCACertificates()](/wiki/技术/后端/nodejs/tls/tlssetdefaultcacertificates/)
 - [tls.getCACertificates()](/wiki/技术/后端/nodejs/tls/tlsgetcacertificates/)
-- [Deferred.succeed()](/wiki/技术/前端/effect/deferred/deferredsucceed/)
+- [Deferred.succeed()](/wiki/技术/前端/electron/三方库/effect/deferred/deferredsucceed/)
 
 ## 官方文档
 

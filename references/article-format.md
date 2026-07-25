@@ -67,7 +67,7 @@ Separate official constraints from implementation inferences.
 
 Use `关联 API` for companion APIs. Split the article if it needs more than one primary API to explain its contract.
 Its frontmatter must include the exact primary API as `api`, and its path must be
-`技术/<领域>/<框架>/<模块>/<api-slug>/index.md` (within the 2–4 category levels,
+`技术/<领域>/<框架>/<模块>/<api-slug>/index.md` (within the 2–6 category levels,
 the final category is the module).
 
 ## Ecosystem-library structure
@@ -84,7 +84,7 @@ and `category: 技术/<领域>/<框架>`, and set its title to exactly `三方�
 | `package-name` | Why this conversation needs it. | Install/import or minimum usage. |
 ```
 
-When no associated external package is evidenced, include one row stating `暂未识别关联三方库`; do not turn the framework/runtime package into a list entry.
+When an associated library has reusable API knowledge, place it under `技术/<领域>/<框架>/三方库/<库名>/<模块>/<api-slug>/index.md`; its category ends at `<模块>`. For example, Effect APIs used by Electron belong under `技术/前端/Electron/三方库/Effect/Deferred/...`, not a parallel `技术/前端/Effect` category. When no associated external package is evidenced, include one row stating `暂未识别关联三方库`; do not turn the parent framework/runtime package into a list entry.
 
 ## Quality bar
 

@@ -13,6 +13,7 @@ updated: "2026-07-25"
 | 库名 | 为何使用 | 如何使用 |
 | --- | --- | --- |
 | `electron-window-state` | 将主窗口的尺寸和位置持久化，并在下次启动时恢复；适合与 `BrowserWindow` 一起改善桌面应用的连续使用体验。 | `npm install electron-window-state`；在主进程创建窗口前调用 `windowStateKeeper()`，将其 `x`、`y`、`width`、`height` 传给 `BrowserWindow`，再调用 `manage(window)`。 |
+| `effect` | 为 Electron 主进程中的 sidecar 启动、健康检查与就绪信号提供副作用编排、结构化并发和错误处理原语。 | `npm install effect`；导入 `Effect`、`Deferred`、`Fiber` 等 API。其原子 API 文档位于本目录的 `Effect` 子菜单。 |
 
 ## 来源说明
 

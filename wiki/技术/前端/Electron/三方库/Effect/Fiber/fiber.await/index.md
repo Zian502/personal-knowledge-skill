@@ -1,7 +1,7 @@
 ---
 title: "Fiber.await()：等待 Fiber 并取得 Exit"
 description: "挂起直到目标 Fiber 结束，返回 Exit 而不自动传播失败。"
-category: "技术/前端/Effect/Fiber"
+category: "技术/前端/Electron/三方库/Effect/Fiber"
 api: "Fiber.await"
 tags: ["Effect", "Fiber", "并发"]
 created: "2026-07-25"
@@ -48,8 +48,8 @@ if (Exit.isFailure(exit)) yield* Effect.logWarning("sidecar 未就绪")
 
 ## 关联 API
 
-- [Effect.fork()](/wiki/技术/前端/effect/fiber/effectfork/)
-- [Deferred.await()](/wiki/技术/前端/effect/deferred/deferredawait/)
+- [Effect.fork()](/wiki/技术/前端/electron/三方库/effect/fiber/effectfork/)
+- [Deferred.await()](/wiki/技术/前端/electron/三方库/effect/deferred/deferredawait/)
 
 ## 官方文档
 

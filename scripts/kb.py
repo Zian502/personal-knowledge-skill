@@ -29,8 +29,8 @@ def quote_yaml(value: str) -> str:
 
 def normalize_category(raw: str) -> list[str]:
     parts = [part.strip() for part in re.split(r"[/／>＞]+", raw) if part.strip()]
-    if not 2 <= len(parts) <= 4:
-        fail("分类必须包含 2–4 层，例如：技术/前端/React")
+    if not 2 <= len(parts) <= 6:
+        fail("分类必须包含 2–6 层，例如：技术/前端/Electron/三方库/Effect/Deferred")
     if parts[0] not in ALLOWED_ROOTS:
         fail(f"一级分类必须是：{', '.join(sorted(ALLOWED_ROOTS))}")
     for part in parts:
@@ -151,9 +151,22 @@ def article_rows() -> list[dict[str, str | Path]]:
                 "title": meta.get("title", path.stem),
                 "description": meta.get("description", ""),
                 "category": meta.get("category", "未分类"),
+                "kind": meta.get("kind", ""),
             }
         )
     return rows
+
+
+def sorted_categories(groups: dict[str, list[dict[str, str | Path]]]) -> list[tuple[str, list[dict[str, str | Path]]]]:
+    """Keep an ecosystem-library page after the framework's API categories."""
+    def key(item: tuple[str, list[dict[str, str | Path]]]) -> tuple[str, ...]:
+        category, entries = item
+        parts = tuple(category.split("/"))
+        if all(entry["kind"] == "ecosystem-libraries" for entry in entries):
+            return (*parts, "\U0010ffff")
+        return parts
+
+    return sorted(groups.items(), key=key)
 
 
 def site_path(relative: Path) -> str:
@@ -192,7 +205,7 @@ def wiki_index_content(rows: list[dict[str, str | Path]]) -> str:
     if not rows:
         lines.append("暂未归档文章。使用 `/pks 录入当前会话` 创建第一篇知识条目。")
     else:
-        for category, entries in sorted(groups.items()):
+        for category, entries in sorted_categories(groups):
             lines.extend([f"### {category}", ""])
             for row in entries:
                 lines.append(
@@ -216,7 +229,7 @@ def llms_index_content(rows: list[dict[str, str | Path]]) -> str:
         "优先阅读与问题最匹配的分类；每篇文章均可脱离原会话独立理解。",
         "",
     ]
-    for category, entries in sorted(groups.items()):
+    for category, entries in sorted_categories(groups):
         lines.extend([f"## {category}", ""])
         for row in entries:
             lines.append(f"- [{row['title']}](./{row['relative']}): {row['description']}")

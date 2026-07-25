@@ -1,7 +1,7 @@
 ---
 title: "Effect.fork()：启动后台 Fiber"
 description: "将 Effect 作为 Fiber 在后台启动，并保留后续等待、取消和观测的能力。"
-category: "技术/前端/Effect/Fiber"
+category: "技术/前端/Electron/三方库/Effect/Fiber"
 api: "Effect.fork"
 tags: ["Effect", "Fiber", "并发", "后台任务"]
 created: "2026-07-25"
@@ -49,9 +49,9 @@ const healthFiber = yield* Effect.fork(
 
 ## 关联 API
 
-- [Fiber.await()](/wiki/技术/前端/effect/fiber/fiberawait/)
-- [Deferred.make()](/wiki/技术/前端/effect/deferred/deferredmake/)
-- [Deferred.succeed()](/wiki/技术/前端/effect/deferred/deferredsucceed/)
+- [Fiber.await()](/wiki/技术/前端/electron/三方库/effect/fiber/fiberawait/)
+- [Deferred.make()](/wiki/技术/前端/electron/三方库/effect/deferred/deferredmake/)
+- [Deferred.succeed()](/wiki/技术/前端/electron/三方库/effect/deferred/deferredsucceed/)
 
 ## 官方文档
 

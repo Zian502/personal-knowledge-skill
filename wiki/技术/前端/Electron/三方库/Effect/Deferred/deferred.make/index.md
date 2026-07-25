@@ -1,7 +1,7 @@
 ---
 title: "Deferred.make()：创建一次性就绪信号"
 description: "用 Effect Deferred 创建只能完成一次的异步结果，以便等待方共享同一个就绪信号。"
-category: "技术/前端/Effect/Deferred"
+category: "技术/前端/Electron/三方库/Effect/Deferred"
 api: "Deferred.make"
 tags: ["Effect", "Deferred", "并发", "同步"]
 created: "2026-07-25"
@@ -48,10 +48,10 @@ yield* Deferred.succeed(serverReady, { url: localUrl, token })
 
 ## 关联 API
 
-- [Deferred.await()](/wiki/技术/前端/effect/deferred/deferredawait/)
-- [Deferred.succeed()](/wiki/技术/前端/effect/deferred/deferredsucceed/)
-- [Effect.fork()](/wiki/技术/前端/effect/fiber/effectfork/)
-- [Fiber.await()](/wiki/技术/前端/effect/fiber/fiberawait/)
+- [Deferred.await()](/wiki/技术/前端/electron/三方库/effect/deferred/deferredawait/)
+- [Deferred.succeed()](/wiki/技术/前端/electron/三方库/effect/deferred/deferredsucceed/)
+- [Effect.fork()](/wiki/技术/前端/electron/三方库/effect/fiber/effectfork/)
+- [Fiber.await()](/wiki/技术/前端/electron/三方库/effect/fiber/fiberawait/)
 
 ## 官方文档
 

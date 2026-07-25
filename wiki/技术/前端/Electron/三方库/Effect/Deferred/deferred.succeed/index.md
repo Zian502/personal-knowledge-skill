@@ -1,7 +1,7 @@
 ---
 title: "Deferred.succeed()：成功完成 Deferred"
 description: "以成功值完成 Deferred 并唤醒等待方，返回是否首次完成。"
-category: "技术/前端/Effect/Deferred"
+category: "技术/前端/Electron/三方库/Effect/Deferred"
 api: "Deferred.succeed"
 tags: ["Effect", "Deferred", "并发"]
 created: "2026-07-25"
@@ -48,8 +48,8 @@ const publishCredentials = (credentials: SidecarCredentials) =>
 
 ## 关联 API
 
-- [Deferred.make()](/wiki/技术/前端/effect/deferred/deferredmake/)
-- [Deferred.await()](/wiki/技术/前端/effect/deferred/deferredawait/)
+- [Deferred.make()](/wiki/技术/前端/electron/三方库/effect/deferred/deferredmake/)
+- [Deferred.await()](/wiki/技术/前端/electron/三方库/effect/deferred/deferredawait/)
 - [utilityProcess.fork()](/wiki/技术/前端/electron/utility-process/utilityprocessfork/)
 
 ## 官方文档

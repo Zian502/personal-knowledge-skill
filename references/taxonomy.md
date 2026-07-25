@@ -1,6 +1,6 @@
 # Knowledge taxonomy
 
-Choose one primary category path per article. Use 2–4 levels and `/` as the separator.
+Choose one primary category path per article. Use 2–6 levels and `/` as the separator.
 
 ## First-level categories
 
@@ -14,6 +14,7 @@ Choose one primary category path per article. Use 2–4 levels and `/` as the se
 
 - `技术/前端/Electron/IPC`
 - `技术/前端/Electron/窗口`
+- `技术/前端/Electron/三方库/Effect/Deferred`
 - `技术/前端/React/状态管理`
 - `技术/前端/Vue/组合式 API`
 - `技术/后端/Node.js/文件系统`

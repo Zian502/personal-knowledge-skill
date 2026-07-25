@@ -28,11 +28,24 @@ function wikiNavigationFromIndex() {
       let group = level.find((item) => item.label === label && item.items);
       if (!group) {
         group = { label, collapsed: true, items: [] };
-        level.push(group);
+        const existingLink = level.find((item) => item.label === label && item.link);
+        if (existingLink) {
+          group.items.push({ label: "总览", link: existingLink.link });
+          level.splice(level.indexOf(existingLink), 1, group);
+        } else {
+          level.push(group);
+        }
       }
       level = group.items;
     }
-    level.push({ label: articleMatch[1], link: articleMatch[2] });
+    const existingGroup = level.find(
+      (item) => item.label === articleMatch[1] && item.items,
+    );
+    if (existingGroup) {
+      existingGroup.items.unshift({ label: "总览", link: articleMatch[2] });
+    } else {
+      level.push({ label: articleMatch[1], link: articleMatch[2] });
+    }
   }
   const placeEcosystemLibrariesLast = (items) => {
     items.sort((left, right) => {
