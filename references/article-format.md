@@ -86,6 +86,8 @@ and `category: 技术/<领域>/<框架>`, and set its title to exactly `三方�
 
 When an associated library has reusable API knowledge, place it under `技术/<领域>/<框架>/三方库/<库名>/<模块>/<api-slug>/index.md`; its category ends at `<模块>`. For example, Effect APIs used by Electron belong under `技术/前端/Electron/三方库/Effect/Deferred/...`, not a parallel `技术/前端/Effect` category. When no associated external package is evidenced, include one row stating `暂未识别关联三方库`; do not turn the parent framework/runtime package into a list entry.
 
+Classify by role: a framework/runtime owns startup, lifecycle, or application structure; a library/runtime primitive is imported to add a focused capability. Nest a library beneath its evidenced host framework's `三方库` directory unless the source is explicitly host-neutral and needs an independent category.
+
 ## Quality bar
 
 - Make the article understandable without the original conversation.

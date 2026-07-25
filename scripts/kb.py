@@ -94,6 +94,8 @@ def cmd_add(args: argparse.Namespace) -> None:
             fail("技术文章必须指定 --api，并按“模块/API/index.md”存放")
         if args.slug:
             fail("技术文章的 API 目录由 --api 自动生成，请不要使用 --slug")
+        if "三方库" in category and (len(category) != 6 or category[3] != "三方库"):
+            fail("三方库 API 必须使用“技术/<领域>/<框架>/三方库/<库名>/<模块>”分类")
         target = target_dir / api_directory(api) / "index.md"
     else:
         target = target_dir / f"{slugify(args.slug or args.title)}.md"
@@ -310,6 +312,11 @@ def cmd_check(_: argparse.Namespace) -> None:
             api = meta.get("api", "")
             if not api:
                 errors.append(f"{relative}: 技术文章缺少 frontmatter 字段 api")
+                continue
+            if "三方库" in parts and (len(parts) != 6 or parts[3] != "三方库"):
+                errors.append(
+                    f"{relative}: 三方库 API 分类必须为 技术/<领域>/<框架>/三方库/<库名>/<模块>"
+                )
                 continue
             expected_path = expected_parent / api_directory(api) / "index.md"
             if relative != expected_path:
