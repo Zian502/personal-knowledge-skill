@@ -2,3 +2,7 @@
 **/.DS_Store
 __pycache__/
 *.py[cod]
+
+# Local, raw conversation caches for knowledge extraction. Keep only the directory marker.
+/resource/sessions/*
+!/resource/sessions/.gitkeep

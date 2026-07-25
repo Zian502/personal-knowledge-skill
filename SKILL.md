@@ -14,6 +14,7 @@ Resolve all paths relative to this `SKILL.md`:
 - Writer: `scripts/kb.py`
 - Taxonomy rules: `references/taxonomy.md`
 - Article contract: `references/article-format.md`
+- Session cache: `resource/sessions/` (local-only; never commit or publish)
 - Wiki root: `wiki`
 - Site root: `docs-site`
 
@@ -40,17 +41,19 @@ When recording, use the **entire active conversation** as the source, not only t
 
 1. Identify the current host Agent (`codex`, `cursor`, or another supported host).
 2. Ask the host to export or read the active conversation's user and assistant messages, including earlier turns in this same conversation. Do not collect hidden system prompts, tool secrets, other chats, or application-wide history.
-3. Normalize a host export with the bundled adapter. Configure a trusted host-native exporter through `PKS_CONVERSATION_EXPORT_CMD`, `PKS_CODEX_CONVERSATION_EXPORT_CMD`, or `PKS_CURSOR_CONVERSATION_EXPORT_CMD`; alternatively pass the host-provided export file explicitly:
+3. Normalize and cache a host export with the bundled adapter. Configure a trusted host-native exporter through `PKS_CONVERSATION_EXPORT_CMD`, `PKS_CODEX_CONVERSATION_EXPORT_CMD`, or `PKS_CURSOR_CONVERSATION_EXPORT_CMD`; alternatively pass the host-provided export file explicitly. Use the current host's thread/session ID as `--session-id` when available:
 
    ```bash
-   python3 scripts/conversation_source.py --agent codex --output /tmp/pks-current-session.md
+   python3 scripts/conversation_source.py --agent codex \
+     --cache-dir resource/sessions --session-id "<current-thread-id>"
    # or
    python3 scripts/conversation_source.py --agent cursor \
-     --input /tmp/cursor-current-session.json --output /tmp/pks-current-session.md
+     --input /tmp/cursor-current-session.json \
+     --cache-dir resource/sessions --session-id "<current-thread-id>"
    ```
 
-4. Read the normalized temporary source completely and treat it as the sole conversation evidence for this archival run. The current Agent performs the analysis and writes the Wiki; the script only acquires and normalizes source data.
-5. Delete the temporary source file after the Wiki is saved and checked. Never commit or publish raw chat transcripts.
+4. Read the cached source completely and treat it as the sole conversation evidence for this archival run. The current Agent performs the analysis and writes the Wiki; the script only acquires and normalizes source data.
+5. Keep the cache local for traceability. Never commit, publish, render in the docs site, or use it as a Wiki article. Cache only the current conversation's visible user and assistant messages; exclude system prompts, tool calls/output, other chats, and credentials. If the host cannot export the entire active conversation, ask the user to export it rather than creating a partial cache.
 
 The adapter must not scrape Codex/Cursor local databases, browser storage, or filesystem histories. If the current host exposes no conversation-export capability, use the conversation context already supplied to the Agent; if that is incomplete, ask the user to export or paste the current chat rather than silently archiving a partial conversation.
 
@@ -94,7 +97,7 @@ After every Wiki addition, merge, deletion, or category move:
 3. Keep the local docs server running. It recursively watches `wiki/` and automatically restarts after an article, index, or category is added, updated, moved, or deleted; refresh the browser after the restart. The restart reloads both article content and the sidebar generated from `wiki/index.md`.
 4. Before publishing the online site, run the documentation build only after the index check passes. The published sidebar is generated from that same index snapshot.
 
-Do not claim that raw conversation text was preserved. The default output is a distilled Wiki article, not a transcript.
+The local cache preserves the visible source conversation for traceability; the default Wiki output remains a distilled article, not a transcript.
 
 ## Technical article standard: atomic API knowledge
 

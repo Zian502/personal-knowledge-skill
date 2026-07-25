@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Export the active Agent conversation into a normalized, temporary source file.
+"""Export the active Agent conversation into a normalized source or local cache.
 
 The host Agent owns access to its live conversation. This adapter intentionally
 does not scrape application databases or browser storage. Instead it calls a
@@ -9,6 +9,7 @@ user-configured host-native exporter, or normalizes an explicit JSON/text export
 from __future__ import annotations
 
 import argparse
+from datetime import datetime, timezone
 import json
 import os
 import subprocess
@@ -98,13 +99,24 @@ def main() -> None:
     parser.add_argument("--agent", choices=("auto", "codex", "cursor"), default="auto")
     parser.add_argument("--input", help="显式传入的纯文本或 JSON 会话导出文件")
     parser.add_argument("--command", help="可信的当前会话导出命令；其 stdout 为文本或 JSON")
-    parser.add_argument("--output", required=True, help="临时规范化会话文件")
+    parser.add_argument("--output", help="规范化会话文件（临时或指定位置）")
+    parser.add_argument("--cache-dir", help="本地会话缓存目录；文件默认以时间和 Agent 命名")
+    parser.add_argument("--session-id", help="缓存文件名使用的稳定会话标识")
     args = parser.parse_args()
+
+    if bool(args.output) == bool(args.cache_dir):
+        fail("必须且只能指定 --output 或 --cache-dir")
 
     content = normalize(read_source(args), args.agent)
     if not content:
         fail("会话导出为空")
-    output = Path(args.output).expanduser()
+    if args.cache_dir:
+        cache_id = (args.session_id or args.agent).strip()
+        safe_id = "".join(char if char.isalnum() or char in "-_" else "-" for char in cache_id)
+        timestamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        output = Path(args.cache_dir).expanduser() / f"{timestamp}-{safe_id}.md"
+    else:
+        output = Path(args.output).expanduser()
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(content + "\n", encoding="utf-8")
     print(output)
