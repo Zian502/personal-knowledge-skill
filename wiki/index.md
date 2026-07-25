@@ -22,7 +22,7 @@ sidebar:
 
 ### 技术/前端/Electron/Context Bridge
 
-- [contextBridge.exposeInMainWorld()：构建受限 Renderer API](/wiki/技术/前端/electron/contextbridge/contextbridgeexposeinmainworld/): 在 context isolation 下从 preload 向 Renderer 暴露可审计、最小化的原生能力。
+- [contextBridge.exposeInMainWorld()：构建受限 Renderer API](/wiki/技术/前端/electron/context-bridge/contextbridgeexposeinmainworld/): 在 context isolation 下从 preload 向 Renderer 暴露可审计、最小化的原生能力。
 
 ### 技术/前端/Electron/IPC
 
@@ -34,7 +34,7 @@ sidebar:
 
 ### 技术/前端/Electron/Utility Process
 
-- [utilityProcess.fork()：隔离桌面端 Sidecar](/wiki/技术/前端/electron/utilityprocess/utilityprocessfork/): 从 Electron 主进程启动具备 Node.js 环境的 Utility Process，并通过生命周期与消息通道管理本地服务。
+- [utilityProcess.fork()：隔离桌面端 Sidecar](/wiki/技术/前端/electron/utility-process/utilityprocessfork/): 从 Electron 主进程启动具备 Node.js 环境的 Utility Process，并通过生命周期与消息通道管理本地服务。
 
 ### 技术/前端/Electron/剪贴板
 

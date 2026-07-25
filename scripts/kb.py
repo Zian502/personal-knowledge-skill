@@ -151,10 +151,13 @@ def site_path(relative: Path) -> str:
     source_parts = list(relative.with_suffix("").parts)
     if source_parts and source_parts[-1] == "index":
         source_parts.pop()
-    route_parts = [
-        re.sub(r"[^\w\u4e00-\u9fff-]+", "", part.lower())
-        for part in source_parts
-    ]
+    def route_part(part: str) -> str:
+        # Match Astro's file-based route normalization: whitespace becomes a
+        # separator, while punctuation such as the dot in "Node.js" is removed.
+        normalized = re.sub(r"\s+", "-", part.lower())
+        return re.sub(r"[^\w\u4e00-\u9fff-]+", "", normalized)
+
+    route_parts = [route_part(part) for part in source_parts]
     return "/wiki/" + "/".join(route_parts) + "/"
 
 
