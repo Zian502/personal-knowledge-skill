@@ -152,13 +152,37 @@ header.header {
 }
 
 .pks-header-tools site-search button,
-.pks-header-tools label {
+.pks-header-tools starlight-theme-select > label {
+  box-sizing: border-box;
+  height: 2.5rem;
   border: 1px solid var(--pks-line);
   border-radius: 0.55rem;
   background: transparent;
 }
 
-.pks-header-tools site-search button { padding: 0.38rem 0.55rem; }
+.pks-header-tools site-search button {
+  padding: 0 0.55rem;
+}
+
+.pks-header-tools starlight-theme-select > label {
+  --sl-inline-padding: 0.55rem;
+  --sl-label-icon-size: 0.9rem;
+  --sl-caret-size: 0.9rem;
+  color: var(--pks-muted);
+}
+
+.pks-header-tools starlight-theme-select > label:hover {
+  border-color: color-mix(in srgb, var(--pks-ink) 28%, var(--pks-line));
+  color: var(--pks-ink);
+}
+
+.pks-header-tools starlight-theme-select select {
+  height: 100%;
+  margin-inline: 0;
+  padding-block: 0;
+  background: transparent;
+  color: inherit;
+}
 
 /* Homepage */
 .pks-hero {
