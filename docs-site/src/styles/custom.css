@@ -185,6 +185,14 @@ header.header {
   color: inherit;
 }
 
+.pks-header-tools starlight-theme-select .label-icon {
+  inset-inline-start: 0.55rem;
+}
+
+.pks-header-tools starlight-theme-select .caret {
+  inset-inline-end: 0.55rem;
+}
+
 /* Homepage */
 .pks-hero {
   position: relative;
