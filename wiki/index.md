@@ -36,12 +36,3 @@ sidebar:
 ### 技术/后端/Node.js/文件系统
 
 - [fsPromises.open()：创建受控文件句柄](/wiki/技术/后端/nodejs/文件系统/fspromisesopen/): 用 Node.js 的异步文件系统 API 创建受控 FileHandle，作为后续授权文件读取的起点。
-
-## 一级分类
-
-- 技术
-- 管理
-- 产品
-- 运营
-- 测试
-- 其他
