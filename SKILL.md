@@ -34,9 +34,29 @@ Treat `/pks` as the short natural-language trigger when it reaches the agent. Th
 
 Treat “查看知识库” as a request to list articles or start the documentation site, based on context.
 
+## Acquire the current conversation as source data
+
+When recording, use the **entire active conversation** as the source, not only the latest user message. The current Agent must obtain the conversation through its host-native conversation/context API first, then hand the resulting transcript back to itself as the source material for this Skill.
+
+1. Identify the current host Agent (`codex`, `cursor`, or another supported host).
+2. Ask the host to export or read the active conversation's user and assistant messages, including earlier turns in this same conversation. Do not collect hidden system prompts, tool secrets, other chats, or application-wide history.
+3. Normalize a host export with the bundled adapter. Configure a trusted host-native exporter through `PKS_CONVERSATION_EXPORT_CMD`, `PKS_CODEX_CONVERSATION_EXPORT_CMD`, or `PKS_CURSOR_CONVERSATION_EXPORT_CMD`; alternatively pass the host-provided export file explicitly:
+
+   ```bash
+   python3 scripts/conversation_source.py --agent codex --output /tmp/pks-current-session.md
+   # or
+   python3 scripts/conversation_source.py --agent cursor \
+     --input /tmp/cursor-current-session.json --output /tmp/pks-current-session.md
+   ```
+
+4. Read the normalized temporary source completely and treat it as the sole conversation evidence for this archival run. The current Agent performs the analysis and writes the Wiki; the script only acquires and normalizes source data.
+5. Delete the temporary source file after the Wiki is saved and checked. Never commit or publish raw chat transcripts.
+
+The adapter must not scrape Codex/Cursor local databases, browser storage, or filesystem histories. If the current host exposes no conversation-export capability, use the conversation context already supplied to the Agent; if that is incomplete, ask the user to export or paste the current chat rather than silently archiving a partial conversation.
+
 ## Record the current conversation
 
-1. Read the current conversation and select only durable, reusable knowledge. Exclude greetings, negotiation about the task, transient tool output, credentials, tokens, personal secrets, and unsupported claims.
+1. Read the acquired full current-conversation source and select only durable, reusable knowledge. Exclude greetings, negotiation about the task, transient tool output, credentials, tokens, personal secrets, and unsupported claims.
 2. If the conversation contains several independently useful topics, create one article per topic. Do not force unrelated topics into one article. For `技术` content, split a broad design into atomic API knowledge pages as described below.
 3. Read `references/taxonomy.md`. Choose exactly one primary path with 2–4 levels. The first level must be one of `技术`, `管理`, `产品`, `运营`, `测试`, or `其他`.
 4. Search existing articles before writing:
