@@ -165,7 +165,7 @@ header.header {
 }
 
 .pks-header-tools starlight-theme-select > label {
-  --sl-inline-padding: 0.55rem;
+  --sl-inline-padding: 0.78rem;
   --sl-label-icon-size: 0.9rem;
   --sl-caret-size: 0.9rem;
   margin-inline: 0.2rem;
