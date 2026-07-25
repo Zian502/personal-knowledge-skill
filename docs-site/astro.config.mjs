@@ -1,9 +1,11 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
 import { readFileSync } from "node:fs";
+import { relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const skillRoot = fileURLToPath(new URL("..", import.meta.url));
+const wikiRoot = fileURLToPath(new URL("../wiki", import.meta.url));
 const wikiIndex = fileURLToPath(new URL("../wiki/index.md", import.meta.url));
 const site = process.env.GITHUB_ACTIONS === "true"
   ? "https://zian502.github.io"
@@ -35,14 +37,32 @@ function wikiNavigationFromIndex() {
   return root;
 }
 
-function refreshSidebarWhenIndexChanges() {
+function refreshWikiWhenSourceChanges() {
   return {
-    name: "pks-refresh-sidebar-from-wiki-index",
+    name: "pks-refresh-local-wiki",
     configureServer(server) {
-      server.watcher.add(wikiIndex);
-      server.watcher.on("change", async (file) => {
-        if (file === wikiIndex) await server.restart();
-      });
+      server.watcher.add(wikiRoot);
+
+      let restartTimer;
+      const isWikiSource = (file) => {
+        const path = relative(wikiRoot, file);
+        return path && !path.startsWith("..") && !path.includes("../");
+      };
+      const scheduleRestart = (file) => {
+        if (!isWikiSource(file)) return;
+        clearTimeout(restartTimer);
+        restartTimer = setTimeout(() => server.restart(), 120);
+      };
+
+      server.watcher.on("add", scheduleRestart);
+      server.watcher.on("change", scheduleRestart);
+      server.watcher.on("unlink", scheduleRestart);
+      server.watcher.on("addDir", scheduleRestart);
+      server.watcher.on("unlinkDir", scheduleRestart);
+
+      return () => {
+        clearTimeout(restartTimer);
+      };
     },
   };
 }
@@ -50,7 +70,7 @@ function refreshSidebarWhenIndexChanges() {
 export default defineConfig({
   site,
   vite: {
-    plugins: [refreshSidebarWhenIndexChanges()],
+    plugins: [refreshWikiWhenSourceChanges()],
     server: {
       fs: { allow: [skillRoot] },
     },

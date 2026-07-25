@@ -112,7 +112,7 @@ npm install
 npm run dev -- --host 127.0.0.1
 ```
 
-Open <http://127.0.0.1:4321>. The development server watches `wiki/index.md` and restarts when the index changes; refresh the browser to see the updated sidebar.
+Open <http://127.0.0.1:4321>. The development server recursively watches `wiki/` and automatically restarts after an article, index, or category changes. Refresh the browser to see both updated article content and the regenerated sidebar.
 
 Before publishing:
 

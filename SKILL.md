@@ -91,7 +91,7 @@ After every Wiki addition, merge, deletion, or category move:
 
 1. Run `python3 scripts/kb.py index`, then `python3 scripts/kb.py index --check`.
 2. Confirm the article appears under the intended category in `wiki/index.md`.
-3. Keep the local docs server running. It watches `wiki/index.md` and automatically restarts to load the refreshed sidebar; refresh the browser after the restart.
+3. Keep the local docs server running. It recursively watches `wiki/` and automatically restarts after an article, index, or category is added, updated, moved, or deleted; refresh the browser after the restart. The restart reloads both article content and the sidebar generated from `wiki/index.md`.
 4. Before publishing the online site, run the documentation build only after the index check passes. The published sidebar is generated from that same index snapshot.
 
 Do not claim that raw conversation text was preserved. The default output is a distilled Wiki article, not a transcript.
