@@ -85,7 +85,7 @@ The adapter must not scrape Codex/Cursor local databases, browser storage, or fi
 
 ## Wiki index and sidebar consistency
 
-Treat `wiki/index.md` as the sole source of truth for the documentation site's left Wiki menu. Do not manually add, remove, or reorder Wiki entries in the site configuration.
+Treat `wiki/index.md` as the sole source of truth for the documentation site's left Wiki menu. Do not manually add, remove, or reorder Wiki entries in the site configuration. Render every generated category group and the outer `Wiki` group collapsed by default; Starlight may expand the path to the current article for orientation.
 
 After every Wiki addition, merge, deletion, or category move:
 

@@ -27,7 +27,7 @@ function wikiNavigationFromIndex() {
     for (const label of category) {
       let group = level.find((item) => item.label === label && item.items);
       if (!group) {
-        group = { label, items: [] };
+        group = { label, collapsed: true, items: [] };
         level.push(group);
       }
       level = group.items;
@@ -96,6 +96,7 @@ export default defineConfig({
         { label: "首页", link: "/" },
         {
           label: "Wiki",
+          collapsed: true,
           items: [{ label: "总览", link: "/wiki/" }, ...wikiNavigationFromIndex()],
         },
       ],
