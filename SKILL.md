@@ -83,6 +83,17 @@ The adapter must not scrape Codex/Cursor local databases, browser storage, or fi
 7. For a merge, edit only the matching Wiki article. Preserve useful existing content and frontmatter, update `updated`, and integrate rather than append duplicate sections.
 8. Run `python3 scripts/kb.py check`. Report the saved or updated article paths and their classification.
 
+## Wiki index and sidebar consistency
+
+Treat `wiki/index.md` as the sole source of truth for the documentation site's left Wiki menu. Do not manually add, remove, or reorder Wiki entries in the site configuration.
+
+After every Wiki addition, merge, deletion, or category move:
+
+1. Run `python3 scripts/kb.py index`, then `python3 scripts/kb.py index --check`.
+2. Confirm the article appears under the intended category in `wiki/index.md`.
+3. Keep the local docs server running. It watches `wiki/index.md` and automatically restarts to load the refreshed sidebar; refresh the browser after the restart.
+4. Before publishing the online site, run the documentation build only after the index check passes. The published sidebar is generated from that same index snapshot.
+
 Do not claim that raw conversation text was preserved. The default output is a distilled Wiki article, not a transcript.
 
 ## Technical article standard: atomic API knowledge

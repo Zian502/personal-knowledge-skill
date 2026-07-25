@@ -1,64 +1,52 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
-import { existsSync, readdirSync, readFileSync } from "node:fs";
-import { join } from "node:path";
+import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 
 const skillRoot = fileURLToPath(new URL("..", import.meta.url));
-const wikiRoot = join(skillRoot, "wiki");
+const wikiIndex = fileURLToPath(new URL("../wiki/index.md", import.meta.url));
 
-function titleFromMarkdown(path) {
-  const source = readFileSync(path, "utf8").slice(0, 2048);
-  const match = source.match(/^title:\s*["']?(.+?)["']?\s*$/m);
-  return match ? match[1] : path.replace(/\.md$/, "");
-}
+function wikiNavigationFromIndex() {
+  const root = [];
+  let category = [];
+  for (const line of readFileSync(wikiIndex, "utf8").split("\n")) {
+    const categoryMatch = line.match(/^###\s+(.+)$/);
+    if (categoryMatch) {
+      category = categoryMatch[1].split("/").map((part) => part.trim()).filter(Boolean);
+      continue;
+    }
+    const articleMatch = line.match(/^- \[(.+)]\((\/wiki\/[^)]+)\):/);
+    if (!articleMatch || !category.length) continue;
 
-function apiFromMarkdown(path) {
-  const source = readFileSync(path, "utf8").slice(0, 2048);
-  const match = source.match(/^api:\s*["']?(.+?)["']?\s*$/m);
-  return match ? match[1] : titleFromMarkdown(path);
-}
-
-function wikiRoute(parts) {
-  const sourceParts = parts
-    .map((part) => part.replace(/\.md$/, "").toLowerCase().replace(/[^\w\u4e00-\u9fff-]/g, ""))
-    .filter((part, index, all) => !(index === all.length - 1 && part === "index"));
-  const route = sourceParts.join("/");
-  return `/wiki/${route}/`;
-}
-
-function wikiNavigation(directory = wikiRoot, parts = []) {
-  const entries = readdirSync(directory, { withFileTypes: true })
-    .filter((entry) => entry.name !== "index.md" && entry.name !== "llms.txt")
-    .sort((left, right) => left.name.localeCompare(right.name, "zh-CN"));
-
-  const directories = entries.filter((entry) => entry.isDirectory());
-  const articles = entries.filter((entry) => entry.isFile() && entry.name.endsWith(".md"));
-
-  return [
-    ...directories.map((entry) => {
-      const childDirectory = join(directory, entry.name);
-      const articlePath = join(childDirectory, "index.md");
-      if (existsSync(articlePath)) {
-        return {
-          label: apiFromMarkdown(articlePath),
-          link: wikiRoute([...parts, entry.name, "index.md"]),
-        };
+    let level = root;
+    for (const label of category) {
+      let group = level.find((item) => item.label === label && item.items);
+      if (!group) {
+        group = { label, items: [] };
+        level.push(group);
       }
-      return {
-        label: entry.name,
-        items: wikiNavigation(childDirectory, [...parts, entry.name]),
-      };
-    }),
-    ...articles.map((entry) => ({
-      label: titleFromMarkdown(join(directory, entry.name)),
-      link: wikiRoute([...parts, entry.name]),
-    })),
-  ];
+      level = group.items;
+    }
+    level.push({ label: articleMatch[1], link: articleMatch[2] });
+  }
+  return root;
+}
+
+function refreshSidebarWhenIndexChanges() {
+  return {
+    name: "pks-refresh-sidebar-from-wiki-index",
+    configureServer(server) {
+      server.watcher.add(wikiIndex);
+      server.watcher.on("change", async (file) => {
+        if (file === wikiIndex) await server.restart();
+      });
+    },
+  };
 }
 
 export default defineConfig({
   vite: {
+    plugins: [refreshSidebarWhenIndexChanges()],
     server: {
       fs: { allow: [skillRoot] },
     },
@@ -84,7 +72,7 @@ export default defineConfig({
         { label: "首页", link: "/" },
         {
           label: "Wiki",
-          items: [{ label: "总览", link: "/wiki/" }, ...wikiNavigation()],
+          items: [{ label: "总览", link: "/wiki/" }, ...wikiNavigationFromIndex()],
         },
       ],
     }),
