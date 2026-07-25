@@ -12,10 +12,12 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-- `Deferred.make<Success, Error>()`：产生创建 `Deferred<Success, Error>` 的 Effect。
-- `Deferred.await(deferred)`：返回等待成功值或错误的 Effect；等待的 Fiber 会语义性暂停，但不会阻塞线程。
-- `Deferred.succeed(deferred, value)`：以成功值完成，返回表示是否成功完成的 Effect；重复完成不会替换既有结果。
-- `Deferred.fail(deferred, error)`：以预期错误完成。
+| API | 参数 / 返回 | 说明 |
+| --- | --- | --- |
+| `Deferred.make<Success, Error>()` | → `Effect<Deferred<Success, Error>>` | 创建一次性 Deferred 的 Effect。 |
+| `Deferred.await()` | `deferred` → `Effect<Success, Error>` | 等待成功值或错误；等待 Fiber 语义性暂停，不阻塞线程。 |
+| `Deferred.succeed()` | `deferred`、`value` → `Effect<boolean>` | 以成功值完成；重复完成不会替换既有结果。 |
+| `Deferred.fail()` | `deferred`、`error` → `Effect<boolean>` | 以预期错误完成。 |
 
 ## 会话提炼场景
 

@@ -12,11 +12,13 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-- `show: false`：先创建隐藏窗口，待内容可显示时再调用 `show()`。
-- `webPreferences.preload`：绝对路径的 preload 脚本；即使关闭 Node integration，它仍可访问 Node API，应只暴露最小能力。
-- `webPreferences.nodeIntegration`：默认 `false`。
-- `webPreferences.sandbox`：Electron 20 起默认 `true`；设置 `nodeIntegration: true` 会自动关闭该沙箱。
-- `ready-to-show`：窗口准备显示时触发；官方也建议设置接近应用背景的 `backgroundColor`。
+| API | 参数 / 返回 | 说明 |
+| --- | --- | --- |
+| `new BrowserWindow()` | `show: false` | 先创建隐藏窗口，待内容可显示时再调用 `show()`。 |
+| `webPreferences.preload` | 绝对脚本路径 | 即使关闭 Node integration 仍可访问 Node API，应只暴露最小能力。 |
+| `webPreferences.nodeIntegration` | 默认 `false` | 控制渲染进程 Node integration。 |
+| `webPreferences.sandbox` | Electron 20 起默认 `true` | 设置 `nodeIntegration: true` 会自动关闭该沙箱。 |
+| `ready-to-show` | 窗口事件 | 窗口准备显示时触发；可配合 `backgroundColor` 改善体验。 |
 
 ## 会话提炼场景
 

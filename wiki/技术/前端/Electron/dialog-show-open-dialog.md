@@ -12,10 +12,12 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-- `window`：可选的 `BaseWindow`，用于绑定父窗口。
-- `options.properties`：常用 `openFile`、`openDirectory`、`multiSelections`；Windows 与 Linux 上同时设置文件和目录选择会显示目录选择器。
-- `options.filters`：文件类型过滤；扩展名不带点或通配前缀，例如 `png`，全部文件使用 `*`。
-- 返回 `Promise<{ canceled, filePaths, bookmarks? }>`；取消时 `canceled` 为 `true`，`filePaths` 为空。
+| API | 参数 / 返回 | 说明 |
+| --- | --- | --- |
+| `dialog.showOpenDialog()` | `window?: BaseWindow` | 传入父窗口时，对话框附着为该窗口的模态对话框。 |
+| `options.properties` | `openFile`、`openDirectory`、`multiSelections` | 控制选择类型；Windows 与 Linux 同时设置文件和目录时显示目录选择器。 |
+| `options.filters` | `FileFilter[]` | 扩展名不带点或通配前缀，例如 `png`；全部文件使用 `*`。 |
+| `showOpenDialog()` | → `Promise<{ canceled, filePaths, bookmarks? }>` | 取消时 `canceled` 为 `true`，`filePaths` 为空。 |
 
 ## 会话提炼场景
 

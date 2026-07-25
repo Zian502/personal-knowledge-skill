@@ -12,10 +12,12 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-- `open(path, 'r')`：以只读标志打开文件，返回 `Promise<FileHandle>`。
-- `filehandle.stat()`：返回文件状态；附件场景用其中的 `size` 在分配 Buffer 前实施上限。
-- `filehandle.read(buffer, { offset, length, position })`：将数据读到给定 Buffer，返回包含 `bytesRead` 与 `buffer` 的结果。`position: 0` 表示从开头读取。
-- `filehandle.close()`：等待该句柄的待处理操作完成后关闭；官方文档要求显式关闭，不能依赖垃圾回收。
+| API | 参数 / 返回 | 说明 |
+| --- | --- | --- |
+| `open()` | `path`、`flags: 'r'` → `Promise<FileHandle>` | 以只读标志打开目标文件。 |
+| `filehandle.stat()` | → `Promise<Stats>` | 使用 `size` 在分配 Buffer 前实施附件大小上限。 |
+| `filehandle.read()` | `buffer`、`offset`、`length`、`position` → `{ bytesRead, buffer }` | 将指定位置的数据读到 Buffer；`position: 0` 从文件开头读取。 |
+| `filehandle.close()` | → `Promise<void>` | 等待该句柄的待处理操作完成后关闭；应显式调用。 |
 
 ## 会话提炼场景
 

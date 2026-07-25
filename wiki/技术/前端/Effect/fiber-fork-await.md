@@ -12,10 +12,12 @@ Fiber 是 Effect 的轻量并发执行单元。`Effect.fork`（或具备作用�
 
 ## 常用参数与返回
 
-- `Effect.fork(effect)`：返回启动目标 Effect 的 Effect，成功值是 `Fiber` 句柄。
-- `Effect.forkChild(effect)`：在父作用域下启动子 Fiber，适合需要随父任务管理生命周期的后台工作。
-- `Fiber.await(fiber)`：等待 Fiber 完成并返回其 `Exit`；需要结果值时再按 Exit 的成功/失败分支处理。
-- `Fiber.interrupt(fiber)`：请求中断后台工作，用于取消或关闭流程。
+| API | 参数 / 返回 | 说明 |
+| --- | --- | --- |
+| `Effect.fork()` | `effect` → `Effect<Fiber>` | 在后台启动目标 Effect，并产生 Fiber 句柄。 |
+| `Effect.forkChild()` | `effect` → `Effect<Fiber>` | 在父作用域下启动子 Fiber，适合随父任务管理生命周期的后台工作。 |
+| `Fiber.await()` | `fiber` → `Effect<Exit>` | 等待 Fiber 完成；需要结果值时按 Exit 的成功/失败分支处理。 |
+| `Fiber.interrupt()` | `fiber` → `Effect` | 请求中断后台工作，用于取消或关闭流程。 |
 
 ## 会话提炼场景
 
