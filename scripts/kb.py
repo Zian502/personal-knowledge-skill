@@ -186,19 +186,6 @@ def wiki_index_content(rows: list[dict[str, str | Path]]) -> str:
                     f"- [{row['title']}]({site_path(row['relative'])}): {row['description']}"
                 )
             lines.append("")
-    lines.extend(
-        [
-            "## 一级分类",
-            "",
-            "- 技术",
-            "- 管理",
-            "- 产品",
-            "- 运营",
-            "- 测试",
-            "- 其他",
-            "",
-        ]
-    )
     return "\n".join(lines)
 
 
