@@ -12,7 +12,6 @@ updated: "2026-07-25"
 
 | 库名 | 为何使用 | 如何使用 |
 | --- | --- | --- |
-| 暂未识别关联三方库 | 当前会话中的 `fsPromises.open()`、`FileHandle.read()`、`tls.getCACertificates()`、`tls.setDefaultCACertificates()` 与 `url.fileURLToPath()` 都来自 Node.js 内置 `node:*` 模块，未出现与 Node.js 搭配的外部包。 | 在后续会话或项目资料中确认具体生态包后再补充；不要将 Node.js 或 `node:*` 内置模块作为条目。 |
 
 ## 来源说明
 
