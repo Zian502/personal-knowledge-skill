@@ -1,58 +1,60 @@
-# Personal Knowledge Skill（PKS）
+# Personal Knowledge Skill (PKS)
 
-将当前 LLM 会话中的可复用内容提炼为本地 Markdown Wiki，并通过 Astro + Starlight 文档站点浏览、检索与长期维护。
+[中文](README.zh-CN.md) | English
 
-在线文档：<https://zian502.github.io/personal-knowledge-skill/>
+Turn reusable knowledge from the active LLM conversation into a local Markdown Wiki, then browse and search it with an Astro + Starlight documentation site.
 
-## 核心能力
+Documentation: <https://zian502.github.io/personal-knowledge-skill/>
 
-- 以当前会话的完整用户与助手消息为知识源，由当前 Agent 分析、总结并形成可独立阅读的 Wiki。
-- 按 `技术`、`管理`、`产品`、`运营`、`测试`、`其他` 分类；支持 `技术/架构` 等分类路径。
-- 技术知识按原子 API 归档：模块目录 → API 目录 → `index.md`，例如 `技术/后端/Node.js/文件系统/fspromises.open/index.md`。
-- 技术文章包含官方文档依据、常用参数与返回表格、会话场景、通用场景与边界说明。
-- 自动生成 `wiki/index.md` 与 `wiki/llms.txt`；文档站点左侧 Wiki 菜单只从 `wiki/index.md` 生成。
-- 校验元数据、分类路径及技术 API 目录规范，避免不一致的条目。
+## Highlights
 
-## 项目结构
+- Uses the complete active conversation between the user and the agent as source material.
+- Classifies knowledge under `技术`, `管理`, `产品`, `运营`, `测试`, and `其他`, including paths such as `技术/架构`.
+- Stores technical knowledge as atomic API articles: module directory → API directory → `index.md`.
+- Requires official documentation, parameter/return tables, practical scenarios, and boundaries for technical articles.
+- Generates `wiki/index.md` and `wiki/llms.txt`; the documentation sidebar is generated exclusively from `wiki/index.md`.
+- Validates metadata, taxonomy paths, and technical API directory conventions.
+
+## Repository layout
 
 ```text
 personal-knowledge-skill/
-├── SKILL.md                         # Agent 工作流与约束
-├── wiki/                             # 唯一的 Wiki Markdown 源
-├── scripts/kb.py                     # 新增、索引、检查、列表工具
-├── scripts/conversation_source.py    # 当前会话导出适配器
-├── references/                       # 分类法与文章契约
-└── docs-site/                        # Astro/Starlight 文档站点
+├── SKILL.md                         # Agent workflow and constraints
+├── wiki/                             # The only source of Wiki Markdown
+├── scripts/kb.py                     # Add, index, validate, and list articles
+├── scripts/conversation_source.py    # Active-conversation export adapter
+├── references/                       # Taxonomy and article contracts
+└── docs-site/                        # Astro/Starlight documentation site
 ```
 
-`docs-site/src/content/docs/wiki` 是指向根目录 `wiki/` 的软链接；不要通过站点目录重复维护文章。
+`docs-site/src/content/docs/wiki` is a symbolic link to the root `wiki/` directory. Maintain articles only in `wiki/`.
 
-## 使用
+## Use the skill
 
-在支持 Skill 的 Agent 中输入：
+In an agent that supports skills, enter:
 
 ```text
-/pks 录入当前会话
+/pks archive the current conversation
 ```
 
-或使用原始 Skill 名称：
+Or use the canonical skill name:
 
 ```text
-$personal-knowledge-skill 录入当前会话
+$personal-knowledge-skill archive the current conversation
 ```
 
-`/pks` 是约定的快捷意图；原生 Skill 选择以 Agent 支持的方式为准。
+`/pks` is the project’s shorthand intent; native skill selection depends on the host agent.
 
-### 会话源
+### Conversation source
 
-Skill 使用当前会话的完整上下文，不只取最后一条消息。若 Agent 提供原生会话导出能力，可配置可信的导出命令：
+The skill works from the full active conversation, not only the latest message. When the host agent offers a native export capability, configure a trusted exporter:
 
 ```bash
-export PKS_CODEX_CONVERSATION_EXPORT_CMD='<codex 当前会话导出命令>'
+export PKS_CODEX_CONVERSATION_EXPORT_CMD='<codex active-conversation export command>'
 python3 scripts/conversation_source.py --agent codex --output /tmp/pks-current-session.md
 ```
 
-Cursor 可使用 `PKS_CURSOR_CONVERSATION_EXPORT_CMD`，也可传入已有导出文件：
+For Cursor, use `PKS_CURSOR_CONVERSATION_EXPORT_CMD`, or pass an existing export file:
 
 ```bash
 python3 scripts/conversation_source.py --agent cursor \
@@ -60,11 +62,11 @@ python3 scripts/conversation_source.py --agent cursor \
   --output /tmp/pks-current-session.md
 ```
 
-适配器只接受明确配置的原生导出器或显式文件；不会扫描聊天数据库、浏览器存储或其他历史会话。临时原始会话文件仅供本次提炼使用，完成后应删除，不能提交到仓库。
+The adapter only uses an explicitly configured native exporter or an explicit input file. It never scrapes chat databases, browser storage, or other conversation histories. Delete raw temporary exports after the archival run and never commit them.
 
-## 技术文章目录规范
+## Technical article layout
 
-技术分类的最后一级是模块。一个 API 对应一个目录和一篇文章：
+The final technical category level is the module. Each API has one directory and one article:
 
 ```text
 wiki/技术/后端/Node.js/文件系统/
@@ -72,37 +74,37 @@ wiki/技术/后端/Node.js/文件系统/
     └── index.md
 ```
 
-录入时必须提供 API 原名：
+Adding a technical article requires the official API name:
 
 ```bash
 python3 scripts/kb.py add \
-  --title "fsPromises.open()：创建受控文件句柄" \
+  --title "fsPromises.open(): create a controlled file handle" \
   --category "技术/后端/Node.js/文件系统" \
   --api "fsPromises.open" \
-  --summary "创建受控 FileHandle，作为授权文件读取的起点。" \
-  --tags "Node.js,文件系统" \
+  --summary "Creates a controlled FileHandle for authorized file reads." \
+  --tags "Node.js,file system" \
   --source-file /tmp/article.md
 ```
 
-目录名使用稳定的小写 API slug；frontmatter 中的 `api` 保留官方 API 拼写，并作为菜单识别依据。
+The directory name is a stable lowercase API slug. The `api` frontmatter field preserves the official spelling for validation and navigation.
 
-## 管理与校验 Wiki
+## Manage and validate the Wiki
 
 ```bash
-# 列出文章
+# List archived articles
 python3 scripts/kb.py list
 
-# 生成并检查索引
+# Generate and verify indexes
 python3 scripts/kb.py index
 python3 scripts/kb.py index --check
 
-# 校验分类、元数据与技术 API 路径
+# Validate metadata, categories, and technical API paths
 python3 scripts/kb.py check
 ```
 
-每次新增、合并、移动或删除文章后，都应先更新并检查索引。`wiki/index.md` 是文档站点左侧 Wiki 菜单的唯一数据源，不能在站点配置中手动维护文章菜单。
+After adding, merging, moving, or deleting an article, update and verify the index. `wiki/index.md` is the sole source of truth for the Wiki sidebar; do not maintain article menus in site configuration.
 
-## 本地文档站点
+## Run the documentation site locally
 
 ```bash
 cd docs-site
@@ -110,21 +112,19 @@ npm install
 npm run dev -- --host 127.0.0.1
 ```
 
-访问 `http://127.0.0.1:4321`。开发服务会监听 `wiki/index.md`，索引更新后自动重启；刷新浏览器即可看到新的左侧菜单。
+Open <http://127.0.0.1:4321>. The development server watches `wiki/index.md` and restarts when the index changes; refresh the browser to see the updated sidebar.
 
-发布前执行：
+Before publishing:
 
 ```bash
 npm run build
 ```
 
-线上站点会根据构建时的 `wiki/index.md` 生成相同的左侧菜单，因此应在构建前通过 `python3 scripts/kb.py index --check`。
+GitHub Actions builds and deploys GitHub Pages after a push to `main`. For the first deployment, set **Settings → Pages → Source** to **GitHub Actions**.
 
-推送到 `main` 后，GitHub Actions 会构建并部署 GitHub Pages。首次启用时，请在仓库 **Settings → Pages** 将发布来源设为 **GitHub Actions**。
+## Global installation
 
-## 全局安装
-
-本项目可通过软链接供 Codex 与 Cursor 全局发现。软链接指向本仓库时，源码更新会立即生效：
+Use symbolic links to expose this repository globally to Codex and Cursor. Changes apply immediately when the links point to this repository:
 
 ```text
 ~/.codex/skills/personal-knowledge-skill
