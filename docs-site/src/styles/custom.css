@@ -11,6 +11,10 @@
   --sl-color-white: #15171d;
   --sl-font: "Geist Variable", "PingFang SC", "Microsoft YaHei", sans-serif;
   --sl-font-mono: "SFMono-Regular", "Cascadia Code", "JetBrains Mono", monospace;
+  --pks-header-top: 0.75rem;
+  --pks-header-height: 3.3rem;
+  /* Reserve room for the floating header in Starlight's page and sidebar layout. */
+  --sl-nav-height: 4.5rem;
 }
 
 :root[data-theme="dark"] {
@@ -49,16 +53,22 @@ pre,
 
 /* Floating document navigation */
 header.header {
-  position: sticky;
-  top: 0.75rem;
+  position: fixed;
+  inset-block-start: var(--pks-header-top);
+  inset-inline-start: 50%;
+  inset-inline-end: auto;
   z-index: 20;
   width: min(76rem, calc(100% - 2rem));
-  margin: 0.75rem auto 0;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
   border: 1px solid var(--pks-line);
   border-radius: 1.15rem;
   background: color-mix(in srgb, var(--pks-paper) 82%, transparent);
   box-shadow: 0 0.85rem 3rem rgba(22, 25, 32, 0.1);
   backdrop-filter: blur(18px);
+  transform: translateX(-50%);
 }
 
 .pks-header {
@@ -66,7 +76,7 @@ header.header {
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 1.5rem;
-  min-height: 3.3rem;
+  min-height: var(--pks-header-height);
   padding: 0 0.85rem 0 1rem;
 }
 
@@ -345,7 +355,12 @@ header.header {
 .sl-markdown-content blockquote { border-inline-start-color: var(--pks-coral); background: color-mix(in srgb, var(--pks-coral) 7%, transparent); }
 
 @media (max-width: 50rem) {
-  header.header { width: calc(100% - 1rem); margin-top: 0.5rem; border-radius: 0.85rem; }
+  :root {
+    --pks-header-top: 0.5rem;
+    --pks-header-height: 3rem;
+    --sl-nav-height: 4rem;
+  }
+  header.header { width: calc(100% - 1rem); border-radius: 0.85rem; }
   .pks-header { grid-template-columns: 1fr auto; min-height: 3rem; padding: 0 0.65rem 0 0.8rem; }
   .pks-nav { display: none; }
   .pks-header-tools site-search { display: none; }
