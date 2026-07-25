@@ -60,7 +60,7 @@ The adapter must not scrape Codex/Cursor local databases, browser storage, or fi
 ## Record the current conversation
 
 1. Read the acquired full current-conversation source and select only durable, reusable knowledge. Exclude greetings, negotiation about the task, transient tool output, credentials, tokens, personal secrets, and unsupported claims.
-2. If the conversation contains several independently useful topics, create one article per topic. Do not force unrelated topics into one article. For `技术` content, split a broad design into atomic API knowledge pages as described below. For every technology third-level framework/runtime directory involved in the conversation (for example `技术/前端/Electron`, `技术/前端/Effect`, or `技术/后端/Node.js`), also create or refresh `第三方依赖库/index.md` from the latest local session cache. It is a dependency-list page, not an API page.
+2. If the conversation contains several independently useful topics, create one article per topic. Do not force unrelated topics into one article. For `技术` content, split a broad design into atomic API knowledge pages as described below. For every technology third-level framework/runtime directory involved in the conversation (for example `技术/前端/Electron`, `技术/前端/Effect`, or `技术/后端/Node.js`), also create or refresh `三方库/index.md` from the latest local session cache. It is an ecosystem-library page, not an API page.
 3. Read `references/taxonomy.md` and inspect existing directories below `wiki/`. Choose exactly one primary path with 2–4 levels. The first level must be one of `技术`, `管理`, `产品`, `运营`, or `其他`. If no existing second-level category accurately fits the knowledge, create a concise, reusable second-level directory under the correct first-level category and add its recommended path to `references/taxonomy.md`. Do not force a poor fit or create a synonym of an existing category.
 4. Search existing articles before writing:
 
@@ -105,7 +105,7 @@ For every article whose first-level category is `技术`, read `references/techn
 
 Technical knowledge uses a fixed **framework/module/API article** layout. The final category level is the module; each API has its own direct child directory and an `index.md` article, for example `技术/后端/Node.js/文件系统/fspromises.open/index.md` (the directory uses a lowercase-safe API slug, while `api` keeps the official spelling). This API directory is one clickable item in the documentation sidebar. Do not place technical pages directly under a module or combine multiple APIs in one page.
 
-Each technology third-level framework/runtime directory also has a reserved `第三方依赖库/index.md` dependency-list page. Its frontmatter uses `kind: "dependency-list"` and a three-level `category`, for example `技术/前端/Electron`; it is the only non-API exception to the module/API layout. Derive it from the latest `resources/sessions/` cache: list every evidenced third-party package with its name, why it is used, and how to install/import or minimally use it. If the cache identifies no third-party package (such as a Node.js built-in API), state that explicitly in the table rather than inventing a dependency.
+Each technology third-level framework/runtime directory also has one reserved `三方库/index.md` ecosystem-library page. Its frontmatter uses `kind: "ecosystem-libraries"` and a three-level `category`, for example `技术/前端/Electron`; it is the only non-API exception to the module/API layout and must be the final item in that framework's sidebar menu. "三方库" means external packages associated with, or commonly used alongside, the framework (for example `electron-window-state` for Electron). Do not list the framework/runtime package itself (such as `electron`, `effect`, or `node:*`) as a three-party library. Derive the list from the latest `resources/sessions/` cache: state every evidenced package's name, why it is used with the framework, and how to install/import or minimally use it. If the cache identifies no associated package, state that explicitly in the table rather than inventing one.
 
 1. Define one primary unit: a framework/module API, class, method, option, or lifecycle event. Use the API name in the title and record its official spelling in frontmatter `api`. Do not combine unrelated APIs into a solution overview.
 2. Reconstruct the user-relevant technical point from the current conversation, then identify the primary API behind it. Split into separate pages when the conversation depends on several APIs.
@@ -125,14 +125,14 @@ python3 scripts/kb.py add \
   --summary "..." --tags "Node.js,文件系统" --source-file /tmp/article.md
 ```
 
-Create the dependency list for a technology third-level directory with:
+Create the associated ecosystem-library list for a technology third-level directory with:
 
 ```bash
 python3 scripts/kb.py add \
-  --title "Electron：第三方依赖库" \
+  --title "Electron：三方库" \
   --category "技术/前端/Electron" \
-  --summary "..." --tags "Electron,第三方依赖" \
-  --dependency-list --source-file /tmp/dependencies.md
+  --summary "..." --tags "Electron,三方库" \
+  --ecosystem-libraries --source-file /tmp/dependencies.md
 ```
 
 Run `python3 scripts/kb.py check` and `python3 scripts/kb.py index --check` after recording. If the current conversation lacks a trustworthy official source, ask the user or leave the article unsaved rather than inventing an API contract.

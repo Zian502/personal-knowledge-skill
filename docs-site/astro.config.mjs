@@ -34,6 +34,18 @@ function wikiNavigationFromIndex() {
     }
     level.push({ label: articleMatch[1], link: articleMatch[2] });
   }
+  const placeEcosystemLibrariesLast = (items) => {
+    items.sort((left, right) => {
+      const leftIsEcosystemLibraries = left.label.endsWith("：三方库");
+      const rightIsEcosystemLibraries = right.label.endsWith("：三方库");
+      if (leftIsEcosystemLibraries === rightIsEcosystemLibraries) return 0;
+      return leftIsEcosystemLibraries ? 1 : -1;
+    });
+    for (const item of items) {
+      if (item.items) placeEcosystemLibrariesLast(item.items);
+    }
+  };
+  placeEcosystemLibrariesLast(root);
   return root;
 }
 

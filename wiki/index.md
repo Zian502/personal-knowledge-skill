@@ -11,7 +11,7 @@ sidebar:
 
 ### 技术/前端/Effect
 
-- [Effect：第三方依赖库](/wiki/技术/前端/effect/第三方依赖库/): 基于当前会话缓存整理 Effect API 页面使用的第三方依赖。
+- [Effect：三方库](/wiki/技术/前端/effect/三方库/): 基于当前会话缓存整理与 Effect 生态关联的三方库。
 
 ### 技术/前端/Effect/Deferred
 
@@ -26,7 +26,7 @@ sidebar:
 
 ### 技术/前端/Electron
 
-- [Electron：第三方依赖库](/wiki/技术/前端/electron/第三方依赖库/): 基于当前会话缓存整理 Electron 主进程与 preload API 使用的第三方依赖。
+- [Electron：三方库](/wiki/技术/前端/electron/三方库/): 基于当前会话缓存整理与 Electron 生态关联的三方库。
 
 ### 技术/前端/Electron/Context Bridge
 
@@ -62,7 +62,7 @@ sidebar:
 
 ### 技术/后端/Node.js
 
-- [Node.js：第三方依赖库](/wiki/技术/后端/nodejs/第三方依赖库/): 基于当前会话缓存整理 Node.js API 页面涉及的第三方依赖状态。
+- [Node.js：三方库](/wiki/技术/后端/nodejs/三方库/): 基于当前会话缓存整理与 Node.js 生态关联的三方库状态。
 
 ### 技术/后端/Node.js/TLS
 
