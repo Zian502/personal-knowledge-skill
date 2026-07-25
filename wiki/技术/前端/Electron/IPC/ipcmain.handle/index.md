@@ -12,12 +12,6 @@ updated: "2026-07-25"
 
 `ipcMain.handle(channel, listener)` 在主进程注册一个可由 `ipcRenderer.invoke(channel, ...args)` 调用的请求—响应处理器。处理器的普通返回值或 Promise 最终值会回复给调用方。
 
-## 依赖库
-
-| 库 | 为何使用 | 如何使用 |
-| --- | --- | --- |
-| `electron` | 提供主进程的 `ipcMain` 与渲染进程的 `ipcRenderer`，用于受控的请求—响应 IPC。 | `npm install --save-dev electron`；主进程中 `import { ipcMain } from "electron"`。 |
-
 ## 常用参数与返回
 
 | API | 参数 | 返回 | 说明 |

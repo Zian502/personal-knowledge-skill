@@ -12,12 +12,6 @@ updated: "2026-07-25"
 
 `Deferred.make()` 创建一个空的 Effect Deferred。Deferred 是一次性同步原语，后续可由 `succeed`、`fail`、`done` 等方式完成一次。
 
-## 依赖库
-
-| 库 | 为何使用 | 如何使用 |
-| --- | --- | --- |
-| `effect` | 提供 `Deferred.make()` 与 Effect 的资源/错误模型，用于创建共享的就绪信号。 | `npm install effect`；`import { Deferred } from "effect"`。 |
-
 ## 常用参数与返回
 
 | API | 参数 | 返回 | 说明 |

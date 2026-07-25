@@ -11,12 +11,6 @@ updated: "2026-07-25"
 
 `Deferred.succeed(deferred, value)`（或柯里化形式）用成功值完成 Deferred，并唤醒所有正在 `Deferred.await` 的 fiber。
 
-## 依赖库
-
-| 库 | 为何使用 | 如何使用 |
-| --- | --- | --- |
-| `effect` | 提供 `Deferred.succeed()` 的一次性完成语义，避免手写 Promise resolver。 | `npm install effect`；`import { Deferred } from "effect"`。 |
-
 ## 常用参数与返回
 
 | API | 参数 | 返回 | 说明 |

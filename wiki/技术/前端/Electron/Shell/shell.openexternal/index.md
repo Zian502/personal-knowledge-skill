@@ -11,12 +11,6 @@ updated: "2026-07-25"
 
 `shell.openExternal(url[, options])` 用系统默认方式打开外部协议 URL（例如用默认浏览器打开 `https:`，或用邮件客户端打开 `mailto:`）。
 
-## 依赖库
-
-| 库 | 为何使用 | 如何使用 |
-| --- | --- | --- |
-| `electron` | 提供主进程的 `shell` 原生集成，用系统默认应用打开外部 URL。 | `npm install --save-dev electron`；`import { shell } from "electron"`。 |
-
 ## 常用参数与返回
 
 | API | 参数 | 返回 | 说明 |

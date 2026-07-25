@@ -11,12 +11,6 @@ updated: "2026-07-25"
 
 `Deferred.await(deferred)` 读取 Deferred 的值；若尚未完成，则挂起当前 fiber，直到该 Deferred 被完成一次。
 
-## 依赖库
-
-| 库 | 为何使用 | 如何使用 |
-| --- | --- | --- |
-| `effect` | 提供 `Deferred.await()` 及其 Effect 运行时，用于等待一次性异步结果。 | `npm install effect`；`import { Deferred } from "effect"`。 |
-
 ## 常用参数与返回
 
 | API | 参数 | 返回 | 说明 |

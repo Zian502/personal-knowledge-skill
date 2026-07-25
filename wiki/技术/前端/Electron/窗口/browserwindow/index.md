@@ -12,12 +12,6 @@ updated: "2026-07-25"
 
 `new BrowserWindow([options])` 在 Electron 主进程创建和控制原生浏览器窗口。`BrowserWindow` 是 `EventEmitter`，可监听 `ready-to-show` 等窗口事件。
 
-## 依赖库
-
-| 库 | 为何使用 | 如何使用 |
-| --- | --- | --- |
-| `electron` | 提供主进程的 `BrowserWindow`，用于创建、安全配置并管理桌面窗口。 | `npm install --save-dev electron`；`import { BrowserWindow } from "electron"`。 |
-
 ## 常用参数与返回
 
 | API | 参数 | 返回 | 说明 |
