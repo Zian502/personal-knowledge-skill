@@ -4,7 +4,7 @@
 
 将当前 LLM 会话中的可复用内容提炼为本地 Markdown Wiki，并通过 Astro + Starlight 文档站点浏览、检索与长期维护。
 
-在线文档：<https://zian502.github.io/personal-knowledge-skill/>
+[在线文档](https://zian502.github.io/personal-knowledge-skill/) · [GitHub 仓库](https://github.com/Zian502/personal-knowledge-skill)
 
 ## 核心能力
 

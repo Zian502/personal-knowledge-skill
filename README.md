@@ -4,7 +4,7 @@
 
 Turn reusable knowledge from the active LLM conversation into a local Markdown Wiki, then browse and search it with an Astro + Starlight documentation site.
 
-Documentation: <https://zian502.github.io/personal-knowledge-skill/>
+[Live documentation](https://zian502.github.io/personal-knowledge-skill/) · [GitHub repository](https://github.com/Zian502/personal-knowledge-skill)
 
 ## Highlights
 
