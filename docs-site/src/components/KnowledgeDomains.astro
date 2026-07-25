@@ -4,7 +4,6 @@ const domains = [
   ['02', '管理', 'MANAGEMENT', '项目、团队、流程与研发效能', '管理方法'],
   ['03', '产品', 'PRODUCT', '需求、设计、研究与产品数据', '产品实践'],
   ['04', '运营', 'OPERATIONS', '内容、用户、活动与增长', '增长运营'],
-  ['05', '测试', 'QUALITY', '自动化、性能与质量保障', '质量工程'],
 ];
 const base = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
@@ -15,7 +14,7 @@ const base = import.meta.env.BASE_URL.endsWith('/')
   <div class="pks-section-heading">
     <p class="pks-eyebrow"><span></span> KNOWLEDGE MAP</p>
     <h2 id="domain-title">用分类，让知识自然生长。</h2>
-    <p>从五个核心领域开始。文章会继续向下细分，但始终保留清晰、稳定的归属。</p>
+    <p>从四个核心领域开始。文章会继续向下细分，但始终保留清晰、稳定的归属。</p>
   </div>
   <div class="pks-domain-grid">
     {domains.map(([index, name, englishName, description, label], position) => (

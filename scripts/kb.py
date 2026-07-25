@@ -14,7 +14,7 @@ from pathlib import Path
 
 SKILL_ROOT = Path(__file__).resolve().parents[1]
 WIKI_ROOT = SKILL_ROOT / "wiki"
-ALLOWED_ROOTS = {"技术", "管理", "产品", "运营", "测试", "其他"}
+ALLOWED_ROOTS = {"技术", "管理", "产品", "运营", "其他"}
 FRONTMATTER_RE = re.compile(r"\A---\n(.*?)\n---\n", re.DOTALL)
 
 
@@ -201,7 +201,7 @@ def llms_index_content(rows: list[dict[str, str | Path]]) -> str:
     lines = [
         "# 个人知识库",
         "",
-        "> 一个从 LLM 会话中提炼的本地 Markdown Wiki，按领域归档可复用的技术、管理、产品、运营与测试知识。",
+        "> 一个从 LLM 会话中提炼的本地 Markdown Wiki，按领域归档可复用的技术、管理、产品与运营知识。",
         "",
         "优先阅读与问题最匹配的分类；每篇文章均可脱离原会话独立理解。",
         "",

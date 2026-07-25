@@ -8,7 +8,6 @@ Choose one primary category path per article. Use 2–4 levels and `/` as the se
 - `管理`: team, project, process, hiring, performance, leadership, collaboration
 - `产品`: discovery, requirements, design, roadmap, metrics, user research
 - `运营`: growth, content, community, campaigns, customer operations, commercialization
-- `测试`: test strategy, automation, quality systems, performance, security testing
 - `其他`: reusable knowledge that genuinely does not fit the five main domains
 
 ## Recommended paths
@@ -33,9 +32,6 @@ Choose one primary category path per article. Use 2–4 levels and `/` as the se
 - `运营/内容运营`
 - `运营/用户运营`
 - `运营/增长`
-- `测试/自动化测试`
-- `测试/性能测试`
-- `测试/质量保障`
 
 ## Extending the taxonomy
 

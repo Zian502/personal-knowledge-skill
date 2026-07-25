@@ -1,6 +1,6 @@
 ---
 name: personal-knowledge-skill
-description: Build and maintain a private local Markdown knowledge base from the current LLM conversation. Use when the user enters “/pks”, says “录入知识库”, “保存到 Wiki”, “沉淀当前会话”, “总结并归档”, asks to classify reusable knowledge under 技术/管理/产品/运营/测试 or their subcategories, wants to browse/search the local Wiki, or wants to start/build the bundled docs site.
+description: Build and maintain a private local Markdown knowledge base from the current LLM conversation. Use when the user enters “/pks”, says “录入知识库”, “保存到 Wiki”, “沉淀当前会话”, “总结并归档”, asks to classify reusable knowledge under 技术/管理/产品/运营 or their subcategories, wants to browse/search the local Wiki, or wants to start/build the bundled docs site.
 ---
 
 # Personal Knowledge Skill
@@ -61,7 +61,7 @@ The adapter must not scrape Codex/Cursor local databases, browser storage, or fi
 
 1. Read the acquired full current-conversation source and select only durable, reusable knowledge. Exclude greetings, negotiation about the task, transient tool output, credentials, tokens, personal secrets, and unsupported claims.
 2. If the conversation contains several independently useful topics, create one article per topic. Do not force unrelated topics into one article. For `技术` content, split a broad design into atomic API knowledge pages as described below.
-3. Read `references/taxonomy.md` and inspect existing directories below `wiki/`. Choose exactly one primary path with 2–4 levels. The first level must be one of `技术`, `管理`, `产品`, `运营`, `测试`, or `其他`. If no existing second-level category accurately fits the knowledge, create a concise, reusable second-level directory under the correct first-level category and add its recommended path to `references/taxonomy.md`. Do not force a poor fit or create a synonym of an existing category.
+3. Read `references/taxonomy.md` and inspect existing directories below `wiki/`. Choose exactly one primary path with 2–4 levels. The first level must be one of `技术`, `管理`, `产品`, `运营`, or `其他`. If no existing second-level category accurately fits the knowledge, create a concise, reusable second-level directory under the correct first-level category and add its recommended path to `references/taxonomy.md`. Do not force a poor fit or create a synonym of an existing category.
 4. Search existing articles before writing:
 
    ```bash

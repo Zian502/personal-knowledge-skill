@@ -9,7 +9,7 @@ Turn reusable knowledge from the active LLM conversation into a local Markdown W
 ## Highlights
 
 - Uses the complete active conversation between the user and the agent as source material.
-- Classifies knowledge under `技术`, `管理`, `产品`, `运营`, `测试`, and `其他`, including paths such as `技术/架构`.
+- Classifies knowledge under `技术`, `管理`, `产品`, `运营`, and `其他`, including paths such as `技术/架构`.
 - Stores technical knowledge as atomic API articles: module directory → API directory → `index.md`.
 - Requires official documentation, parameter/return tables, practical scenarios, and boundaries for technical articles.
 - Generates `wiki/index.md` and `wiki/llms.txt`; the documentation sidebar is generated exclusively from `wiki/index.md`.
