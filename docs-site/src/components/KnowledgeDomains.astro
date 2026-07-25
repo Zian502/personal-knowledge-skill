@@ -1,10 +1,10 @@
 ---
 const domains = [
-  ['01', '技术', '前端、后端、架构、DevOps、AI 与数据'],
-  ['02', '管理', '项目、团队、流程与研发效能'],
-  ['03', '产品', '需求、设计、研究与产品数据'],
-  ['04', '运营', '内容、用户、活动与增长'],
-  ['05', '测试', '自动化、性能与质量保障'],
+  ['01', '技术', 'TECHNOLOGY', '前端、后端、架构、DevOps、AI 与数据', '技术知识'],
+  ['02', '管理', 'MANAGEMENT', '项目、团队、流程与研发效能', '管理方法'],
+  ['03', '产品', 'PRODUCT', '需求、设计、研究与产品数据', '产品实践'],
+  ['04', '运营', 'OPERATIONS', '内容、用户、活动与增长', '增长运营'],
+  ['05', '测试', 'QUALITY', '自动化、性能与质量保障', '质量工程'],
 ];
 const base = import.meta.env.BASE_URL.endsWith('/')
   ? import.meta.env.BASE_URL
@@ -18,13 +18,22 @@ const base = import.meta.env.BASE_URL.endsWith('/')
     <p>从五个核心领域开始。文章会继续向下细分，但始终保留清晰、稳定的归属。</p>
   </div>
   <div class="pks-domain-grid">
-    {domains.map(([index, name, description], position) => (
-      <a class:list={["pks-domain-card", { "pks-domain-featured": position === 0 }]} href={`${base}wiki/`}>
-        <span class="pks-domain-index">{index}</span>
+    {domains.map(([index, name, englishName, description, label], position) => (
+      <a
+        class:list={["pks-domain-card", `pks-domain-${position + 1}`, { "pks-domain-featured": position === 0 }]}
+        href={`${base}wiki/`}
+      >
+        <div class="pks-domain-card-top">
+          <span class="pks-domain-index">{index}</span>
+          <span class="pks-domain-label">{label}</span>
+        </div>
         <div class="pks-domain-glyph" aria-hidden="true"><i></i><i></i><i></i></div>
-        <h3>{name}</h3>
-        <p>{description}</p>
-        <span class="pks-domain-link">进入分类 <b>↗</b></span>
+        <div class="pks-domain-copy">
+          <span class="pks-domain-english">{englishName}</span>
+          <h3>{name}</h3>
+          <p>{description}</p>
+        </div>
+        <span class="pks-domain-link">查看知识 <b aria-hidden="true">→</b></span>
       </a>
     ))}
   </div>
