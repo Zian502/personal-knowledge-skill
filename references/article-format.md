@@ -74,7 +74,7 @@ the final category is the module).
 
 For a third-level technology framework/runtime, use the non-API path
 `技术/<领域>/<框架>/三方库/index.md` with frontmatter `kind: ecosystem-libraries`
-and `category: 技术/<领域>/<框架>`. This is the final item in the framework's sidebar menu. It lists external packages associated with or used alongside the framework, not the framework/runtime package itself. Base its content on the latest local session cache:
+and `category: 技术/<领域>/<框架>`, and set its title to exactly `三方库`. This is the final item in the framework's sidebar menu. It lists external packages associated with or used alongside the framework, not the framework/runtime package itself. Base its content on the latest local session cache:
 
 ```markdown
 ## 三方库列表

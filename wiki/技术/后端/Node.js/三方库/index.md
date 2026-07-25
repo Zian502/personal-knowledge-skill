@@ -1,5 +1,5 @@
 ---
-title: "Node.js：三方库"
+title: "三方库"
 description: "基于当前会话缓存整理与 Node.js 生态关联的三方库状态。"
 category: "技术/后端/Node.js"
 kind: "ecosystem-libraries"

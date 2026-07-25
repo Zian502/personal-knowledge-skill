@@ -1,5 +1,5 @@
 ---
-title: "Effect：三方库"
+title: "三方库"
 description: "基于当前会话缓存整理与 Effect 生态关联的三方库。"
 category: "技术/前端/Effect"
 kind: "ecosystem-libraries"

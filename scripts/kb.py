@@ -86,6 +86,8 @@ def cmd_add(args: argparse.Namespace) -> None:
             fail("三方库清单必须位于技术三级目录，例如：技术/前端/Electron")
         if api or args.slug:
             fail("三方库清单不接受 --api 或 --slug")
+        if args.title.strip() != "三方库":
+            fail("三方库清单的标题必须为“三方库”")
         target = target_dir / "三方库" / "index.md"
     elif category[0] == "技术":
         if not api:
@@ -284,6 +286,8 @@ def cmd_check(_: argparse.Namespace) -> None:
             if parts[0] != "技术" or len(parts) != 3:
                 errors.append(f"{relative}: 三方库清单必须使用技术三级 category")
                 continue
+            if meta.get("title") != "三方库":
+                errors.append(f"{relative}: 三方库清单的标题必须为“三方库”")
             expected_path = expected_parent / "三方库" / "index.md"
             if relative != expected_path:
                 errors.append(

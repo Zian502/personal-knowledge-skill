@@ -11,7 +11,7 @@ sidebar:
 
 ### 技术/前端/Effect
 
-- [Effect：三方库](/wiki/技术/前端/effect/三方库/): 基于当前会话缓存整理与 Effect 生态关联的三方库。
+- [三方库](/wiki/技术/前端/effect/三方库/): 基于当前会话缓存整理与 Effect 生态关联的三方库。
 
 ### 技术/前端/Effect/Deferred
 
@@ -26,7 +26,7 @@ sidebar:
 
 ### 技术/前端/Electron
 
-- [Electron：三方库](/wiki/技术/前端/electron/三方库/): 基于当前会话缓存整理与 Electron 生态关联的三方库。
+- [三方库](/wiki/技术/前端/electron/三方库/): 基于当前会话缓存整理与 Electron 生态关联的三方库。
 
 ### 技术/前端/Electron/Context Bridge
 
@@ -62,7 +62,7 @@ sidebar:
 
 ### 技术/后端/Node.js
 
-- [Node.js：三方库](/wiki/技术/后端/nodejs/三方库/): 基于当前会话缓存整理与 Node.js 生态关联的三方库状态。
+- [三方库](/wiki/技术/后端/nodejs/三方库/): 基于当前会话缓存整理与 Node.js 生态关联的三方库状态。
 
 ### 技术/后端/Node.js/TLS
 

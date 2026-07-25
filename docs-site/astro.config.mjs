@@ -36,8 +36,8 @@ function wikiNavigationFromIndex() {
   }
   const placeEcosystemLibrariesLast = (items) => {
     items.sort((left, right) => {
-      const leftIsEcosystemLibraries = left.label.endsWith("：三方库");
-      const rightIsEcosystemLibraries = right.label.endsWith("：三方库");
+      const leftIsEcosystemLibraries = left.label === "三方库";
+      const rightIsEcosystemLibraries = right.label === "三方库";
       if (leftIsEcosystemLibraries === rightIsEcosystemLibraries) return 0;
       return leftIsEcosystemLibraries ? 1 : -1;
     });
