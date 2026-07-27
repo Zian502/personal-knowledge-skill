@@ -14,9 +14,9 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-| API | 参数 | 返回 | 说明 |
-| --- | --- | --- | --- |
-| `Effect.fork()` | `effect` | `Effect<Fiber>` | 在后台启动目标 Effect，并产生 Fiber 句柄。 |
+| 参数 | 返回 | 说明 |
+| --- | --- | --- |
+| `self: Effect<A, E, R>` | `Effect<Fiber.RuntimeFiber<A, E>>` | 在后台启动目标 Effect，并产生 Fiber 句柄。 |
 
 ## 会话提炼场景
 

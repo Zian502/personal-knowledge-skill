@@ -47,11 +47,11 @@ Do not use secondary articles as the source of an API contract. State the source
 
 Technical frontmatter must include `api` in addition to the standard fields.
 
-Write `常用参数与返回` as a Markdown table with these columns:
+Write `常用参数与返回` as a Markdown table with these columns. Do not repeat the API name here: the page title, frontmatter `api`, and `API 定位` already identify the single atomic API.
 
-| API | 参数 | 返回 | 说明 |
-| --- | --- | --- | --- |
-| `module.method()` | `option: Type` | `Promise<Result>` | Verified purpose, default, or constraint. |
+| 参数 | 返回 | 说明 |
+| --- | --- | --- |
+| `option: Type` | `Promise<Result>` | Verified purpose, default, or constraint. |
 
 Keep each row to one API call, option, event, or return contract. Put inputs and outputs in their own columns and use `—` when a column does not apply. Do not place scenarios or inferred architecture guidance in this table.
 

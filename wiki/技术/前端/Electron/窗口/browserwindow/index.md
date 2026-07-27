@@ -14,14 +14,13 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-| API | 参数 | 返回 | 说明 |
-| --- | --- | --- | --- |
-| `new BrowserWindow()` | `show: false` | `BrowserWindow` 实例 | 先创建隐藏窗口，待内容可显示时再调用 `show()`。 |
-| `webPreferences.preload` | 绝对脚本路径 | — | 即使关闭 Node integration 仍可访问 Node API，应只暴露最小能力。 |
-| `webPreferences.contextIsolation` | 默认 `true` | — | 将 preload 与网站代码置于不同 JavaScript context；应通过 `contextBridge` 显式共享 API。 |
-| `webPreferences.nodeIntegration` | 默认 `false` | — | 控制渲染进程 Node integration。 |
-| `webPreferences.sandbox` | Electron 20 起默认 `true` | — | 设置 `nodeIntegration: true` 会自动关闭该沙箱。 |
-| `ready-to-show` | — | 窗口事件 | 窗口准备显示时触发；可配合 `backgroundColor` 改善体验。 |
+| 参数 | 返回 | 说明 |
+| --- | --- | --- |
+| `options?: BrowserWindowConstructorOptions` | `BrowserWindow` | 可先设置 `show: false` 创建隐藏窗口，待内容可显示时再调用 `show()`。 |
+| `options.webPreferences.preload?: string` | `BrowserWindow` | 绝对脚本路径；即使关闭 Node integration 仍可访问 Node API，应只暴露最小能力。 |
+| `options.webPreferences.contextIsolation?: boolean` | `BrowserWindow` | 默认 `true`；将 preload 与网站代码置于不同 JavaScript context，应通过 `contextBridge` 显式共享 API。 |
+| `options.webPreferences.nodeIntegration?: boolean` | `BrowserWindow` | 默认 `false`；控制渲染进程 Node integration。 |
+| `options.webPreferences.sandbox?: boolean` | `BrowserWindow` | Electron 20 起默认 `true`；设置 `nodeIntegration: true` 会自动关闭该沙箱。 |
 
 ## 会话提炼场景
 

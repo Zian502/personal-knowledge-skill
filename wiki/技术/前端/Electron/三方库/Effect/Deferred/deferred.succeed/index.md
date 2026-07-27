@@ -13,10 +13,9 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-| API | 参数 | 返回 | 说明 |
-| --- | --- | --- | --- |
-| `Deferred.succeed()` | `self: Deferred<A, E>`、`value: A` | — | 以成功值完成。 |
-| `Deferred.succeed()` | — | `Effect<boolean>` | `true` 表示本次完成生效；若早已完成则为 `false`。 |
+| 参数 | 返回 | 说明 |
+| --- | --- | --- |
+| `self: Deferred<A, E>`、`value: A` | `Effect<boolean>` | 以成功值完成；`true` 表示本次完成生效，若早已完成则为 `false`。 |
 
 ## 会话提炼场景
 

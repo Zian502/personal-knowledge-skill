@@ -13,13 +13,12 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-| API | 参数 | 返回 | 说明 |
-| --- | --- | --- | --- |
-| `shell.openExternal()` | `url: string` | — | 要打开的外部协议 URL。 |
-| `shell.openExternal()` | `options.activate?` (macOS) | — | 是否把打开的应用置于前台；默认 `true`。 |
-| `shell.openExternal()` | `options.workingDirectory?` (Windows) | — | 工作目录。 |
-| `shell.openExternal()` | `options.logUsage?` (Windows) | — | 是否按用户发起启动记入常用程序跟踪；默认 `false`。 |
-| `shell.openExternal()` | — | `Promise<void>` | 异步完成打开请求。 |
+| 参数 | 返回 | 说明 |
+| --- | --- | --- |
+| `url: string` | `Promise<void>` | 要打开的外部协议 URL。 |
+| `options.activate?: boolean`（macOS） | `Promise<void>` | 是否把打开的应用置于前台；默认 `true`。 |
+| `options.workingDirectory?: string`（Windows） | `Promise<void>` | 工作目录。 |
+| `options.logUsage?: boolean`（Windows） | `Promise<void>` | 是否按用户发起启动记入常用程序跟踪；默认 `false`。 |
 
 ## 会话提炼场景
 

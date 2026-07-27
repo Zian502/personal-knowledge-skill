@@ -195,6 +195,7 @@ def wiki_index_content(rows: list[dict[str, str | Path]]) -> str:
         "---",
         "title: Wiki",
         "description: 按领域分类的个人知识文章。",
+        'tags: ["知识库", "索引"]',
         "sidebar:",
         "  order: 0",
         "---",
@@ -290,6 +291,8 @@ def cmd_check(_: argparse.Namespace) -> None:
         for field in ("title", "description", "category", "tags", "created", "updated"):
             if not meta.get(field):
                 errors.append(f"{relative}: 缺少 frontmatter 字段 {field}")
+        if meta.get("tags", "").strip() in {"[]", "[ ]"}:
+            errors.append(f"{relative}: tags 不能为空")
         category = meta.get("category", "")
         try:
             parts = normalize_category(category)

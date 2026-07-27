@@ -69,7 +69,7 @@ The adapter must not scrape Codex/Cursor local databases, browser storage, or fi
    rg -n -i "<key terms>" wiki
    ```
 
-5. Read `references/article-format.md`. Draft a self-contained Markdown body in a temporary file. Improve or merge an existing article when the new knowledge materially overlaps; create a new article otherwise.
+5. Read `references/article-format.md`. Draft a self-contained Markdown body in a temporary file. Every rendered Wiki document must have 2–5 non-empty, concise frontmatter tags that identify its framework/domain, primary concept or API, and relevant capability/boundary; reuse established terms and never use generic filler. Improve or merge an existing article when the new knowledge materially overlaps; create a new article otherwise.
 6. For a new article, write it with:
 
    ```bash
@@ -115,7 +115,7 @@ Classify a technology before choosing its path: a framework or host runtime owns
 2. Reconstruct the user-relevant technical point from the current conversation, then identify the primary API behind it. Split into separate pages when the conversation depends on several APIs.
 3. Search the latest official documentation before writing. Prefer the framework or runtime's first-party docs; record the direct URL and the verification date. Never infer parameter defaults, return values, lifecycle guarantees, or security behavior from memory.
 4. Do not add an `依赖库` section to an API article. Record package names, reasons, installation, and GitHub links only in the parent framework's `三方库` overview; link readers there only when that context is necessary.
-5. Explain only the common parameters, return values, lifecycle/events, and failure or security boundaries relevant to the API. Render `常用参数与返回` as a Markdown table with API、参数、返回、说明 columns. Put inputs and outputs in separate columns; use `—` for a field that does not apply. Mark implementation guidance as an inference when it goes beyond the official contract.
+5. Explain only the common parameters, return values, lifecycle/events, and failure or security boundaries relevant to the API. Render `常用参数与返回` as a Markdown table with 参数、返回、说明 columns; do not include an API column because each atomic page already identifies its API in the title and frontmatter. Put inputs and outputs in separate columns; use `—` for a field that does not apply. Verify every parameter type, optional/default behavior, and return type against the latest first-party API reference before writing or updating the table. Mark implementation guidance as an inference when it goes beyond the official contract.
 6. Include two scenario sections: `会话提炼场景` (grounded in the current conversation) and `常见应用场景` (established industry use). Keep them clearly separate from the API contract. `会话提炼场景` must include one focused Markdown code block that demonstrates the discussed API in context. Use executable or directly adaptable code, keep it to the smallest useful flow, and include error handling or resource cleanup when the API needs it. Clearly label application-layer policy or inference in surrounding prose; never present it as an API guarantee.
 7. Put links to companion API pages under `关联 API`; use a separate overview page only when it links to atomic pages rather than duplicating their API details.
 

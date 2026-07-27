@@ -13,11 +13,10 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-| API | 参数 | 返回 | 说明 |
-| --- | --- | --- | --- |
-| `url.fileURLToPath()` | `url` | — | `file:` URL 字符串或 URL 对象。 |
-| `url.fileURLToPath()` | `options.windows?` | — | `true` 强制 Windows 路径，`false` 强制 POSIX，`undefined` 用系统默认。 |
-| `url.fileURLToPath()` | — | `string` | 绝对路径字符串。 |
+| 参数 | 返回 | 说明 |
+| --- | --- | --- |
+| `url: string \| URL` | `string` | `file:` URL 字符串或 URL 对象。 |
+| `options?: { windows?: boolean }` | `string` | `true` 强制 Windows 路径，`false` 强制 POSIX，省略则用系统默认。 |
 
 ## 会话提炼场景
 

@@ -30,6 +30,10 @@ Link only sources actually used or mentioned.
 
 Adapt headings to the topic. Do not create empty sections.
 
+## Tags
+
+Every rendered Wiki document must have a non-empty frontmatter `tags` array. Use 2–5 concise, reusable labels that describe the framework/domain, primary API or concept, and a meaningful capability or boundary. Prefer established terms from the article and category; deduplicate case-insensitively. Do not use generic filler such as `知识` or `文档`.
+
 ## Technical article structure
 
 For articles under `技术`, use one primary API and this structure instead of a broad solution narrative:
@@ -41,7 +45,7 @@ Name the module, API, runtime/process boundary, and the exact responsibility.
 
 ## 常用参数与返回
 
-Use a four-column Markdown table: `API｜参数｜返回｜说明`. List only parameters, return values, events, or lifecycle rules verified in current official documentation. Keep parameters and returns separate; use `—` when either is not applicable.
+Use a three-column Markdown table: `参数｜返回｜说明`. Do not repeat the API name because the page title and frontmatter already identify the atomic API. List only parameters, return values, events, or lifecycle rules verified in current official documentation. Keep parameters and returns separate; use `—` when either is not applicable.
 
 ## 会话提炼场景
 

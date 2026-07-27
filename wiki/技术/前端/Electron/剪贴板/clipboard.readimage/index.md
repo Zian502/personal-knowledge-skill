@@ -13,10 +13,9 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-| API | 参数 | 返回 | 说明 |
-| --- | --- | --- | --- |
-| `clipboard.readImage()` | `type?: "clipboard" \| "selection"` | — | 默认 `"clipboard"`；`"selection"` 仅 Linux。 |
-| `clipboard.readImage()` | — | `NativeImage` | 剪贴板中的图像对象。 |
+| 参数 | 返回 | 说明 |
+| --- | --- | --- |
+| `type?: "clipboard" \| "selection"` | `NativeImage` | 默认 `"clipboard"`；`"selection"` 仅 Linux。 |
 
 ## 会话提炼场景
 

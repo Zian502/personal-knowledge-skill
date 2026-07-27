@@ -1,6 +1,7 @@
 ---
 title: Wiki
 description: 按领域分类的个人知识文章。
+tags: ["知识库", "索引"]
 sidebar:
   order: 0
 ---

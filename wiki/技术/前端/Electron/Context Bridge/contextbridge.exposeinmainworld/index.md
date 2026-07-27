@@ -13,12 +13,11 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-| API | 参数 | 返回 | 说明 |
-| --- | --- | --- | --- |
-| `contextBridge.exposeInMainWorld()` | `apiKey: string` | — | 注入到 Renderer `window` 对象上的名称。 |
-| `contextBridge.exposeInMainWorld()` | `api: object` | — | 可暴露函数及受支持的可复制值；非函数值会被复制并冻结。 |
-| 桥接函数 | 参数 | 返回值或错误 | 跨 context 传递时为复制语义；自定义原型和 `Symbol` 不应作为边界数据。 |
-| `contextBridge.exposeInIsolatedWorld()` | `worldId: number` | — | 向指定 isolated world 暴露 API；自定义 world 应使用 1000 以上 ID。 |
+| 参数 | 返回 | 说明 |
+| --- | --- | --- |
+| `apiKey: string` | `void` | 注入到 Renderer `window` 对象上的名称。 |
+| `api: any` | `void` | 可暴露函数及受支持的可复制值；非函数值会被复制并冻结。 |
+| 桥接函数的参数 | 返回值或错误 | 跨 context 传递时为复制语义；自定义原型和 `Symbol` 不应作为边界数据。 |
 
 ## 会话提炼场景
 

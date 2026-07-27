@@ -14,9 +14,9 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-| API | 参数 | 返回 | 说明 |
-| --- | --- | --- | --- |
-| `fsPromises.open()` | `path`、`flags`、`mode?` | `Promise<FileHandle>` | 用路径与文件系统标志异步打开文件；附件读取通常使用只读标志 `r`。 |
+| 参数 | 返回 | 说明 |
+| --- | --- | --- |
+| `path: string \| Buffer \| URL`、`flags: string \| number`、`mode?: string \| number` | `Promise<FileHandle>` | 用路径与文件系统标志异步打开文件；附件读取通常使用只读标志 `r`。`mode` 仅在创建文件时生效，默认 `0o666`。 |
 
 ## 会话提炼场景
 

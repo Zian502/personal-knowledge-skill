@@ -14,12 +14,12 @@ updated: "2026-07-25"
 
 ## 常用参数与返回
 
-| API | 参数 | 返回 | 说明 |
-| --- | --- | --- | --- |
-| `dialog.showOpenDialog()` | `window?: BaseWindow` | — | 传入父窗口时，对话框附着为该窗口的模态对话框。 |
-| `options.properties` | `openFile`、`openDirectory`、`multiSelections` | — | 控制选择类型；Windows 与 Linux 同时设置文件和目录时显示目录选择器。 |
-| `options.filters` | `FileFilter[]` | — | 扩展名不带点或通配前缀，例如 `png`；全部文件使用 `*`。 |
-| `showOpenDialog()` | — | `Promise<{ canceled, filePaths, bookmarks? }>` | 取消时 `canceled` 为 `true`，`filePaths` 为空。 |
+| 参数 | 返回 | 说明 |
+| --- | --- | --- |
+| `window?: BaseWindow` | `Promise<OpenDialogReturnValue>` | 传入父窗口时，对话框附着为该窗口的模态对话框。 |
+| `options.properties?: OpenDialogOptions["properties"]` | `Promise<OpenDialogReturnValue>` | 常用值为 `openFile`、`openDirectory`、`multiSelections`；Windows 与 Linux 同时设置文件和目录时显示目录选择器。 |
+| `options.filters?: FileFilter[]` | `Promise<OpenDialogReturnValue>` | 扩展名不带点或通配前缀，例如 `png`；全部文件使用 `*`。 |
+| — | `{ canceled: boolean; filePaths: string[]; bookmarks?: string[] }` | Promise 成功解析后的结果；取消时 `canceled` 为 `true`，`filePaths` 为空。 |
 
 ## 会话提炼场景
 

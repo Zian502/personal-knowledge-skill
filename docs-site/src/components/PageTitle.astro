@@ -1,6 +1,21 @@
 ---
 const entry = Astro.locals.starlightRoute.entry;
 const isSplash = entry.data.template === 'splash';
+const isWikiArticle = Astro.url.pathname.startsWith('/wiki/');
+const category = entry.data.category?.split('/').filter(Boolean) ?? [];
+const tags = entry.data.tags ?? [];
 ---
 
-{!isSplash && <h1>{entry.data.title}</h1>}
+{!isSplash && isWikiArticle ? (
+  <header class="pks-article-title">
+    <p class="pks-article-kicker">
+      <span>知识库</span>
+      {category.map((part) => <><i aria-hidden="true">/</i><span>{part}</span></>)}
+    </p>
+    <h1>{entry.data.title}</h1>
+    <div class="pks-article-meta" aria-label="文章元信息">
+      {entry.data.updated && <span>更新于 {entry.data.updated}</span>}
+      {tags.slice(0, 4).map((tag) => <span class="pks-article-tag">{tag}</span>)}
+    </div>
+  </header>
+) : !isSplash && <h1>{entry.data.title}</h1>}
