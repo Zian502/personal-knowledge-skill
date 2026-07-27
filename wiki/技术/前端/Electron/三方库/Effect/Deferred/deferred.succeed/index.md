@@ -1,11 +1,11 @@
 ---
-title: "Deferred.succeed()：成功完成 Deferred"
+title: "Deferred.succeed()"
 description: "以成功值完成 Deferred 并唤醒等待方，返回是否首次完成。"
 category: "技术/前端/Electron/三方库/Effect/Deferred"
 api: "Deferred.succeed"
 tags: ["Effect", "Deferred", "并发"]
 created: "2026-07-25"
-updated: "2026-07-25"
+updated: "2026-07-27"
 ---
 ## API 定位
 

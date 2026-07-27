@@ -56,6 +56,11 @@ def api_directory(value: str) -> str:
     return value
 
 
+def has_api_title_suffix(value: str) -> bool:
+    """Reject explanatory subtitles while allowing namespace colons such as node:fs."""
+    return "：" in value or bool(re.search(r":\s+", value))
+
+
 def parse_tags(raw: str) -> list[str]:
     seen: set[str] = set()
     tags: list[str] = []
@@ -92,6 +97,8 @@ def cmd_add(args: argparse.Namespace) -> None:
     elif category[0] == "技术":
         if not api:
             fail("技术文章必须指定 --api，并按“模块/API/index.md”存放")
+        if has_api_title_suffix(args.title.strip()):
+            fail("API 标题只能保留官方 API 名称，不得追加冒号及用途说明")
         if args.slug:
             fail("技术文章的 API 目录由 --api 自动生成，请不要使用 --slug")
         if "三方库" in category and (len(category) != 6 or category[3] != "三方库"):
@@ -316,6 +323,10 @@ def cmd_check(_: argparse.Namespace) -> None:
             if not api:
                 errors.append(f"{relative}: 技术文章缺少 frontmatter 字段 api")
                 continue
+            if has_api_title_suffix(meta.get("title", "")):
+                errors.append(
+                    f"{relative}: API 标题只能保留官方 API 名称，不得追加冒号及用途说明"
+                )
             if "三方库" in parts and (len(parts) != 6 or parts[3] != "三方库"):
                 errors.append(
                     f"{relative}: 三方库 API 分类必须为 技术/<领域>/<框架>/三方库/<库名>/<模块>"

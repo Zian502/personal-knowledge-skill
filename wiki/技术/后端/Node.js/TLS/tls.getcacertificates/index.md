@@ -1,11 +1,11 @@
 ---
-title: "tls.getCACertificates()：读取 CA 证书来源"
+title: "tls.getCACertificates()"
 description: "按 default/system/bundled/extra 返回 PEM CA 数组，用于检查或组装信任链。"
 category: "技术/后端/Node.js/TLS"
 api: "tls.getCACertificates"
 tags: ["Node.js", "TLS", "证书", "CA"]
 created: "2026-07-25"
-updated: "2026-07-25"
+updated: "2026-07-27"
 ---
 ## API 定位
 

@@ -1,11 +1,11 @@
 ---
-title: "tls.setDefaultCACertificates()：设置进程默认 CA"
+title: "tls.setDefaultCACertificates()"
 description: "替换当前 Node 线程 TLS 客户端默认 CA 列表，常与系统证书合并使用。"
 category: "技术/后端/Node.js/TLS"
 api: "tls.setDefaultCACertificates"
 tags: ["Node.js", "TLS", "证书", "CA"]
 created: "2026-07-25"
-updated: "2026-07-25"
+updated: "2026-07-27"
 ---
 ## API 定位
 

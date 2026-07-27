@@ -1,11 +1,11 @@
 ---
-title: "Deferred.await()：等待一次性结果"
+title: "Deferred.await()"
 description: "挂起直到 Deferred 完成，多个等待方可共享同一就绪信号。"
 category: "技术/前端/Electron/三方库/Effect/Deferred"
 api: "Deferred.await"
 tags: ["Effect", "Deferred", "并发"]
 created: "2026-07-25"
-updated: "2026-07-25"
+updated: "2026-07-27"
 ---
 ## API 定位
 

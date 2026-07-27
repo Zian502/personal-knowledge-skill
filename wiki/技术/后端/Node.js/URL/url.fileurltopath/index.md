@@ -1,11 +1,11 @@
 ---
-title: "url.fileURLToPath()：将 file URL 转为绝对路径"
+title: "url.fileURLToPath()"
 description: "把 import.meta.url 等 file: URL 转为跨平台绝对路径，用于定位旁路脚本。"
 category: "技术/后端/Node.js/URL"
 api: "url.fileURLToPath"
 tags: ["Node.js", "URL", "ESM", "路径"]
 created: "2026-07-25"
-updated: "2026-07-25"
+updated: "2026-07-27"
 ---
 ## API 定位
 

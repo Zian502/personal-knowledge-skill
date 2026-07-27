@@ -1,11 +1,11 @@
 ---
-title: "Effect.fork()：启动后台 Fiber"
+title: "Effect.fork()"
 description: "将 Effect 作为 Fiber 在后台启动，并保留后续等待、取消和观测的能力。"
 category: "技术/前端/Electron/三方库/Effect/Fiber"
 api: "Effect.fork"
 tags: ["Effect", "Fiber", "并发", "后台任务"]
 created: "2026-07-25"
-updated: "2026-07-25"
+updated: "2026-07-27"
 ---
 
 ## API 定位

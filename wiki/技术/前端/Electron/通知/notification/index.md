@@ -1,11 +1,11 @@
 ---
-title: "Notification：创建并展示系统通知"
+title: "Notification"
 description: "主进程创建 OS 通知对象，调用 show() 后展示；适合经 IPC 转发的桌面提示。"
 category: "技术/前端/Electron/通知"
 api: "Notification"
 tags: ["Electron", "Notification", "系统通知"]
 created: "2026-07-25"
-updated: "2026-07-25"
+updated: "2026-07-27"
 ---
 ## API 定位
 

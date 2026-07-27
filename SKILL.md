@@ -111,7 +111,7 @@ Each technology third-level framework/runtime directory also has one reserved `�
 
 Classify a technology before choosing its path: a framework or host runtime owns application startup, lifecycle, or primary structure (for example Electron); a library or runtime primitive is imported into that host to provide a focused capability without owning the application (for example Effect). If the conversation ties a library to a host framework, nest it beneath that host's `三方库` directory. Create an independent library category only when the source establishes genuinely host-neutral, cross-framework knowledge and the user requests that independent classification.
 
-1. Define one primary unit: a framework/module API, class, method, option, or lifecycle event. Use the API name in the title and record its official spelling in frontmatter `api`. Do not combine unrelated APIs into a solution overview.
+1. Define one primary unit: a framework/module API, class, method, option, or lifecycle event. Use only the official API display name as the complete title and record its official spelling in frontmatter `api`. Keep call or constructor syntax when useful, for example `contextBridge.exposeInMainWorld()` or `new BrowserWindow()`. Never append `：用途说明`, `: description`, a dash subtitle, or any other explanatory suffix; put that context in `description` and `API 定位`. Do not combine unrelated APIs into a solution overview.
 2. Reconstruct the user-relevant technical point from the current conversation, then identify the primary API behind it. Split into separate pages when the conversation depends on several APIs.
 3. Search the latest official documentation before writing. Prefer the framework or runtime's first-party docs; record the direct URL and the verification date. Never infer parameter defaults, return values, lifecycle guarantees, or security behavior from memory.
 4. Do not add an `依赖库` section to an API article. Record package names, reasons, installation, and GitHub links only in the parent framework's `三方库` overview; link readers there only when that context is necessary.
@@ -123,7 +123,7 @@ When adding a technical page, supply `--api` so the writer creates the required 
 
 ```bash
 python3 scripts/kb.py add \
-  --title "fsPromises.open()：创建受控文件句柄" \
+  --title "fsPromises.open()" \
   --category "技术/后端/Node.js/文件系统" \
   --api "fsPromises.open" \
   --summary "..." --tags "Node.js,文件系统" --source-file /tmp/article.md

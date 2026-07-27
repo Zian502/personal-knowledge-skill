@@ -1,11 +1,11 @@
 ---
-title: "Fiber.await()：等待 Fiber 并取得 Exit"
+title: "Fiber.await()"
 description: "挂起直到目标 Fiber 结束，返回 Exit 而不自动传播失败。"
 category: "技术/前端/Electron/三方库/Effect/Fiber"
 api: "Fiber.await"
 tags: ["Effect", "Fiber", "并发"]
 created: "2026-07-25"
-updated: "2026-07-25"
+updated: "2026-07-27"
 ---
 ## API 定位
 

@@ -1,11 +1,11 @@
 ---
-title: "ipcMain.handle()：实现请求—响应式 IPC"
+title: "ipcMain.handle()"
 description: "为 ipcRenderer.invoke() 注册异步处理器，并以 channel、调用来源和返回值建立受控主进程能力。"
 category: "技术/前端/Electron/IPC"
 api: "ipcMain.handle"
 tags: ["Electron", "ipcMain", "IPC", "安全", "主进程"]
 created: "2026-07-25"
-updated: "2026-07-25"
+updated: "2026-07-27"
 ---
 
 ## API 定位

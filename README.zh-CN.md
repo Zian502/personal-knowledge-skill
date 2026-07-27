@@ -78,7 +78,7 @@ wiki/技术/后端/Node.js/文件系统/
 
 ```bash
 python3 scripts/kb.py add \
-  --title "fsPromises.open()：创建受控文件句柄" \
+  --title "fsPromises.open()" \
   --category "技术/后端/Node.js/文件系统" \
   --api "fsPromises.open" \
   --summary "创建受控 FileHandle，作为授权文件读取的起点。" \

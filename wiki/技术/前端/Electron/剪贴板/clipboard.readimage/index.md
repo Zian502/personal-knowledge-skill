@@ -1,11 +1,11 @@
 ---
-title: "clipboard.readImage()：读取剪贴板图像"
+title: "clipboard.readImage()"
 description: "从系统剪贴板读取 NativeImage，供主进程转发给渲染进程作附件。"
 category: "技术/前端/Electron/剪贴板"
 api: "clipboard.readImage"
 tags: ["Electron", "clipboard", "NativeImage"]
 created: "2026-07-25"
-updated: "2026-07-25"
+updated: "2026-07-27"
 ---
 ## API 定位
 

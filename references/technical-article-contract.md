@@ -3,7 +3,10 @@
 ## Atomicity
 
 - One page explains one primary API unit: module API, class, method, option, or lifecycle event.
-- The title begins with the API name or makes it unmistakable.
+- The title is only the official API display name. Preserve useful call or
+  constructor syntax, such as `fsPromises.open()` or `new BrowserWindow()`, but
+  do not append a Chinese/ASCII colon, purpose text, dash subtitle, or any other
+  explanatory suffix. Put the purpose in `description` and `API 定位`.
 - Split orchestration patterns into the API pages they use; retain an overview only as a short link hub.
 
 ## Directory and navigation model
@@ -21,6 +24,9 @@ wiki/技术/后端/Node.js/文件系统/
 ```
 
 - Use the official API spelling in frontmatter `api`, for example `fsPromises.open`.
+- Use the API display form as the full frontmatter `title`, for example
+  `fsPromises.open()`. `contextBridge.exposeInMainWorld()：构建受限 Renderer API`
+  is invalid; use `contextBridge.exposeInMainWorld()` instead.
 - The parent category identifies the module, for example `技术/后端/Node.js/文件系统`.
 - Do not put a technical article directly under its module directory or combine two APIs in one article.
 - Each framework/runtime third-level directory has one reserved non-API exception: `三方库/index.md`. Its frontmatter sets `kind: "ecosystem-libraries"`, its title is exactly `三方库`, and its `category` is the third-level framework/runtime path. Place it last in that framework's sidebar menu.

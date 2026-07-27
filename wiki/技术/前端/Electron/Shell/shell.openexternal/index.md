@@ -1,11 +1,11 @@
 ---
-title: "shell.openExternal()：用系统默认方式打开外部 URL"
+title: "shell.openExternal()"
 description: "在主进程打开外部协议 URL，例如默认浏览器中的 https 链接。"
 category: "技术/前端/Electron/Shell"
 api: "shell.openExternal"
 tags: ["Electron", "shell", "桌面集成"]
 created: "2026-07-25"
-updated: "2026-07-25"
+updated: "2026-07-27"
 ---
 ## API 定位
 

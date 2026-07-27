@@ -1,11 +1,11 @@
 ---
-title: "contextBridge.exposeInMainWorld()：构建受限 Renderer API"
+title: "contextBridge.exposeInMainWorld()"
 description: "在 context isolation 下从 preload 向 Renderer 暴露可审计、最小化的原生能力。"
 category: "技术/前端/Electron/Context Bridge"
 api: "contextBridge.exposeInMainWorld"
 tags: ["Electron", "contextBridge", "contextIsolation", "preload", "安全"]
 created: "2026-07-25"
-updated: "2026-07-25"
+updated: "2026-07-27"
 ---
 ## API 定位
 

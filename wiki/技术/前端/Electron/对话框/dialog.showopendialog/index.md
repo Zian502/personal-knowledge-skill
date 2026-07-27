@@ -1,11 +1,11 @@
 ---
-title: "dialog.showOpenDialog()：选择本地文件"
+title: "dialog.showOpenDialog()"
 description: "在 Electron 主进程调用原生打开对话框，并以取消状态和文件路径列表处理结果。"
 category: "技术/前端/Electron/对话框"
 api: "dialog.showOpenDialog"
 tags: ["Electron", "dialog", "文件选择", "主进程"]
 created: "2026-07-25"
-updated: "2026-07-25"
+updated: "2026-07-27"
 ---
 
 ## API 定位

@@ -1,11 +1,11 @@
 ---
-title: "Deferred.make()：创建一次性就绪信号"
+title: "Deferred.make()"
 description: "用 Effect Deferred 创建只能完成一次的异步结果，以便等待方共享同一个就绪信号。"
 category: "技术/前端/Electron/三方库/Effect/Deferred"
 api: "Deferred.make"
 tags: ["Effect", "Deferred", "并发", "同步"]
 created: "2026-07-25"
-updated: "2026-07-25"
+updated: "2026-07-27"
 ---
 
 ## API 定位

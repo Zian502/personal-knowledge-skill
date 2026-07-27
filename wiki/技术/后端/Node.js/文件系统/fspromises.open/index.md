@@ -1,11 +1,11 @@
 ---
-title: "fsPromises.open()：创建受控文件句柄"
+title: "fsPromises.open()"
 description: "用 Node.js 的异步文件系统 API 创建受控 FileHandle，作为后续授权文件读取的起点。"
 category: "技术/后端/Node.js/文件系统"
 api: "fsPromises.open"
 tags: ["Node.js", "node:fs/promises", "FileHandle", "文件读取", "安全"]
 created: "2026-07-25"
-updated: "2026-07-25"
+updated: "2026-07-27"
 ---
 
 ## API 定位

@@ -1,11 +1,11 @@
 ---
-title: "FileHandle.read()：向缓冲区读取文件字节"
+title: "FileHandle.read()"
 description: "从 FileHandle 读取数据到 buffer，并返回 bytesRead，适合受控分段读附件。"
 category: "技术/后端/Node.js/文件系统"
 api: "FileHandle.read"
 tags: ["Node.js", "文件系统", "FileHandle", "附件"]
 created: "2026-07-25"
-updated: "2026-07-25"
+updated: "2026-07-27"
 ---
 ## API 定位
 
