@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import { watch } from "chokidar";
 import { readFileSync } from "node:fs";
-import { relative } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const skillRoot = fileURLToPath(new URL("..", import.meta.url));
@@ -10,6 +10,7 @@ const wikiIndex = fileURLToPath(new URL("../wiki/index.md", import.meta.url));
 const site = process.env.GITHUB_ACTIONS === "true"
   ? "https://zian502.github.io"
   : undefined;
+const wikiWatcherKey = Symbol.for("personal-knowledge-skill.wiki-watcher");
 
 function wikiNavigationFromIndex() {
   const root = [];
@@ -66,28 +67,44 @@ function refreshWikiWhenSourceChanges() {
   return {
     name: "pks-refresh-local-wiki",
     configureServer(server) {
-      server.watcher.add(wikiRoot);
+      const previousWatcher = globalThis[wikiWatcherKey];
+      if (previousWatcher) void previousWatcher.close();
+
+      const wikiWatcher = watch(wikiRoot, {
+        ignoreInitial: true,
+        awaitWriteFinish: {
+          stabilityThreshold: 100,
+          pollInterval: 20,
+        },
+      });
+      globalThis[wikiWatcherKey] = wikiWatcher;
 
       let restartTimer;
-      const isWikiSource = (file) => {
-        const path = relative(wikiRoot, file);
-        return path && !path.startsWith("..") && !path.includes("../");
-      };
-      const scheduleRestart = (file) => {
-        if (!isWikiSource(file)) return;
+      const scheduleRestart = (event, file) => {
         clearTimeout(restartTimer);
-        restartTimer = setTimeout(() => server.restart(), 120);
+        restartTimer = setTimeout(async () => {
+          server.config.logger.info(
+            `[pks] Wiki ${event}: ${file}. Restarting local docs...`,
+          );
+          try {
+            await server.restart();
+          } catch (error) {
+            server.config.logger.error(
+              `[pks] Failed to restart after Wiki update: ${error}`,
+            );
+          }
+        }, 150);
       };
 
-      server.watcher.on("add", scheduleRestart);
-      server.watcher.on("change", scheduleRestart);
-      server.watcher.on("unlink", scheduleRestart);
-      server.watcher.on("addDir", scheduleRestart);
-      server.watcher.on("unlinkDir", scheduleRestart);
-
-      return () => {
+      wikiWatcher.on("all", scheduleRestart);
+      const closeWatcher = () => {
         clearTimeout(restartTimer);
+        void wikiWatcher.close();
+        if (globalThis[wikiWatcherKey] === wikiWatcher) {
+          delete globalThis[wikiWatcherKey];
+        }
       };
+      server.httpServer?.once("close", closeWatcher);
     },
   };
 }

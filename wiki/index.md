@@ -37,6 +37,14 @@ sidebar:
 - [Effect.fork()](/wiki/技术/前端/electron/三方库/effect/fiber/effectfork/): 将 Effect 作为 Fiber 在后台启动，并保留后续等待、取消和观测的能力。
 - [Fiber.await()](/wiki/技术/前端/electron/三方库/effect/fiber/fiberawait/): 挂起直到目标 Fiber 结束，返回 Exit 而不自动传播失败。
 
+### 技术/前端/Electron/三方库/electron-log
+
+- [log.initialize()](/wiki/技术/前端/electron/三方库/electron-log/loginitialize/): 在 Electron 主进程初始化 electron-log，打通 Renderer 日志通道并配置文件输出。
+
+### 技术/前端/Electron/三方库/electron-store
+
+- [new Store()](/wiki/技术/前端/electron/三方库/electron-store/store/): 创建 Electron 应用的小型 JSON KV 持久化实例，可指定文件名与 userData 目录。
+
 ### 技术/前端/Electron/三方库/electron-window-state
 
 - [windowStateKeeper()](/wiki/技术/前端/electron/三方库/electron-window-state/windowstatekeeper/): 读取、恢复并持续保存 Electron BrowserWindow 的尺寸、位置与窗口模式。
@@ -49,9 +57,17 @@ sidebar:
 
 - [dialog.showOpenDialog()](/wiki/技术/前端/electron/对话框/dialogshowopendialog/): 在 Electron 主进程调用原生打开对话框，并以取消状态和文件路径列表处理结果。
 
+### 技术/前端/Electron/崩溃报告
+
+- [crashReporter.start()](/wiki/技术/前端/electron/崩溃报告/crashreporterstart/): 启动 Crashpad 收集崩溃；可仅本地落盘或上传到远程服务器。
+
 ### 技术/前端/Electron/窗口
 
 - [new BrowserWindow()](/wiki/技术/前端/electron/窗口/browserwindow/): 使用 BrowserWindow 构造选项、webPreferences 与 ready-to-show 事件建立安全且避免闪烁的窗口生命周期。
+
+### 技术/前端/Electron/网络日志
+
+- [netLog.startLogging()](/wiki/技术/前端/electron/网络日志/netlogstartlogging/): 在 app ready 后将网络事件写入文件，供排查与调试导出。
 
 ### 技术/前端/Electron/通知
 
