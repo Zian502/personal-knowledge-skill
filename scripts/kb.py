@@ -101,8 +101,12 @@ def cmd_add(args: argparse.Namespace) -> None:
             fail("API 标题只能保留官方 API 名称，不得追加冒号及用途说明")
         if args.slug:
             fail("技术文章的 API 目录由 --api 自动生成，请不要使用 --slug")
-        if "三方库" in category and (len(category) != 6 or category[3] != "三方库"):
-            fail("三方库 API 必须使用“技术/<领域>/<框架>/三方库/<库名>/<模块>”分类")
+        if "三方库" in category and (
+            len(category) not in {5, 6} or category[3] != "三方库"
+        ):
+            fail(
+                "三方库 API 分类必须为“技术/<领域>/<框架>/三方库/<库名>[/<模块>]”"
+            )
         target = target_dir / api_directory(api) / "index.md"
     else:
         target = target_dir / f"{slugify(args.slug or args.title)}.md"
@@ -124,7 +128,7 @@ def cmd_add(args: argparse.Namespace) -> None:
         "---",
         "",
     ]
-    target_dir.mkdir(parents=True, exist_ok=True)
+    target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text("\n".join(frontmatter) + body + "\n", encoding="utf-8")
     cmd_index(argparse.Namespace(check=False))
     print(target)
@@ -327,9 +331,11 @@ def cmd_check(_: argparse.Namespace) -> None:
                 errors.append(
                     f"{relative}: API 标题只能保留官方 API 名称，不得追加冒号及用途说明"
                 )
-            if "三方库" in parts and (len(parts) != 6 or parts[3] != "三方库"):
+            if "三方库" in parts and (
+                len(parts) not in {5, 6} or parts[3] != "三方库"
+            ):
                 errors.append(
-                    f"{relative}: 三方库 API 分类必须为 技术/<领域>/<框架>/三方库/<库名>/<模块>"
+                    f"{relative}: 三方库 API 分类必须为 技术/<领域>/<框架>/三方库/<库名>[/<模块>]"
                 )
                 continue
             expected_path = expected_parent / api_directory(api) / "index.md"

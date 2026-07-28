@@ -130,3 +130,7 @@ Use symbolic links to expose this repository globally to Codex and Cursor. Chang
 ~/.codex/skills/personal-knowledge-skill
 ~/.cursor/skills/personal-knowledge-skill
 ```
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).

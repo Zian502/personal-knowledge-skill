@@ -130,3 +130,7 @@ npm run build
 ~/.codex/skills/personal-knowledge-skill
 ~/.cursor/skills/personal-knowledge-skill
 ```
+
+## 许可证
+
+本项目基于 [MIT License](LICENSE) 开源。

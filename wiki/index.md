@@ -37,6 +37,10 @@ sidebar:
 - [Effect.fork()](/wiki/技术/前端/electron/三方库/effect/fiber/effectfork/): 将 Effect 作为 Fiber 在后台启动，并保留后续等待、取消和观测的能力。
 - [Fiber.await()](/wiki/技术/前端/electron/三方库/effect/fiber/fiberawait/): 挂起直到目标 Fiber 结束，返回 Exit 而不自动传播失败。
 
+### 技术/前端/Electron/三方库/electron-window-state
+
+- [windowStateKeeper()](/wiki/技术/前端/electron/三方库/electron-window-state/windowstatekeeper/): 读取、恢复并持续保存 Electron BrowserWindow 的尺寸、位置与窗口模式。
+
 ### 技术/前端/Electron/剪贴板
 
 - [clipboard.readImage()](/wiki/技术/前端/electron/剪贴板/clipboardreadimage/): 从系统剪贴板读取 NativeImage，供主进程转发给渲染进程作附件。
