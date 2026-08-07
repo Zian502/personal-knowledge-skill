@@ -16,12 +16,15 @@ Choose one primary category path per article. Use 2–6 levels and `/` as the se
 - `技术/前端/Electron/窗口`
 - `技术/前端/Electron/崩溃报告`
 - `技术/前端/Electron/网络日志`
+- `技术/前端/Electron/WSL`
 - `技术/前端/Electron/三方库/electron-store`
 - `技术/前端/Electron/三方库/electron-log`
 - `技术/前端/Electron/三方库/Effect/Deferred`
 - `技术/前端/React/状态管理`
 - `技术/前端/Vue/组合式 API`
 - `技术/后端/Node.js/文件系统`
+- `技术/后端/Node.js/子进程`
+- `技术/后端/Node.js/网络`
 - `技术/后端/Java`
 - `技术/后端/Python`
 - `技术/架构`

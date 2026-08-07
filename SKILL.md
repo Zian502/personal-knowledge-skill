@@ -90,6 +90,8 @@ The adapter must not scrape Codex/Cursor local databases, browser storage, or fi
 
 Treat `wiki/index.md` as the sole source of truth for the documentation site's left Wiki menu. Do not manually add, remove, or reorder Wiki entries in the site configuration. Generate its article links only with `scripts/kb.py index`, which follows Astro's directory-route normalization; do not derive URLs by hand. Render every generated category group and the outer `Wiki` group collapsed by default; Starlight may expand the path to the current article for orientation.
 
+The rendered `/wiki/` knowledge index must show every article's `created` date and sort articles globally by that date in descending order, with the newest entries first. Keep the category-structured sidebar source in the generated hidden JSON data block so chronological page ordering never flattens or reorders the left navigation hierarchy. Do not edit either representation by hand; regenerate both with `scripts/kb.py index`.
+
 After every Wiki addition, merge, deletion, or category move:
 
 1. Run `python3 scripts/kb.py index`, then `python3 scripts/kb.py index --check`.

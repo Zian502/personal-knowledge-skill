@@ -644,6 +644,11 @@ site-search dialog .pagefind-ui__result {
 .sl-markdown-content tbody tr:nth-child(even) { background: color-mix(in srgb, var(--pks-blue) 5%, transparent); }
 .sl-markdown-content tbody tr:hover { background: color-mix(in srgb, var(--pks-blue) 10%, transparent); }
 .sl-markdown-content td:first-child { width: 32%; color: var(--pks-ink); font-weight: 520; }
+.pks-knowledge-index-marker { display: none; }
+.pks-knowledge-index-marker + table :is(th, td):first-child { width: 7.5rem; white-space: nowrap; }
+.pks-knowledge-index-marker + table :is(th, td):nth-child(2) { width: 20%; }
+.pks-knowledge-index-marker + table :is(th, td):nth-child(3) { width: 27%; }
+.pks-knowledge-index-marker + table td:nth-child(2) { font-weight: 620; }
 .sl-markdown-content blockquote { padding: 0.9rem 1.05rem; border-inline-start-color: var(--pks-coral); border-radius: 0 0.65rem 0.65rem 0; background: color-mix(in srgb, var(--pks-coral) 7%, transparent); }
 .sl-markdown-content blockquote > :first-child { margin-top: 0; }
 .sl-markdown-content blockquote > :last-child { margin-bottom: 0; }

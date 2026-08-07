@@ -5,7 +5,7 @@ category: "技术/前端/Electron/Context Bridge"
 api: "contextBridge.exposeInMainWorld"
 tags: ["Electron", "contextBridge", "contextIsolation", "preload", "安全"]
 created: "2026-07-25"
-updated: "2026-07-27"
+updated: "2026-08-07"
 ---
 ## API 定位
 
@@ -23,10 +23,17 @@ updated: "2026-07-27"
 
 OpenCode Desktop 在 BrowserWindow 中开启 `contextIsolation: true`、关闭 `nodeIntegration` 并启用 sandbox。preload 使用 `contextBridge.exposeInMainWorld("api", api)` 提供文件选择、更新、窗口控制和初始化等明确方法；Renderer 只能调用 `window.api`，不能直接取得 Node.js 或完整 `ipcRenderer`。
 
+Renderer 入口据此实现 Desktop 版 `Platform`：把选目录/附件、electron-store 代理、updater、默认服务 URL、以及仅 Windows 下的 `wslServers` 都封装到 `window.api.*`，再交给共享 UI；本地 sidecar 与就绪的 WSL 连接在应用层组装成 server 列表。Platform 编排是应用层策略，不是 `exposeInMainWorld` 的契约。
+
 这使附件读取可以被设计为“选择文件后获取 token，再按 token 读取一次已选路径”，而不是向网页暴露任意路径读文件能力。token 校验和 IPC handler 授权是应用层责任；context bridge 仅提供跨 context 的能力边界。
 
 ```ts
 contextBridge.exposeInMainWorld("api", {
+  storeGet: (name: string, key: string) => ipcRenderer.invoke("store-get", name, key),
+  awaitInitialization: () => ipcRenderer.invoke("await-initialization"),
+  wslServers: {
+    list: () => ipcRenderer.invoke("wsl-servers-list"),
+  },
   attachments: { read: (token: string) => ipcRenderer.invoke("attachments:read", token) },
 })
 ```

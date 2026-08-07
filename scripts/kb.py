@@ -164,6 +164,7 @@ def article_rows() -> list[dict[str, str | Path]]:
                 "title": meta.get("title", path.stem),
                 "description": meta.get("description", ""),
                 "category": meta.get("category", "未分类"),
+                "created": meta.get("created", ""),
                 "kind": meta.get("kind", ""),
             }
         )
@@ -197,6 +198,17 @@ def site_path(relative: Path) -> str:
     return "/wiki/" + "/".join(route_parts) + "/"
 
 
+def chronological_rows(rows: list[dict[str, str | Path]]) -> list[dict[str, str | Path]]:
+    """Sort newest creation dates first and titles alphabetically within a date."""
+    by_title = sorted(rows, key=lambda row: str(row["title"]).casefold())
+    return sorted(by_title, key=lambda row: str(row["created"]), reverse=True)
+
+
+def markdown_table_cell(value: str | Path) -> str:
+    """Escape values inserted into the generated Markdown index table."""
+    return str(value).replace("|", "\\|").replace("\n", " ")
+
+
 def wiki_index_content(rows: list[dict[str, str | Path]]) -> str:
     groups: dict[str, list[dict[str, str | Path]]] = {}
     for row in rows:
@@ -219,13 +231,38 @@ def wiki_index_content(rows: list[dict[str, str | Path]]) -> str:
     if not rows:
         lines.append("暂未归档文章。使用 `/pks 录入当前会话` 创建第一篇知识条目。")
     else:
-        for category, entries in sorted_categories(groups):
-            lines.extend([f"### {category}", ""])
-            for row in entries:
-                lines.append(
-                    f"- [{row['title']}]({site_path(row['relative'])}): {row['description']}"
-                )
-            lines.append("")
+        lines.extend([
+            '<div class="pks-knowledge-index-marker" aria-hidden="true"></div>',
+            "",
+            "| 创建时间 | 知识 | 分类 | 摘要 |",
+            "| --- | --- | --- | --- |",
+        ])
+        for row in chronological_rows(rows):
+            lines.append(
+                "| "
+                f"{markdown_table_cell(row['created'])} | "
+                f"[{markdown_table_cell(row['title'])}]({site_path(row['relative'])}) | "
+                f"{markdown_table_cell(row['category'])} | "
+                f"{markdown_table_cell(row['description'])} |"
+            )
+        sidebar_entries = [
+            {
+                "category": category,
+                "title": str(row["title"]),
+                "link": site_path(row["relative"]),
+            }
+            for category, entries in sorted_categories(groups)
+            for row in entries
+        ]
+        sidebar_json = json.dumps(sidebar_entries, ensure_ascii=False, indent=2).replace(
+            "</", "<\\/"
+        )
+        lines.extend([
+            "",
+            '<script type="application/json" id="pks-sidebar-source" data-pagefind-ignore>',
+            sidebar_json,
+            "</script>",
+        ])
     return "\n".join(lines)
 
 

@@ -13,17 +13,20 @@ const site = process.env.GITHUB_ACTIONS === "true"
 const wikiWatcherKey = Symbol.for("personal-knowledge-skill.wiki-watcher");
 
 function wikiNavigationFromIndex() {
+  const source = readFileSync(wikiIndex, "utf8");
+  const dataMatch = source.match(
+    /<script type="application\/json" id="pks-sidebar-source"[^>]*>\s*([\s\S]*?)\s*<\/script>/,
+  );
+  if (!dataMatch) {
+    throw new Error("Wiki index is missing the generated pks-sidebar-source data block");
+  }
+  const entries = JSON.parse(dataMatch[1]);
   const root = [];
-  let category = [];
-  for (const line of readFileSync(wikiIndex, "utf8").split("\n")) {
-    const categoryMatch = line.match(/^###\s+(.+)$/);
-    if (categoryMatch) {
-      category = categoryMatch[1].split("/").map((part) => part.trim()).filter(Boolean);
-      continue;
-    }
-    const articleMatch = line.match(/^- \[(.+)]\((\/wiki\/[^)]+)\):/);
-    if (!articleMatch || !category.length) continue;
-
+  for (const entry of entries) {
+    const category = entry.category
+      .split("/")
+      .map((part) => part.trim())
+      .filter(Boolean);
     let level = root;
     for (const label of category) {
       let group = level.find((item) => item.label === label && item.items);
@@ -40,12 +43,12 @@ function wikiNavigationFromIndex() {
       level = group.items;
     }
     const existingGroup = level.find(
-      (item) => item.label === articleMatch[1] && item.items,
+      (item) => item.label === entry.title && item.items,
     );
     if (existingGroup) {
-      existingGroup.items.unshift({ label: "总览", link: articleMatch[2] });
+      existingGroup.items.unshift({ label: "总览", link: entry.link });
     } else {
-      level.push({ label: articleMatch[1], link: articleMatch[2] });
+      level.push({ label: entry.title, link: entry.link });
     }
   }
   const placeEcosystemLibrariesLast = (items) => {

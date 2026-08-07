@@ -5,7 +5,7 @@ category: "技术/前端/Electron"
 kind: "ecosystem-libraries"
 tags: ["Electron", "三方库", "生态"]
 created: "2026-07-25"
-updated: "2026-07-28"
+updated: "2026-08-07"
 ---
 
 ## 三方库列表
@@ -19,4 +19,4 @@ updated: "2026-07-28"
 
 ## 来源说明
 
-本清单根据当前会话中关于 OpenCode Desktop 的 `electron-store` 延迟持久化、`electron-log` 诊断日志，以及既有窗口状态与 Effect sidecar 素材提炼；“三方库”仅记录与 Electron 搭配的外部包，不记录 `electron` 框架本体。
+本清单根据会话中关于 OpenCode Desktop 的 `electron-store`、`electron-log`、窗口状态、Effect sidecar，以及 WSL sidecar / Renderer `Platform` 素材提炼。WSL 通过系统自带的 `wsl.exe` 调用，不是 npm 包，故不列入表。“三方库”仅记录与 Electron 搭配的外部包，不记录 `electron` 框架本体。
